@@ -86,6 +86,7 @@ describe('actionCollection', () => {
             width: 1,
             height: 2,
           },
+          name_source: undefined,
           position: {
             x: 1,
             y: 2,
