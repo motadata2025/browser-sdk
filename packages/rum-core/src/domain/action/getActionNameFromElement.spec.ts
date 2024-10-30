@@ -4,7 +4,6 @@ import { getActionNameFromElement } from './getActionNameFromElement'
 
 const defaultConfiguration = mockRumConfiguration()
 
-
 describe('getActionNameFromElement', () => {
   it('extracts the textual content of an element', () => {
     const { name, namingSource } = getActionNameFromElement(
