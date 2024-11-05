@@ -40,7 +40,7 @@ function intiActionNameAllowlist() {
   // check if it is staging
   if (
     !getGlobalObject<BrowserWindow>().location ||
-    !getGlobalObject<BrowserWindow>().location.hostname.includes('staging')
+    !getGlobalObject<BrowserWindow>().location.hostname.includes('datad0g')
   ) {
     return
   }
