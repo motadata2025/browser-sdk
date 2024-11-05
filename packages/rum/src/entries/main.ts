@@ -33,12 +33,15 @@ export { DefaultPrivacyLevel } from '@datadog/browser-core'
 
 const recorderApi = makeRecorderApi(startRecording)
 export const datadogRum = makeRumPublicApi(startRum, recorderApi, { startDeflateWorker, createDeflateEncoder })
-function intiActionNameWhitelist() {
+function intiActionNameAllowlist() {
+  if (!window.location.href.includes('datad0g')) {
+    return
+  }
   fetch('/static/v/dist.allowed-strings.json')
     .then((response) => {
       response
         .json()
-        .then((data) => defineGlobal(getGlobalObject<BrowserWindow>(), 'DD_WHITELIST_DICTIONARY', data))
+        .then((data) => defineGlobal(getGlobalObject<BrowserWindow>(), 'DD_ALLOWLIST_DICTIONARY', data))
         .catch((error) => {
           addTelemetryDebug('Failed to parse allowed strings', error)
         })
@@ -49,7 +52,7 @@ function intiActionNameWhitelist() {
 }
 interface BrowserWindow extends Window {
   DD_RUM?: RumPublicApi
-  DD_WHITELIST_DICTIONARY?: { [key: string]: boolean }
+  DD_ALLOWLIST_DICTIONARY?: { [key: string]: boolean }
 }
-intiActionNameWhitelist()
+intiActionNameAllowlist()
 defineGlobal(getGlobalObject<BrowserWindow>(), 'DD_RUM', datadogRum)

@@ -216,12 +216,14 @@ function shouldSend(
 ) {
   if (event.type === RumEventType.ACTION) {
     const wordsRegex = /(\w+)/
-    if (event.action.name && window.DD_WHITELIST_DICTIONARY) {
+    // @ts-ignore window global
+    const dictionary = window.DD_ALLOWLIST_DICTIONARY
+    if (event.action.name && dictionary) {
       // substitute the matched patterns with sanitized words
       let masked = false
       event.action.target?.name.replace(wordsRegex, (word: string) => {
         const normalized = word.toLowerCase()
-        if (window.DD_WHITELIST_DICTIONARY[normalized]) {
+        if (dictionary[normalized]) {
           return word
         }
         masked = true
@@ -232,7 +234,7 @@ function shouldSend(
         // eslint-disable-next-line no-underscore-dangle
         event._dd.action.name_source = 'mask_unverified'
       }
-    } else if (!window.DD_WHITELIST_DICTIONARY) {
+    } else if (!dictionary) {
       // add metrics when there is no dictionary
       addTelemetryDebug('Action names dictionary not loaded')
     }
