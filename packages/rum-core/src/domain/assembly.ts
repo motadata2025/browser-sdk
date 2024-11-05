@@ -218,21 +218,23 @@ function shouldSend(
     const wordsRegex = /(\w+)/
     // @ts-ignore window global
     const dictionary = window.DD_ALLOWLIST_DICTIONARY
-    if (event.action.name && dictionary) {
+    // console.log('dictionary is:', dictionary)
+    if (event.action.target?.name && dictionary) {
       // substitute the matched patterns with sanitized words
-      let masked = false
-      event.action.target?.name.replace(wordsRegex, (word: string) => {
-        const normalized = word.toLowerCase()
-        if (dictionary[normalized]) {
-          return word
+      const masked = []
+      const words = event.action.target?.name.match(wordsRegex)
+      if (words) {
+        for (let i = 0; i < words.length; i++) {
+          if (!dictionary[words[i].toLowerCase()]) {
+            event.action.target.name = event.action.target.name.replace(words[i], 'MASKED')
+            masked.push(words[i])
+          }
         }
-        masked = true
-        return 'MASKED'
-      })
+      }
       // eslint-disable-next-line no-underscore-dangle
-      if (masked && event._dd.action) {
+      if (masked.length > 0 && event._dd.action) {
         // eslint-disable-next-line no-underscore-dangle
-        event._dd.action.name_source = 'mask_unverified'
+        event._dd.action.name_source = `mask_unverified: ${masked.join(', ')}`
       }
     } else if (!dictionary) {
       // add metrics when there is no dictionary
