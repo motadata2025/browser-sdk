@@ -12,7 +12,6 @@ import {
   isExperimentalFeatureEnabled,
   ExperimentalFeature,
   getConnectivity,
-  addTelemetryDebug,
 } from '@datadog/browser-core'
 import type { RumEventDomainContext } from '../domainContext.types'
 import type {
