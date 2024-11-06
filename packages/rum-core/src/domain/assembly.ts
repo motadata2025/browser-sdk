@@ -214,33 +214,6 @@ function shouldSend(
   domainContext: RumEventDomainContext,
   eventRateLimiters: { [key in RumEventType]?: EventRateLimiter }
 ) {
-  if (event.type === RumEventType.ACTION) {
-    const wordsRegex = /(\w+)/
-    // @ts-ignore window global
-    const dictionary = window.DD_ALLOWLIST_DICTIONARY
-    // console.log('dictionary is:', dictionary)
-    if (event.action.target?.name && dictionary) {
-      // substitute the matched patterns with sanitized words
-      const masked = []
-      const words = event.action.target?.name.match(wordsRegex)
-      if (words) {
-        for (let i = 0; i < words.length; i++) {
-          if (!dictionary[words[i].toLowerCase()]) {
-            event.action.target.name = event.action.target.name.replace(words[i], 'MASKED')
-            masked.push(words[i])
-          }
-        }
-      }
-      // eslint-disable-next-line no-underscore-dangle
-      if (masked.length > 0 && event._dd.action) {
-        // eslint-disable-next-line no-underscore-dangle
-        event._dd.action.name_source = `mask_unverified: ${masked.join(', ')}`
-      }
-    } else if (!dictionary) {
-      // add metrics when there is no dictionary
-      addTelemetryDebug('Action names dictionary not loaded')
-    }
-  }
   if (beforeSend) {
     const result = limitModification(event, modifiableFieldPathsByEvent[event.type], (event) =>
       beforeSend(event, domainContext)
