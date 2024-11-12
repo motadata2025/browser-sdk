@@ -1,4 +1,4 @@
-import { collectAsyncCalls, mockEndpointBuilder, interceptRequests } from '../../test'
+import { collectAsyncCalls, mockEndpointBuilder, interceptRequests, createNewEvent } from '../../test'
 import type { Request } from '../../test'
 import type { EndpointBuilder } from '../domain/configuration'
 import { createEndpointBuilder } from '../domain/configuration'
@@ -179,6 +179,23 @@ describe('httpRequest', () => {
         expect(onResponseSpy).toHaveBeenCalledWith({
           status: 200,
         })
+        done()
+      }, 100)
+    })
+
+    it('should handle synthetic events', (done) => {
+      const onResponseSpy = jasmine.createSpy('xhrOnResponse')
+
+      interceptor.withMockXhr((xhr) => {
+        const syntheticEvent = createNewEvent('loadend', { __ddIsTrusted: false })
+
+        setTimeout(() => xhr.dispatchEvent(syntheticEvent))
+      })
+
+      sendXHR('foo', '', onResponseSpy)
+
+      setTimeout(() => {
+        expect(onResponseSpy).toHaveBeenCalledTimes(1)
         done()
       }, 100)
     })
