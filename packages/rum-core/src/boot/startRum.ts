@@ -128,7 +128,7 @@ export function startRum(
 
   const domMutationObservable = createDOMMutationObservable()
   const locationChangeObservable = createLocationChangeObservable(configuration, location)
-  const pageStateHistory = startPageStateHistory(configuration)
+  const pageStateHistory = startPageStateHistory(hooks, configuration)
   const viewHistory = startViewHistory(lifeCycle)
   const urlContexts = startUrlContexts(lifeCycle, hooks, locationChangeObservable, location)
   const featureFlagContexts = startFeatureFlagContexts(
@@ -178,7 +178,6 @@ export function startRum(
     domMutationObservable,
     windowOpenObservable,
     locationChangeObservable,
-    pageStateHistory,
     recorderApi,
     viewHistory,
     initialViewOptions
@@ -202,7 +201,7 @@ export function startRum(
     }
   }
 
-  const { addError } = startErrorCollection(lifeCycle, configuration, pageStateHistory)
+  const { addError } = startErrorCollection(lifeCycle, configuration)
 
   startRequestCollection(lifeCycle, configuration, session)
 
@@ -276,8 +275,7 @@ export function startRumEventCollection(
     hooks,
     domMutationObservable,
     windowOpenObservable,
-    configuration,
-    pageStateHistory
+    configuration
   )
 
   const displayContext = startDisplayContext(configuration)
