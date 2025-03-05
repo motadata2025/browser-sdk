@@ -304,6 +304,7 @@ export function startRumEventCollection(
       displayContext.stop()
       viewHistory.stop()
       pageStateHistory.stop()
+      urlContexts.stop()
     },
   }
 }
