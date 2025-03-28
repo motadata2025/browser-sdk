@@ -39,6 +39,8 @@ export type {
   TelemetryDebugEvent,
   TelemetryConfigurationEvent,
   TelemetryUsageEvent,
+  RawTelemetryUsage,
+  RawTelemetryUsageFeature,
 } from './domain/telemetry'
 export {
   startTelemetry,
@@ -129,7 +131,8 @@ export {
   CUSTOMER_DATA_BYTES_LIMIT,
   CustomerDataCompressionStatus,
 } from './domain/context/customerDataTracker'
-export { CustomerDataType } from './domain/context/contextConstants'
+// export type { CustomerContextKeyType, ContextManagerMethodType } from './domain/context/contextConstants'
+export { CustomerDataType, CustomerContextKey, ContextManagerMethod } from './domain/context/contextConstants'
 export type { ValueHistory, ValueHistoryEntry } from './tools/valueHistory'
 export { createValueHistory, CLEAR_OLD_VALUES_INTERVAL } from './tools/valueHistory'
 export { readBytesFromStream } from './tools/readBytesFromStream'
@@ -141,8 +144,8 @@ export {
   getSyntheticsTestId,
   getSyntheticsResultId,
 } from './domain/synthetics/syntheticsWorkerValues'
-export type { User } from './domain/user'
-export type { Account } from './domain/account'
+export type { User } from './domain/user.types'
+export type { Account } from './domain/account.types'
 export { checkContext } from './domain/context/contextUtils'
 export * from './domain/resourceUtils'
 export * from './tools/utils/polyfills'
