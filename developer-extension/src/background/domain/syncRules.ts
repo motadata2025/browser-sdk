@@ -1,11 +1,5 @@
 import type { NetRequestRulesOptions } from '../../common/extension.types'
-import {
-  DEV_LOGS_URL,
-  DEV_RUM_EXTRA_SLIM_URL,
-  DEV_RUM_RECORDER_CHUNK_URL,
-  DEV_RUM_SLIM_URL,
-  DEV_RUM_URL,
-} from '../../common/packagesUrlConstants'
+import { DEV_SERVER_ORIGIN, DEV_RUM_SLIM_URL, DEV_RUM_URL } from '../../common/packagesUrlConstants'
 import { INTAKE_DOMAINS } from '../../common/intakeDomainConstants'
 import { createLogger } from '../../common/logger'
 import { onDevtoolsDisconnection, onDevtoolsMessage } from '../devtoolsPanelConnection'
