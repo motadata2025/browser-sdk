@@ -54,6 +54,7 @@ import { startGlobalContext } from '../domain/contexts/globalContext'
 import { startUserContext } from '../domain/contexts/userContext'
 import { startAccountContext } from '../domain/contexts/accountContext'
 import { startRumAssembly } from '../domain/assembly'
+import { startSessionContext } from '../domain/contexts/sessionContext'
 import { startConnectivityContext } from '../domain/contexts/connectivityContext'
 import type { RecorderApi, ProfilerApi } from './rumPublicApi'
 
@@ -133,6 +134,7 @@ export function startRum(
   const viewHistory = startViewHistory(lifeCycle)
   const urlContexts = startUrlContexts(lifeCycle, hooks, locationChangeObservable, location)
   const featureFlagContexts = startFeatureFlagContexts(lifeCycle, hooks, configuration)
+  startSessionContext(hooks, session, recorderApi, viewHistory)
   startConnectivityContext(hooks)
   const globalContext = startGlobalContext(hooks, configuration)
   const userContext = startUserContext(hooks, configuration, session)
@@ -152,7 +154,6 @@ export function startRum(
     windowOpenObservable,
     urlContexts,
     viewHistory,
-    recorderApi,
     reportError
   )
   cleanupTasks.push(stopRumEventCollection)
@@ -256,7 +257,6 @@ export function startRumEventCollection(
   windowOpenObservable: Observable<void>,
   urlContexts: UrlContexts,
   viewHistory: ViewHistory,
-  recorderApi: RecorderApi,
   reportError: (error: RawError) => void
 ) {
   const actionCollection = startActionCollection(
@@ -271,7 +271,7 @@ export function startRumEventCollection(
   const ciVisibilityContext = startCiVisibilityContext(hooks)
   startSyntheticsContext(hooks)
 
-  startRumAssembly(configuration, lifeCycle, hooks, sessionManager, viewHistory, urlContexts, recorderApi, reportError)
+  startRumAssembly(configuration, lifeCycle, hooks, sessionManager, viewHistory, urlContexts, reportError)
 
   return {
     pageStateHistory,

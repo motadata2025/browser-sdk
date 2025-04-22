@@ -17,11 +17,9 @@ import { RumEventType } from '../rawRumEvent.types'
 import type { CommonProperties, RumEvent } from '../rumEvent.types'
 import type { Hooks } from '../hooks'
 import { HookNames } from '../hooks'
-import type { RecorderApi } from '../boot/rumPublicApi'
 import type { LifeCycle } from './lifeCycle'
 import { LifeCycleEventType } from './lifeCycle'
 import type { ViewHistory } from './contexts/viewHistory'
-import { SessionReplayState, SessionType } from './rumSessionManager'
 import type { RumSessionManager } from './rumSessionManager'
 import type { RumConfiguration } from './configuration'
 import type { ModifiableFieldPaths } from './limitModification'
@@ -48,8 +46,6 @@ const ROOT_MODIFIABLE_FIELD_PATHS: ModifiableFieldPaths = {
 
 let modifiableFieldPathsByEvent: { [key in RumEventType]: ModifiableFieldPaths }
 
-type Mutable<T> = { -readonly [P in keyof T]: T[P] }
-
 export function startRumAssembly(
   configuration: RumConfiguration,
   lifeCycle: LifeCycle,
@@ -57,7 +53,6 @@ export function startRumAssembly(
   sessionManager: RumSessionManager,
   viewHistory: ViewHistory,
   urlContexts: UrlContexts,
-  recorderApi: RecorderApi,
   reportError: (error: RawError) => void
 ) {
   modifiableFieldPathsByEvent = {
@@ -160,10 +155,6 @@ export function startRumAssembly(
           },
           date: timeStampNow(),
           source: 'browser',
-          session: {
-            id: session.id,
-            type: SessionType.USER,
-          },
         }
 
         const serverRumEvent = combine(
@@ -176,17 +167,6 @@ export function startRumAssembly(
           { context: customerContext },
           rawRumEvent
         ) as RumEvent & Context
-
-        if (!('has_replay' in serverRumEvent.session)) {
-          ;(serverRumEvent.session as Mutable<RumEvent['session']>).has_replay = recorderApi.isRecording()
-            ? true
-            : undefined
-        }
-
-        if (serverRumEvent.type === 'view') {
-          ;(serverRumEvent.session as Mutable<RumEvent['session']>).sampled_for_replay =
-            session.sessionReplay === SessionReplayState.SAMPLED
-        }
 
         if (shouldSend(serverRumEvent, configuration.beforeSend, domainContext, eventRateLimiters)) {
           if (isEmptyObject(serverRumEvent.context!)) {
