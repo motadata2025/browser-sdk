@@ -79,7 +79,7 @@ export function createRumProfiler(
     globalCleanupTasks.forEach((task) => task())
 
     // Cleanup Long Task Registry as we no longer need to correlate them with RUM
-    cleanupLongTaskRegistryAfterCollection(clocksNow())
+    cleanupLongTaskRegistryAfterCollection(clocksNow().relative)
   }
 
   /**
@@ -228,7 +228,7 @@ export function createRumProfiler(
         )
 
         // Clear long task registry, remove entries that we collected already (eg. avoid slowly growing memory usage by keeping outdated entries)
-        cleanupLongTaskRegistryAfterCollection(collectClocks)
+        cleanupLongTaskRegistryAfterCollection(collectClocks.relative)
       })
       .catch(monitorError)
   }
@@ -286,9 +286,11 @@ export function createRumProfiler(
 
       const startClocks = relativeToClocks(entry.startTime as RelativeTime)
 
+      const longTaskId = getLongTaskId(startClocks.relative)
+
       // Store Long Task entry, which is a lightweight version of the PerformanceEntry
       instance.longTasks.push({
-        id: getLongTaskId(startClocks.relative),
+        id: longTaskId,
         duration: entry.duration as Duration,
         entryType: entry.entryType,
         startClocks,
