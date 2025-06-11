@@ -1,5 +1,5 @@
-import type { Context, ClocksState } from '@datadog/browser-core'
-import { noop, ErrorSource, trackRuntimeError } from '@datadog/browser-core'
+import type { Context, ClocksState, Observable, EarlyData } from '@datadog/browser-core'
+import { noop, ErrorSource, EarlyDataType } from '@datadog/browser-core'
 import type { LogsConfiguration } from '../configuration'
 import type { LifeCycle } from '../lifeCycle'
 import { LifeCycleEventType } from '../lifeCycle'
@@ -13,22 +13,29 @@ export interface ProvidedError {
   handlingStack: string
 }
 
-export function startRuntimeErrorCollection(configuration: LogsConfiguration, lifeCycle: LifeCycle) {
+export function startRuntimeErrorCollection(
+  configuration: LogsConfiguration,
+  lifeCycle: LifeCycle,
+  earlyDataObservable: Observable<EarlyData>
+) {
   if (!configuration.forwardErrorsToLogs) {
     return { stop: noop }
   }
 
-  const rawErrorSubscription = trackRuntimeError().subscribe((rawError) => {
-    lifeCycle.notify(LifeCycleEventType.RAW_LOG_COLLECTED, {
-      rawLogsEvent: {
-        message: rawError.message,
-        date: rawError.startClocks.timeStamp,
-        error: createErrorFieldFromRawError(rawError),
-        origin: ErrorSource.SOURCE,
-        status: StatusType.error,
-      },
-      messageContext: rawError.context,
-    })
+  const rawErrorSubscription = earlyDataObservable.subscribe((earlyData) => {
+    if (earlyData.type === EarlyDataType.RUNTIME_ERROR) {
+      const error = earlyData.error
+      lifeCycle.notify(LifeCycleEventType.RAW_LOG_COLLECTED, {
+        rawLogsEvent: {
+          message: error.message,
+          date: error.startClocks.timeStamp,
+          error: createErrorFieldFromRawError(error),
+          origin: ErrorSource.SOURCE,
+          status: StatusType.error,
+        },
+        messageContext: error.context,
+      })
+    }
   })
 
   return {
