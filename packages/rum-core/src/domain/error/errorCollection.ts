@@ -1,10 +1,11 @@
-import type { Context, RawError, ClocksState } from '@datadog/browser-core'
+import type { Context, RawError, ClocksState, EarlyData } from '@datadog/browser-core'
 import {
+  EarlyDataType,
+  Observable,
   ErrorSource,
   generateUUID,
   computeRawError,
   ErrorHandling,
-  trackRuntimeError,
   NonErrorPrefix,
   combine,
 } from '@datadog/browser-core'
@@ -25,8 +26,18 @@ export interface ProvidedError {
   componentStack?: string
 }
 
-export function startErrorCollection(lifeCycle: LifeCycle, configuration: RumConfiguration) {
-  const errorObservable = trackRuntimeError()
+export function startErrorCollection(
+  lifeCycle: LifeCycle,
+  configuration: RumConfiguration,
+  earlyDataObservable: Observable<EarlyData>
+) {
+  const errorObservable = new Observable<RawError>()
+
+  earlyDataObservable.subscribe((earlyData) => {
+    if (earlyData.type === EarlyDataType.RUNTIME_ERROR) {
+      errorObservable.notify(earlyData.error)
+    }
+  })
 
   trackConsoleError(errorObservable)
   trackReportError(configuration, errorObservable)
