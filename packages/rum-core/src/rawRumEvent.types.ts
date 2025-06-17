@@ -139,7 +139,7 @@ export interface RawRumViewEvent {
   }
   device?: {
     locale?: string
-    locales?: string[] | readonly string[]
+    locales?: string[]
     time_zone?: string
   }
 }
