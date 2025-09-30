@@ -5,7 +5,7 @@ import { toStackTraceString } from '../../tools/stackTrace/handlingStack'
 import { getExperimentalFeatures } from '../../tools/experimentalFeatures'
 import type { Configuration } from '../configuration'
 import { buildTags } from '../tags'
-import { INTAKE_SITE_STAGING, INTAKE_SITE_US1_FED } from '../intakeSites'
+// Removed hardcoded Datadog sites - using flexible configuration
 import { BufferedObservable, Observable } from '../../tools/observable'
 import { clocksNow } from '../../tools/utils/timeUtils'
 import { displayIfDebugEnabled, startMonitorErrorCollection } from '../../tools/monitor'
@@ -74,7 +74,8 @@ export const enum TelemetryMetrics {
 
 const METRIC_SAMPLE_RATE = 1
 
-const TELEMETRY_EXCLUDED_SITES: string[] = [INTAKE_SITE_US1_FED]
+// No excluded sites for flexible configuration
+const TELEMETRY_EXCLUDED_SITES: string[] = []
 
 let telemetryObservable: BufferedObservable<{ rawEvent: RawTelemetryEvent; metricName?: string }> | undefined
 
@@ -188,7 +189,7 @@ export function startTelemetryCollection(
       service: telemetryService,
       version: __BUILD_ENV__SDK_VERSION__,
       source: 'browser' as const,
-      _dd: {
+      _md: {
         format_version: 2 as const,
       },
       telemetry: combine(rawEvent, {
@@ -196,7 +197,7 @@ export function startTelemetryCollection(
         connectivity: getConnectivity(),
         sdk_setup: __BUILD_ENV__SDK_SETUP__,
       }) as TelemetryEvent['telemetry'],
-      ddtags: buildTags(configuration).join(','),
+      mdtags: buildTags(configuration).join(','),
       experimental_features: Array.from(getExperimentalFeatures()),
     }
 
@@ -262,7 +263,8 @@ export function resetTelemetry() {
  * but keep replicating staging events for reliability
  */
 function isTelemetryReplicationAllowed(configuration: Configuration) {
-  return configuration.site === INTAKE_SITE_STAGING
+  // For flexible configuration, consider any site ending with 'datad0g.com' as staging
+  return configuration.site.endsWith('datad0g.com')
 }
 
 export function addTelemetryDebug(message: string, context?: Context) {

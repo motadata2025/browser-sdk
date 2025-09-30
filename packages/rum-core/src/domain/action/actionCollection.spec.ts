@@ -1,6 +1,6 @@
-import type { Duration, RelativeTime, ServerDuration, TimeStamp } from '@datadog/browser-core'
-import { HookNames, Observable } from '@datadog/browser-core'
-import { createNewEvent, registerCleanupTask } from '@datadog/browser-core/test'
+import type { Duration, RelativeTime, ServerDuration, TimeStamp } from '@motadata365/browser-core'
+import { HookNames, Observable } from '@motadata365/browser-core'
+import { createNewEvent, registerCleanupTask } from '@motadata365/browser-core/test'
 import { collectAndValidateRawRumEvents, mockRumConfiguration } from '../../../test'
 import type { RawRumActionEvent, RawRumEvent } from '../../rawRumEvent.types'
 import { RumEventType, ActionType } from '../../rawRumEvent.types'
@@ -88,7 +88,7 @@ describe('actionCollection', () => {
       },
       date: jasmine.any(Number),
       type: RumEventType.ACTION,
-      _dd: {
+      _md: {
         action: {
           target: {
             selector: '#foo',

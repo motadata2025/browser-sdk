@@ -4,8 +4,8 @@ import type { BrowserLog } from '../../lib/framework'
 import { createTest, createExtension, createCrossOriginScriptUrls, formatConfiguration } from '../../lib/framework'
 
 const WARNING_MESSAGE =
-  'Datadog Browser SDK: Running the Browser SDK in a Web extension content script is discouraged and will be forbidden in a future major release unless the `allowedTrackingOrigins` option is provided.'
-const ERROR_MESSAGE = 'Datadog Browser SDK: SDK initialized on a non-allowed domain.'
+  'Motadata Browser SDK: Running the Browser SDK in a Web extension content script is discouraged and will be forbidden in a future major release unless the `allowedTrackingOrigins` option is provided.'
+const ERROR_MESSAGE = 'Motadata Browser SDK: SDK initialized on a non-allowed domain.'
 
 const BASE_PATH = path.join(process.cwd(), 'test/apps')
 const EXTENSIONS = ['base-extension', 'cdn-extension']
@@ -101,7 +101,7 @@ test.describe('browser extensions', () => {
           <script src="${logsScriptUrl}"></script>
           <script>
             const script = document.createElement('script')
-            script.innerHTML = 'window.DD_RUM.init(${formatConfiguration(options.rum!, servers)}); window.DD_LOGS.init(${formatConfiguration(options.logs!, servers)})'
+            script.innerHTML = 'window.MD_RUM.init(${formatConfiguration(options.rum!, servers)}); window.MD_LOGS.init(${formatConfiguration(options.logs!, servers)})'
             document.head.appendChild(script)
           </script>
         `

@@ -1,5 +1,5 @@
-import type { LogsInitConfiguration } from '@datadog/browser-logs'
-import type { RumInitConfiguration, RemoteConfiguration } from '@datadog/browser-rum-core'
+import type { LogsInitConfiguration } from '@motadata365/browser-logs'
+import type { RumInitConfiguration, RemoteConfiguration } from '@motadata365/browser-rum-core'
 import type { BrowserContext, Page } from '@playwright/test'
 import { test, expect } from '@playwright/test'
 import { addTag, addTestOptimizationTags } from '../helpers/tags'
@@ -204,11 +204,11 @@ class TestBuilder {
   }
 
   private rumInit: (configuration: RumInitConfiguration) => void = (configuration) => {
-    window.DD_RUM!.init(configuration)
+    window.MD_RUM!.init(configuration)
   }
 
   private logsInit: (configuration: LogsInitConfiguration) => void = (configuration) => {
-    window.DD_LOGS!.init(configuration)
+    window.MD_LOGS!.init(configuration)
   }
 }
 

@@ -342,7 +342,7 @@ describe('httpRequest intake parameters', () => {
 
     await interceptor.waitForAllFetchCalls()
 
-    const search = /dd-request-id=([^&]*)/
+    const search = /md-request-id=([^&]*)/
     const requestId1 = search.exec(requests[0].url)?.[1]
     const requestId2 = search.exec(requests[1].url)?.[1]
 

@@ -1,6 +1,6 @@
-import type { EncoderResult, Uint8ArrayBuffer } from '@datadog/browser-core'
-import { noop, DeflateEncoderStreamId } from '@datadog/browser-core'
-import type { RumConfiguration } from '@datadog/browser-rum-core'
+import type { EncoderResult, Uint8ArrayBuffer } from '@motadata365/browser-core'
+import { noop, DeflateEncoderStreamId } from '@motadata365/browser-core'
+import type { RumConfiguration } from '@motadata365/browser-rum-core'
 import { MockWorker } from '../../../test'
 import { createDeflateEncoder } from './deflateEncoder'
 

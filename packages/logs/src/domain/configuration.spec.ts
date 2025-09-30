@@ -1,5 +1,5 @@
-import type { InitConfiguration } from '@datadog/browser-core'
-import { display } from '@datadog/browser-core'
+import type { InitConfiguration } from '@motadata365/browser-core'
+import { display } from '@motadata365/browser-core'
 import {
   EXHAUSTIVE_INIT_CONFIGURATION,
   type CamelToSnakeCase,

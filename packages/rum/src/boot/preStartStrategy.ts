@@ -1,5 +1,5 @@
-import { noop } from '@datadog/browser-core'
-import type { RumConfiguration } from '@datadog/browser-rum-core'
+import { noop } from '@motadata365/browser-core'
+import type { RumConfiguration } from '@motadata365/browser-rum-core'
 import type { Strategy } from './postStartStrategy'
 
 const enum PreStartRecorderStatus {

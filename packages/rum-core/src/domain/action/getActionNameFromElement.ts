@@ -1,4 +1,4 @@
-import { ExperimentalFeature, isExperimentalFeatureEnabled, safeTruncate } from '@datadog/browser-core'
+import { ExperimentalFeature, isExperimentalFeatureEnabled, safeTruncate } from '@motadata365/browser-core'
 import { getPrivacySelector, NodePrivacyLevel } from '../privacyConstants'
 import { getNodePrivacyLevel, shouldMaskNode } from '../privacy'
 import type { NodePrivacyLevelCache } from '../privacy'

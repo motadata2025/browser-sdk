@@ -1,5 +1,5 @@
-import { noop } from '@datadog/browser-core'
-import type { LifeCycle, RumConfiguration } from '@datadog/browser-rum-core'
+import { noop } from '@motadata365/browser-core'
+import type { LifeCycle, RumConfiguration } from '@motadata365/browser-rum-core'
 import { getSessionReplayLink } from '../domain/getSessionReplayLink'
 
 export function makeRecorderApiStub() {

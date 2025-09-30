@@ -1,4 +1,4 @@
-import type { Duration, RelativeTime } from '@datadog/browser-core'
+import type { Duration, RelativeTime } from '@motadata365/browser-core'
 import {
   PageExitReason,
   timeStampNow,
@@ -6,10 +6,10 @@ import {
   relativeToClocks,
   relativeNow,
   resetExperimentalFeatures,
-} from '@datadog/browser-core'
+} from '@motadata365/browser-core'
 
-import type { Clock } from '@datadog/browser-core/test'
-import { mockClock, registerCleanupTask, createNewEvent } from '@datadog/browser-core/test'
+import type { Clock } from '@motadata365/browser-core/test'
+import { mockClock, registerCleanupTask, createNewEvent } from '@motadata365/browser-core/test'
 import { createPerformanceEntry, mockPerformanceObserver } from '../../../test'
 import type { AssembledRumEvent } from '../../rawRumEvent.types'
 import { RumEventType, ViewLoadingType } from '../../rawRumEvent.types'

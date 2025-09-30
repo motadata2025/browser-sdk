@@ -79,8 +79,8 @@ async function triggerSyntheticsTest(prNumber: string, commitId: string): Promis
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'DD-API-KEY': API_KEY,
-      'DD-APPLICATION-KEY': APP_KEY,
+      'md-api-key': API_KEY,
+      'MD-APPLICATION-KEY': APP_KEY,
     },
     body: JSON.stringify(body),
   })
@@ -95,8 +95,8 @@ async function waitForSyntheticsTestToFinish(resultId: string, retriesNumber: nu
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'DD-API-KEY': API_KEY,
-        'DD-APPLICATION-KEY': APP_KEY,
+        'md-api-key': API_KEY,
+        'MD-APPLICATION-KEY': APP_KEY,
       },
     })
     // do not use response.ok as we can have 404 responses

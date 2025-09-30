@@ -1,5 +1,5 @@
-import { addEventListener, DOM_EVENT } from '@datadog/browser-core'
-import type { RelativeTime } from '@datadog/browser-core'
+import { addEventListener, DOM_EVENT } from '@motadata365/browser-core'
+import type { RelativeTime } from '@motadata365/browser-core'
 import type { RumConfiguration } from '../configuration'
 
 export interface ExtraPointerEventFields {

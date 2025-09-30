@@ -1,7 +1,7 @@
-import type { RelativeTime, Duration } from '@datadog/browser-core'
-import { clocksNow, clocksOrigin, noop, Observable } from '@datadog/browser-core'
-import type { Clock } from '@datadog/browser-core/test'
-import { mockClock, setPageVisibility, restorePageVisibility } from '@datadog/browser-core/test'
+import type { RelativeTime, Duration } from '@motadata365/browser-core'
+import { clocksNow, clocksOrigin, noop, Observable } from '@motadata365/browser-core'
+import type { Clock } from '@motadata365/browser-core/test'
+import { mockClock, setPageVisibility, restorePageVisibility } from '@motadata365/browser-core/test'
 import { ViewLoadingType } from '../../../rawRumEvent.types'
 import {
   createMutationRecord,

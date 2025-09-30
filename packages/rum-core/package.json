@@ -1,5 +1,5 @@
 {
-  "name": "@datadog/browser-rum-core",
+  "name": "@motadata365/browser-rum-core",
   "version": "6.21.1",
   "license": "Apache-2.0",
   "main": "cjs/index.js",
@@ -13,15 +13,10 @@
     "replace-build-env": "node ../../scripts/build/replace-build-env.ts"
   },
   "dependencies": {
-    "@datadog/browser-core": "6.21.1"
+    "@motadata365/browser-core": "6.21.1"
   },
   "devDependencies": {
     "ajv": "8.17.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/DataDog/browser-sdk.git",
-    "directory": "packages/rum-core"
   },
   "volta": {
     "extends": "../../package.json"

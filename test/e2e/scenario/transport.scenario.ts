@@ -46,7 +46,7 @@ test.describe('transport', () => {
         expect(intakeRegistry.rumRequests.filter((request) => request.encoding === 'deflate')).toHaveLength(0)
 
         withBrowserLogs((logs) => {
-          const failedToStartLog = logs.find((log) => log.message.includes('Datadog RUM failed to start'))
+          const failedToStartLog = logs.find((log) => log.message.includes('Motadata RUM failed to start'))
           const cspDocLog = logs.find((log) => log.message.includes('Please make sure CSP'))
           expect(failedToStartLog, "'Failed to start' log").toBeTruthy()
           expect(cspDocLog, "'CSP doc' log").toBeTruthy()

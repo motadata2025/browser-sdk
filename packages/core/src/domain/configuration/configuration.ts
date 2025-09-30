@@ -50,7 +50,7 @@ export type TraceContextInjection = (typeof TraceContextInjection)[keyof typeof 
 
 export interface InitConfiguration {
   /**
-   * The client token for Datadog. Required for authenticating your application with Datadog.
+   * The client token for Motadata. Required for authenticating your application with Motadata.
    *
    * @category Authentication
    */
@@ -342,9 +342,9 @@ function isString(tag: unknown, tagName: string): tag is string | undefined | nu
   return true
 }
 
-function isDatadogSite(site: unknown) {
-  if (site && typeof site === 'string' && !/(datadog|ddog|datad0g|dd0g)/.test(site)) {
-    display.error(`Site should be a valid Datadog site. ${MORE_DETAILS} ${DOCS_ORIGIN}/getting_started/site/.`)
+function isValidSite(site: unknown) {
+  if (site && typeof site !== 'string') {
+    display.error('Site should be a string')
     return false
   }
   return true
@@ -376,7 +376,7 @@ export function validateAndBuildConfiguration(
   }
 
   if (
-    !isDatadogSite(initConfiguration.site) ||
+    !isValidSite(initConfiguration.site) ||
     !isSampleRate(initConfiguration.sessionSampleRate, 'Session') ||
     !isSampleRate(initConfiguration.telemetrySampleRate, 'Telemetry') ||
     !isSampleRate(initConfiguration.telemetryConfigurationSampleRate, 'Telemetry Configuration') ||

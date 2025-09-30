@@ -1,6 +1,6 @@
-import type { RawError, Subscription } from '@datadog/browser-core'
-import { ErrorHandling, ErrorSource, Observable, clocksNow, resetConsoleObservable } from '@datadog/browser-core'
-import { ignoreConsoleLogs, mockClock } from '@datadog/browser-core/test'
+import type { RawError, Subscription } from '@motadata365/browser-core'
+import { ErrorHandling, ErrorSource, Observable, clocksNow, resetConsoleObservable } from '@motadata365/browser-core'
+import { ignoreConsoleLogs, mockClock } from '@motadata365/browser-core/test'
 import { trackConsoleError } from './trackConsoleError'
 
 describe('trackConsoleError', () => {
@@ -45,11 +45,11 @@ describe('trackConsoleError', () => {
   })
 
   it('should retrieve fingerprint from console error', () => {
-    interface DatadogError extends Error {
-      dd_fingerprint?: string
+    interface MotadataError extends Error {
+      md_fingerprint?: string
     }
     const error = new Error('foo')
-    ;(error as DatadogError).dd_fingerprint = 'my-fingerprint'
+    ;(error as MotadataError).md_fingerprint = 'my-fingerprint'
 
     // eslint-disable-next-line no-console
     console.error(error)

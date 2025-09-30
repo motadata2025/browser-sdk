@@ -1,4 +1,4 @@
-import { clocksOrigin } from '@datadog/browser-core'
+import { clocksOrigin } from '@motadata365/browser-core'
 import type { RumProfilerTrace, RumViewEntry, RUMProfilerLongTaskEntry } from '../types'
 import { buildProfileEventAttributes, type ProfileEventAttributes } from './buildProfileEventAttributes'
 

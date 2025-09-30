@@ -1,5 +1,5 @@
-import type { Context, ErrorWithCause } from '@datadog/browser-core'
-import { ErrorHandling, ErrorSource, noop, objectEntries } from '@datadog/browser-core'
+import type { Context, ErrorWithCause } from '@motadata365/browser-core'
+import { ErrorHandling, ErrorSource, noop, objectEntries } from '@motadata365/browser-core'
 import type { RawConsoleLogsEvent } from '../../rawLogsEvent.types'
 import { validateAndBuildLogsConfiguration } from '../configuration'
 import type { RawLogsEventCollectedData } from '../lifeCycle'
@@ -83,11 +83,11 @@ describe('console collection', () => {
       validateAndBuildLogsConfiguration({ ...initConfiguration, forwardErrorsToLogs: true })!,
       lifeCycle
     ))
-    interface DatadogError extends Error {
-      dd_fingerprint?: string
+    interface MotadataError extends Error {
+      md_fingerprint?: string
     }
     const error = new Error('foo')
-    ;(error as DatadogError).dd_fingerprint = 'my-fingerprint'
+    ;(error as MotadataError).md_fingerprint = 'my-fingerprint'
 
     // eslint-disable-next-line no-console
     console.error(error)
@@ -107,11 +107,11 @@ describe('console collection', () => {
       validateAndBuildLogsConfiguration({ ...initConfiguration, forwardErrorsToLogs: true })!,
       lifeCycle
     ))
-    interface DatadogError extends Error {
+    interface MotadataError extends Error {
       dd_context?: Context
     }
     const error = new Error('foo')
-    ;(error as DatadogError).dd_context = { foo: 'bar' }
+    ;(error as MotadataError).dd_context = { foo: 'bar' }
 
     // eslint-disable-next-line no-console
     console.error(error)

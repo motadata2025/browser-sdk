@@ -1,4 +1,4 @@
-import { getConnectivity, HookNames } from '@datadog/browser-core'
+import { getConnectivity, HookNames } from '@motadata365/browser-core'
 import type { DefaultRumEventAttributes, Hooks } from '../hooks'
 
 export function startConnectivityContext(hooks: Hooks) {

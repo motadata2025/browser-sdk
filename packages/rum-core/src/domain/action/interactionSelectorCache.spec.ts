@@ -1,6 +1,6 @@
-import { relativeNow } from '@datadog/browser-core'
-import { mockClock } from '@datadog/browser-core/test'
-import type { Clock } from '@datadog/browser-core/test'
+import { relativeNow } from '@motadata365/browser-core'
+import { mockClock } from '@motadata365/browser-core/test'
+import type { Clock } from '@motadata365/browser-core/test'
 import {
   updateInteractionSelector,
   getInteractionSelector,

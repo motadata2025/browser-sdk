@@ -1,5 +1,5 @@
-import type { Configuration, RelativeTime } from '@datadog/browser-core'
-import { HookNames, Observable } from '@datadog/browser-core'
+import type { Configuration, RelativeTime } from '@motadata365/browser-core'
+import { HookNames, Observable } from '@motadata365/browser-core'
 import { mockCiVisibilityValues } from '../../../test'
 import type { CookieObservable } from '../../browser/cookieObservable'
 import { SessionType } from '../rumSessionManager'

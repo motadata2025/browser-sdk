@@ -4,10 +4,10 @@ import {
   RumEventType,
   RumPerformanceEntryType,
   createHooks,
-} from '@datadog/browser-rum-core'
-import type { RelativeTime } from '@datadog/browser-core'
-import { clocksOrigin, deepClone, relativeNow, timeStampNow } from '@datadog/browser-core'
-import { setPageVisibility, restorePageVisibility, createNewEvent } from '@datadog/browser-core/test'
+} from '@motadata365/browser-rum-core'
+import type { RelativeTime } from '@motadata365/browser-core'
+import { clocksOrigin, deepClone, relativeNow, timeStampNow } from '@motadata365/browser-core'
+import { setPageVisibility, restorePageVisibility, createNewEvent } from '@motadata365/browser-core/test'
 import type { RumPerformanceEntry } from 'packages/rum-core/src/browser/performanceObservable'
 import {
   createPerformanceEntry,

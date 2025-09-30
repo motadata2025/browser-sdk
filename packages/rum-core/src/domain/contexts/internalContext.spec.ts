@@ -1,5 +1,5 @@
-import { noop, type RelativeTime } from '@datadog/browser-core'
-import { buildLocation } from '@datadog/browser-core/test'
+import { noop, type RelativeTime } from '@motadata365/browser-core'
+import { buildLocation } from '@motadata365/browser-core/test'
 import { createRumSessionManagerMock } from '../../../test'
 import type { ActionContexts } from '../action/actionCollection'
 import type { RumSessionManager } from '../rumSessionManager'

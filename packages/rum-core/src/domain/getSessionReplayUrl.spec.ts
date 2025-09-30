@@ -1,5 +1,5 @@
-import type { ClocksState } from '@datadog/browser-core'
-import type { RumConfiguration, RumSession } from '@datadog/browser-rum-core'
+import type { ClocksState } from '@motadata365/browser-core'
+import type { RumConfiguration, RumSession } from '@motadata365/browser-rum-core'
 
 import { getSessionReplayUrl, getDatadogSiteUrl } from './getSessionReplayUrl'
 

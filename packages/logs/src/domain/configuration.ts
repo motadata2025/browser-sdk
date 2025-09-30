@@ -1,4 +1,4 @@
-import type { Configuration, InitConfiguration, RawTelemetryConfiguration } from '@datadog/browser-core'
+import type { Configuration, InitConfiguration, RawTelemetryConfiguration } from '@motadata365/browser-core'
 import {
   serializeConfiguration,
   ONE_KIBI_BYTE,
@@ -8,7 +8,7 @@ import {
   ConsoleApiName,
   RawReportType,
   objectValues,
-} from '@datadog/browser-core'
+} from '@motadata365/browser-core'
 import type { LogsEvent } from '../logsEvent.types'
 import type { LogsEventDomainContext } from '../domainContext.types'
 
@@ -18,7 +18,7 @@ import type { LogsEventDomainContext } from '../domainContext.types'
  * @category Configuration
  * @example
  * ```ts
- * DD_LOGS.init({
+ * MD_LOGS.init({
  *   applicationId: '<DATADOG_APPLICATION_ID>',
  *   clientToken: '<DATADOG_CLIENT_TOKEN>',
  *   site: '<DATADOG_SITE>',

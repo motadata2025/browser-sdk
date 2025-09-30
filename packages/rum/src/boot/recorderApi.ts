@@ -1,11 +1,11 @@
-import type { DeflateEncoder, DeflateWorker, Telemetry } from '@datadog/browser-core'
+import type { DeflateEncoder, DeflateWorker, Telemetry } from '@motadata365/browser-core'
 import {
   canUseEventBridge,
   noop,
   BridgeCapability,
   bridgeSupports,
   DeflateEncoderStreamId,
-} from '@datadog/browser-core'
+} from '@motadata365/browser-core'
 import type {
   LifeCycle,
   ViewHistory,
@@ -13,7 +13,7 @@ import type {
   RecorderApi,
   RumConfiguration,
   StartRecordingOptions,
-} from '@datadog/browser-rum-core'
+} from '@motadata365/browser-rum-core'
 import { getReplayStats as getReplayStatsImpl } from '../domain/replayStats'
 import type { CreateDeflateWorker } from '../domain/deflate'
 import {

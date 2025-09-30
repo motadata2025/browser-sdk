@@ -1,4 +1,4 @@
-import type { RawError, EventRateLimiter } from '@datadog/browser-core'
+import type { RawError, EventRateLimiter } from '@motadata365/browser-core'
 import {
   combine,
   isEmptyObject,
@@ -9,7 +9,7 @@ import {
   HookNames,
   DISCARDED,
   buildTags,
-} from '@datadog/browser-core'
+} from '@motadata365/browser-core'
 import type { RumEventDomainContext } from '../domainContext.types'
 import type { AssembledRumEvent } from '../rawRumEvent.types'
 import { RumEventType } from '../rawRumEvent.types'
@@ -119,7 +119,7 @@ export function startRumAssembly(
       }
 
       const serverRumEvent = combine(defaultRumEventAttributes, rawRumEvent, {
-        ddtags: buildTags(configuration).join(','),
+        mdtags: buildTags(configuration).join(','),
       }) as AssembledRumEvent
 
       if (shouldSend(serverRumEvent, configuration.beforeSend, domainContext, eventRateLimiters)) {

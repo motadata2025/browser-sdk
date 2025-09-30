@@ -1,5 +1,5 @@
 {
-  "name": "@datadog/browser-rum",
+  "name": "@motadata365/browser-rum",
   "version": "6.21.1",
   "license": "Apache-2.0",
   "main": "cjs/entries/main.js",
@@ -14,21 +14,16 @@
     "replace-build-env": "node ../../scripts/build/replace-build-env.ts"
   },
   "dependencies": {
-    "@datadog/browser-core": "6.21.1",
-    "@datadog/browser-rum-core": "6.21.1"
+    "@motadata365/browser-core": "6.21.1",
+    "@motadata365/browser-rum-core": "6.21.1"
   },
   "peerDependencies": {
-    "@datadog/browser-logs": "6.21.1"
+    "@motadata365/browser-logs": "6.21.1"
   },
   "peerDependenciesMeta": {
-    "@datadog/browser-logs": {
+    "@motadata365/browser-logs": {
       "optional": true
     }
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/DataDog/browser-sdk.git",
-    "directory": "packages/rum"
   },
   "devDependencies": {
     "@types/pako": "2.0.4",

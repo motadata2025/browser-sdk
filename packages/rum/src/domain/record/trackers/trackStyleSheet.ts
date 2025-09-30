@@ -1,4 +1,4 @@
-import { instrumentMethod } from '@datadog/browser-core'
+import { instrumentMethod } from '@motadata365/browser-core'
 import { IncrementalSource } from '../../../types'
 import type { StyleSheetRuleData, BrowserIncrementalSnapshotRecord } from '../../../types'
 import { getSerializedNodeId, hasSerializedNode } from '../serialization'

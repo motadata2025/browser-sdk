@@ -1,5 +1,5 @@
 {
-  "name": "@datadog/browser-core",
+  "name": "@motadata365/browser-core",
   "version": "6.21.1",
   "license": "Apache-2.0",
   "main": "cjs/index.js",
@@ -12,11 +12,6 @@
     "build:cjs": "rm -rf cjs && tsc -p tsconfig.cjs.json && yarn replace-build-env cjs",
     "build:esm": "rm -rf esm && tsc -p tsconfig.esm.json && yarn replace-build-env esm",
     "replace-build-env": "node ../../scripts/build/replace-build-env.ts"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/DataDog/browser-sdk.git",
-    "directory": "packages/core"
   },
   "volta": {
     "extends": "../../package.json"

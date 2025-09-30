@@ -1,5 +1,5 @@
-import type { Duration, RelativeTime } from '@datadog/browser-core'
-import { addDuration } from '@datadog/browser-core'
+import type { Duration, RelativeTime } from '@motadata365/browser-core'
+import { addDuration } from '@motadata365/browser-core'
 import type { RumPerformanceResourceTiming } from '../../browser/performanceObservable'
 import type { RequestCompleteEvent } from '../requestCollection'
 import { hasValidResourceEntryDuration, hasValidResourceEntryTimings } from './resourceUtils'

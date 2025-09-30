@@ -1,4 +1,4 @@
-import type { ContextManager } from '@datadog/browser-core'
+import type { ContextManager } from '@motadata365/browser-core'
 import {
   objectEntries,
   shallowClone,
@@ -6,7 +6,7 @@ import {
   isMatchOption,
   matchList,
   TraceContextInjection,
-} from '@datadog/browser-core'
+} from '@motadata365/browser-core'
 import type { RumConfiguration } from '../configuration'
 import type {
   RumFetchResolveContext,
@@ -186,10 +186,10 @@ function makeTracingHeaders(
     switch (propagatorType) {
       case 'datadog': {
         Object.assign(tracingHeaders, {
-          'x-datadog-origin': 'rum',
-          'x-datadog-parent-id': spanId.toString(),
-          'x-datadog-sampling-priority': traceSampled ? '1' : '0',
-          'x-datadog-trace-id': traceId.toString(),
+          'x-motadata-origin': 'rum',
+          'x-motadata-parent-id': spanId.toString(),
+          'x-motadata-sampling-priority': traceSampled ? '1' : '0',
+          'x-motadata-trace-id': traceId.toString(),
         })
         break
       }

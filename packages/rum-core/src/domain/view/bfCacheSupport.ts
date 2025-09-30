@@ -1,5 +1,5 @@
-import type { Configuration } from '@datadog/browser-core'
-import { addEventListener, DOM_EVENT } from '@datadog/browser-core'
+import type { Configuration } from '@motadata365/browser-core'
+import { addEventListener, DOM_EVENT } from '@motadata365/browser-core'
 
 export function onBFCacheRestore(
   configuration: Configuration,

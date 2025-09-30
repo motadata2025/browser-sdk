@@ -1,5 +1,5 @@
 {
-  "name": "@datadog/browser-worker",
+  "name": "@motadata365/browser-worker",
   "version": "6.21.1",
   "license": "Apache-2.0",
   "main": "bundle/worker.js",
@@ -8,12 +8,7 @@
     "build": "rm -rf bundle && webpack --disable-interpret --mode=production"
   },
   "dependencies": {
-    "@datadog/browser-core": "6.21.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/DataDog/browser-sdk.git",
-    "directory": "packages/worker"
+    "@motadata365/browser-core": "6.21.1"
   },
   "volta": {
     "extends": "../../package.json"

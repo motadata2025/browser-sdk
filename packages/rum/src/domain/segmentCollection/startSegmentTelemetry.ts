@@ -1,5 +1,5 @@
-import type { BandwidthStats, Context, HttpRequestEvent, Observable, Telemetry } from '@datadog/browser-core'
-import { TelemetryMetrics, addTelemetryMetrics, noop } from '@datadog/browser-core'
+import type { BandwidthStats, Context, HttpRequestEvent, Observable, Telemetry } from '@motadata365/browser-core'
+import { TelemetryMetrics, addTelemetryMetrics, noop } from '@motadata365/browser-core'
 import type { ReplayPayload } from './buildReplayPayload'
 
 interface SegmentMetrics extends Context {

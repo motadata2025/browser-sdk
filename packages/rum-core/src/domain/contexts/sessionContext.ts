@@ -1,4 +1,4 @@
-import { DISCARDED, HookNames, SKIPPED } from '@datadog/browser-core'
+import { DISCARDED, HookNames, SKIPPED } from '@motadata365/browser-core'
 import { SessionReplayState, SessionType } from '../rumSessionManager'
 import type { RumSessionManager } from '../rumSessionManager'
 import { RumEventType } from '../../rawRumEvent.types'

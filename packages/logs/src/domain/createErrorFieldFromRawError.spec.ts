@@ -1,4 +1,4 @@
-import { ErrorHandling, ErrorSource, type RawError, type RelativeTime, type TimeStamp } from '@datadog/browser-core'
+import { ErrorHandling, ErrorSource, type RawError, type RelativeTime, type TimeStamp } from '@motadata365/browser-core'
 import { createErrorFieldFromRawError } from './createErrorFieldFromRawError'
 
 describe('createErrorFieldFromRawError', () => {

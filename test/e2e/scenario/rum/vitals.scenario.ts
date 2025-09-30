@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { ExperimentalFeature } from '@datadog/browser-core'
+import { ExperimentalFeature } from '@motadata365/browser-core'
 import { createTest } from '../../lib/framework'
 
 test.describe('vital collection', () => {
@@ -7,10 +7,10 @@ test.describe('vital collection', () => {
     .withRum()
     .run(async ({ flushEvents, intakeRegistry, page }) => {
       await page.evaluate(() => {
-        const vital = window.DD_RUM!.startDurationVital('foo')
+        const vital = window.MD_RUM!.startDurationVital('foo')
         return new Promise<void>((resolve) => {
           setTimeout(() => {
-            window.DD_RUM!.stopDurationVital(vital)
+            window.MD_RUM!.stopDurationVital(vital)
             resolve()
           }, 5)
         })
@@ -28,7 +28,7 @@ test.describe('vital collection', () => {
     })
     .run(async ({ flushEvents, intakeRegistry, page }) => {
       await page.evaluate(() => {
-        window.DD_RUM!.startFeatureOperation('foo')
+        window.MD_RUM!.startFeatureOperation('foo')
       })
       await flushEvents()
 

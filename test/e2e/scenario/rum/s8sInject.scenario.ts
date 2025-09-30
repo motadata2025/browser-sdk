@@ -13,7 +13,7 @@ test.describe('Inject RUM with Puppeteer', () => {
 })
 
 async function injectRumWithPuppeteer() {
-  const ddRUM = fs.readFileSync(getSdkBundlePath('rum', '/datadog-rum.js'), 'utf8')
+  const ddRUM = fs.readFileSync(getSdkBundlePath('rum', '/motadata-rum.js'), 'utf8')
   const puppeteerBrowser = await puppeteer.launch({ headless: true, devtools: true, args: ['--no-sandbox'] })
   let injected = true
 
@@ -22,12 +22,12 @@ async function injectRumWithPuppeteer() {
     `
         if (location.href !== 'about:blank') {
           ${ddRUM}
-          window.DD_RUM._setDebug(true)
-          window.DD_RUM.init({
+          window.MD_RUM._setDebug(true)
+          window.MD_RUM.init({
             applicationId: ${APPLICATION_ID},
             clientToken: ${CLIENT_TOKEN},
           })
-          window.DD_RUM.startView()
+          window.MD_RUM.startView()
         }
       `
   )

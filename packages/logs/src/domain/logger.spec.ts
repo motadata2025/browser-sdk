@@ -1,10 +1,10 @@
-import type { ErrorWithCause } from '@datadog/browser-core'
+import type { ErrorWithCause } from '@motadata365/browser-core'
 import {
   display,
   ErrorHandling,
   NO_ERROR_STACK_PRESENT_MESSAGE,
   supportUnicodePropertyEscapes,
-} from '@datadog/browser-core'
+} from '@motadata365/browser-core'
 import type { LogsMessage } from './logger'
 import { HandlerType, Logger, STATUSES } from './logger'
 import { StatusType } from './logger/isAuthorized'

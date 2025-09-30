@@ -1,5 +1,5 @@
-import { registerCleanupTask } from '@datadog/browser-core/test'
-import { getGlobalObject } from '@datadog/browser-core'
+import { registerCleanupTask } from '@motadata365/browser-core/test'
+import { getGlobalObject } from '@motadata365/browser-core'
 import type { Profiler, ProfilerTrace, ProfilerInitOptions } from '../src/domain/profiling/types'
 
 export function mockProfiler(mockedTrace: ProfilerTrace) {

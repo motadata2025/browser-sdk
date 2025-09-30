@@ -1,4 +1,4 @@
-import { type RelativeTime } from '@datadog/browser-core'
+import { type RelativeTime } from '@motadata365/browser-core'
 import type { RumPerformanceNavigationTiming } from './performanceObservable'
 import { RumPerformanceEntryType } from './performanceObservable'
 import { getNavigationEntry } from './performanceUtils'

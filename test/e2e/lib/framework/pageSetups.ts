@@ -1,6 +1,6 @@
-import { generateUUID, INTAKE_URL_PARAMETERS } from '@datadog/browser-core'
-import type { LogsInitConfiguration } from '@datadog/browser-logs'
-import type { RumInitConfiguration, RemoteConfiguration } from '@datadog/browser-rum-core'
+import { generateUUID, INTAKE_URL_PARAMETERS } from '@motadata365/browser-core'
+import type { LogsInitConfiguration } from '@motadata365/browser-logs'
+import type { RumInitConfiguration, RemoteConfiguration } from '@motadata365/browser-rum-core'
 import type test from '@playwright/test'
 import { DEFAULT_LOGS_CONFIGURATION } from '../helpers/configuration'
 import type { Servers } from './httpServers'
@@ -74,9 +74,9 @@ n=o.getElementsByTagName(u)[0];n.parentNode.insertBefore(d,n)
   if (options.logs) {
     body += html`
       <script>
-        ${formatSnippet(logsScriptUrl, 'DD_LOGS')}
-        DD_LOGS.onReady(function () {
-          DD_LOGS.setGlobalContext(${JSON.stringify(options.context)})
+        ${formatSnippet(logsScriptUrl, 'MD_LOGS')}
+        MD_LOGS.onReady(function () {
+          MD_LOGS.setGlobalContext(${JSON.stringify(options.context)})
           ;(${options.logsInit.toString()})(${formatConfiguration(options.logs, servers)})
         })
       </script>
@@ -86,9 +86,9 @@ n=o.getElementsByTagName(u)[0];n.parentNode.insertBefore(d,n)
   if (options.rum) {
     body += html`
       <script type="text/javascript">
-        ${formatSnippet(rumScriptUrl, 'DD_RUM')}
-        DD_RUM.onReady(function () {
-          DD_RUM.setGlobalContext(${JSON.stringify(options.context)})
+        ${formatSnippet(rumScriptUrl, 'MD_RUM')}
+        MD_RUM.onReady(function () {
+          MD_RUM.setGlobalContext(${JSON.stringify(options.context)})
           ;(${options.rumInit.toString()})(${formatConfiguration(options.rum, servers)})
         })
       </script>
@@ -118,7 +118,7 @@ export function bundleSetup(options: SetupOptions, servers: Servers) {
     header += html`
       <script type="text/javascript" src="${logsScriptUrl}"></script>
       <script type="text/javascript">
-        DD_LOGS.setGlobalContext(${JSON.stringify(options.context)})
+        MD_LOGS.setGlobalContext(${JSON.stringify(options.context)})
         ;(${options.logsInit.toString()})(${formatConfiguration(options.logs, servers)})
       </script>
     `
@@ -128,7 +128,7 @@ export function bundleSetup(options: SetupOptions, servers: Servers) {
     header += html`
       <script type="text/javascript" src="${rumScriptUrl}"></script>
       <script type="text/javascript">
-        DD_RUM.setGlobalContext(${JSON.stringify(options.context)})
+        MD_RUM.setGlobalContext(${JSON.stringify(options.context)})
         ;(${options.rumInit.toString()})(${formatConfiguration(options.rum, servers)})
       </script>
     `
@@ -156,7 +156,7 @@ export function npmSetup(options: SetupOptions, servers: Servers) {
     header += html`
       <script type="text/javascript">
         window.LOGS_INIT = () => {
-          window.DD_LOGS.setGlobalContext(${JSON.stringify(options.context)})
+          window.MD_LOGS.setGlobalContext(${JSON.stringify(options.context)})
           ;(${options.logsInit.toString()})(${formatConfiguration(options.logs, servers)})
         }
       </script>
@@ -167,7 +167,7 @@ export function npmSetup(options: SetupOptions, servers: Servers) {
     header += html`
       <script type="text/javascript">
         window.RUM_INIT = () => {
-          window.DD_RUM.setGlobalContext(${JSON.stringify(options.context)})
+          window.MD_RUM.setGlobalContext(${JSON.stringify(options.context)})
           ;(${options.rumInit.toString()})(${formatConfiguration(options.rum, servers)})
         }
       </script>
@@ -215,14 +215,14 @@ export function workerSetup(options: WorkerOptions, servers: Servers) {
   return js`
       ${options.importScripts ? js`importScripts('/datadog-logs.js');` : js`import '/datadog-logs.js';`}
       
-      // Initialize DD_LOGS in service worker
-      DD_LOGS.init(${formatConfiguration({ ...DEFAULT_LOGS_CONFIGURATION, forwardConsoleLogs: 'all', forwardErrorsToLogs: true }, servers)})
+      // Initialize MD_LOGS in service worker
+      MD_LOGS.init(${formatConfiguration({ ...DEFAULT_LOGS_CONFIGURATION, forwardConsoleLogs: 'all', forwardErrorsToLogs: true }, servers)})
 
       // Handle messages from main thread
       self.addEventListener('message', (event) => {
         const message = event.data;
         
-        ${options.nativeLog ? js`console.log(message);` : js`DD_LOGS.logger.log(message);`}
+        ${options.nativeLog ? js`console.log(message);` : js`MD_LOGS.logger.log(message);`}
       });
     `
 }
@@ -257,13 +257,13 @@ function setupEventBridge(servers: Servers) {
   // needs to be similar to the normal Datadog intake (through proxy) to make the SDK completely
   // ignore them.
   const eventBridgeIntake = `${servers.intake.url}/?${new URLSearchParams({
-    ddforward: `/api/v2/rum?${INTAKE_URL_PARAMETERS.join('&')}`,
+    mdforward: `/api/v2/rum?${INTAKE_URL_PARAMETERS.join('&')}`,
     bridge: 'true',
   }).toString()}`
 
   return html`
     <script type="text/javascript">
-      window.DatadogEventBridge = {
+      window.MotadataEventBridge = {
         getCapabilities() {
           return '["records"]'
         },
@@ -346,6 +346,6 @@ export function formatConfiguration(initConfiguration: LogsInitConfiguration | R
 export function createCrossOriginScriptUrls(servers: Servers, options: SetupOptions) {
   return {
     logsScriptUrl: `${servers.crossOrigin.url}/datadog-logs.js`,
-    rumScriptUrl: `${servers.crossOrigin.url}/${options.useRumSlim ? 'datadog-rum-slim.js' : 'datadog-rum.js'}`,
+    rumScriptUrl: `${servers.crossOrigin.url}/${options.useRumSlim ? 'motadata-rum-slim.js' : 'motadata-rum.js'}`,
   }
 }

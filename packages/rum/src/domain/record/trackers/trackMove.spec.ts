@@ -1,5 +1,5 @@
-import { createNewEvent, registerCleanupTask } from '@datadog/browser-core/test'
-import type { RumConfiguration } from '@datadog/browser-rum-core'
+import { createNewEvent, registerCleanupTask } from '@motadata365/browser-core/test'
+import type { RumConfiguration } from '@motadata365/browser-rum-core'
 import { createSerializationStats, SerializationContextStatus, serializeDocument } from '../serialization'
 import { createElementsScrollPositions } from '../elementsScrollPositions'
 import { IncrementalSource, RecordType } from '../../../types'

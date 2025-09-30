@@ -1,5 +1,5 @@
-import { clocksOrigin, type Duration, type RelativeTime } from '@datadog/browser-core'
-import { registerCleanupTask, restorePageVisibility, setPageVisibility } from '@datadog/browser-core/test'
+import { clocksOrigin, type Duration, type RelativeTime } from '@motadata365/browser-core'
+import { registerCleanupTask, restorePageVisibility, setPageVisibility } from '@motadata365/browser-core/test'
 import {
   appendElement,
   appendText,

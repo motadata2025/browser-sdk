@@ -1,4 +1,4 @@
-import type { ClocksState, Duration } from '@datadog/browser-core'
+import type { ClocksState, Duration } from '@motadata365/browser-core'
 import {
   combine,
   generateUUID,
@@ -9,7 +9,7 @@ import {
   createTaskQueue,
   isExperimentalFeatureEnabled,
   ExperimentalFeature,
-} from '@datadog/browser-core'
+} from '@motadata365/browser-core'
 import type { RumConfiguration } from '../configuration'
 import type { RumPerformanceResourceTiming } from '../../browser/performanceObservable'
 import { RumPerformanceEntryType, createPerformanceObservable } from '../../browser/performanceObservable'
@@ -158,7 +158,7 @@ function assembleResource(
         graphql,
       },
       type: RumEventType.RESOURCE,
-      _dd: {
+      _md: {
         discarded: !configuration.trackResources,
       },
     },
@@ -240,7 +240,7 @@ function computeRequestTracingInfo(request: RequestCompleteEvent, configuration:
     return undefined
   }
   return {
-    _dd: {
+    _md: {
       span_id: request.spanId!.toString(),
       trace_id: request.traceId!.toString(),
       rule_psr: configuration.rulePsr,
@@ -254,7 +254,7 @@ function computeResourceEntryTracingInfo(entry: RumPerformanceResourceTiming, co
     return undefined
   }
   return {
-    _dd: {
+    _md: {
       trace_id: entry.traceId,
       span_id: createSpanIdentifier().toString(),
       rule_psr: configuration.rulePsr,

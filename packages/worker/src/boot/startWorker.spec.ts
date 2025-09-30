@@ -1,4 +1,4 @@
-import type { DeflateWorkerAction, DeflateWorkerResponse } from '@datadog/browser-core'
+import type { DeflateWorkerAction, DeflateWorkerResponse } from '@motadata365/browser-core'
 import type { WorkerScope } from './startWorker'
 import { startWorker } from './startWorker'
 

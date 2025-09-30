@@ -1,4 +1,4 @@
-import { createNewEvent, registerCleanupTask } from '@datadog/browser-core/test'
+import { createNewEvent, registerCleanupTask } from '@motadata365/browser-core/test'
 import { mockRumConfiguration } from '../../../test'
 import { onBFCacheRestore } from './bfCacheSupport'
 

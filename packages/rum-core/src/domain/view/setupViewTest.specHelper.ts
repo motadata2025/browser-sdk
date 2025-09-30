@@ -1,4 +1,4 @@
-import { Observable, deepClone } from '@datadog/browser-core'
+import { Observable, deepClone } from '@motadata365/browser-core'
 import { mockRumConfiguration, setupLocationObserver } from '../../../test'
 import type { LifeCycle } from '../lifeCycle'
 import { LifeCycleEventType } from '../lifeCycle'

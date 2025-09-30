@@ -1,5 +1,5 @@
-import type { Subscription, TimeoutId, TimeStamp } from '@datadog/browser-core'
-import { matchList, monitor, Observable, timeStampNow, setTimeout, clearTimeout } from '@datadog/browser-core'
+import type { Subscription, TimeoutId, TimeStamp } from '@motadata365/browser-core'
+import { matchList, monitor, Observable, timeStampNow, setTimeout, clearTimeout } from '@motadata365/browser-core'
 import { createPerformanceObservable, RumPerformanceEntryType } from '../browser/performanceObservable'
 import type { RumMutationRecord } from '../browser/domMutationObservable'
 import { isElementNode } from '../browser/htmlDomUtils'

@@ -1,5 +1,5 @@
-import type { RelativeTime, TrackingConsentState } from '@datadog/browser-core'
-import { Observable, performDraw, SESSION_NOT_TRACKED, startSessionManager } from '@datadog/browser-core'
+import type { RelativeTime, TrackingConsentState } from '@motadata365/browser-core'
+import { Observable, performDraw, SESSION_NOT_TRACKED, startSessionManager } from '@motadata365/browser-core'
 import type { LogsConfiguration } from './configuration'
 
 export const LOGS_SESSION_KEY = 'logs'

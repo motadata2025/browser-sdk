@@ -15,7 +15,7 @@ describe('endpointBuilder', () => {
   describe('query parameters', () => {
     it('should add intake query parameters', () => {
       expect(createEndpointBuilder(initConfiguration, 'rum').build('fetch', DEFAULT_PAYLOAD)).toMatch(
-        `&dd-api-key=${clientToken}&dd-evp-origin-version=(.*)&dd-evp-origin=browser&dd-request-id=(.*)`
+        `&md-api-key=${clientToken}&md-evp-origin-version=(.*)&md-evp-origin=browser&md-request-id=(.*)`
       )
     })
 
@@ -35,16 +35,16 @@ describe('endpointBuilder', () => {
     it('should add the provided encoding', () => {
       expect(
         createEndpointBuilder(initConfiguration, 'rum').build('fetch', { ...DEFAULT_PAYLOAD, encoding: 'deflate' })
-      ).toContain('&dd-evp-encoding=deflate')
+      ).toContain('&md-evp-encoding=deflate')
     })
 
-    it('should not start with ddsource for internal analytics mode', () => {
+    it('should not start with mdsource for internal analytics mode', () => {
       const url = createEndpointBuilder({ ...initConfiguration, internalAnalyticsSubdomain: 'foo' }, 'rum').build(
         'fetch',
         DEFAULT_PAYLOAD
       )
-      expect(url).not.toContain('/rum?ddsource')
-      expect(url).toContain('ddsource=browser')
+      expect(url).not.toContain('/rum?mdsource')
+      expect(url).toContain('mdsource=browser')
     })
 
     it('accepts extra parameters', () => {
@@ -56,16 +56,16 @@ describe('endpointBuilder', () => {
   })
 
   describe('proxy configuration', () => {
-    it('should replace the intake endpoint by the proxy and set the intake path and parameters in the attribute ddforward', () => {
+    it('should replace the intake endpoint by the proxy and set the intake path and parameters in the attribute mdforward', () => {
       expect(
         createEndpointBuilder({ ...initConfiguration, proxy: 'https://proxy.io/path' }, 'rum').build(
           'fetch',
           DEFAULT_PAYLOAD
         )
       ).toMatch(
-        `https://proxy.io/path\\?ddforward=${encodeURIComponent(
-          `/api/v2/rum?ddsource=(.*)&dd-api-key=${clientToken}` +
-            '&dd-evp-origin-version=(.*)&dd-evp-origin=browser&dd-request-id=(.*)&batch_time=(.*)'
+        `https://proxy.io/path\\?mdforward=${encodeURIComponent(
+          `/api/v2/rum?mdsource=(.*)&md-api-key=${clientToken}` +
+            '&md-evp-origin-version=(.*)&md-evp-origin=browser&md-request-id=(.*)&batch_time=(.*)'
         )}`
       )
     })
@@ -75,7 +75,7 @@ describe('endpointBuilder', () => {
         'fetch',
         DEFAULT_PAYLOAD
       )
-      expect(endpoint.startsWith(`${location.origin}/path?ddforward`)).toBeTrue()
+      expect(endpoint.startsWith(`${location.origin}/path?mdforward`)).toBeTrue()
     })
 
     it('should allow to fully control the proxy url', () => {
@@ -84,14 +84,14 @@ describe('endpointBuilder', () => {
       expect(
         createEndpointBuilder({ ...initConfiguration, proxy: proxyFn }, 'rum').build('fetch', DEFAULT_PAYLOAD)
       ).toMatch(
-        `https://proxy.io/prefix/api/v2/rum/suffix\\?ddsource=(.*)&dd-api-key=${clientToken}&dd-evp-origin-version=(.*)&dd-evp-origin=browser&dd-request-id=(.*)&batch_time=(.*)`
+        `https://proxy.io/prefix/api/v2/rum/suffix\\?mdsource=(.*)&md-api-key=${clientToken}&md-evp-origin-version=(.*)&md-evp-origin=browser&md-request-id=(.*)&batch_time=(.*)`
       )
     })
   })
 
-  describe('_dd attributes', () => {
+  describe('_md attributes', () => {
     it('should contain api', () => {
-      expect(createEndpointBuilder(initConfiguration, 'rum').build('fetch', DEFAULT_PAYLOAD)).toContain('_dd.api=fetch')
+      expect(createEndpointBuilder(initConfiguration, 'rum').build('fetch', DEFAULT_PAYLOAD)).toContain('_md.api=fetch')
     })
 
     it('should contain retry infos', () => {
@@ -103,10 +103,10 @@ describe('endpointBuilder', () => {
             lastFailureStatus: 408,
           },
         })
-      ).toContain('_dd.retry_count=5&_dd.retry_after=408')
+      ).toContain('_md.retry_count=5&_md.retry_after=408')
     })
 
-    it('should not contain any _dd attributes for non rum endpoints', () => {
+    it('should not contain any _md attributes for non rum endpoints', () => {
       expect(
         createEndpointBuilder(initConfiguration, 'logs').build('fetch', {
           ...DEFAULT_PAYLOAD,
@@ -115,39 +115,38 @@ describe('endpointBuilder', () => {
             lastFailureStatus: 408,
           },
         })
-      ).not.toContain('_dd.api=fetch&_dd.retry_count=5&_dd.retry_after=408')
+      ).not.toContain('_md.api=fetch&_md.retry_count=5&_md.retry_after=408')
     })
   })
 
-  describe('PCI compliance intake with option', () => {
-    it('should return PCI compliance intake endpoint if site is us1', () => {
-      const config: InitConfiguration & { usePciIntake?: boolean } = {
+  describe('custom site configuration', () => {
+    it('should use custom site directly', () => {
+      const config: InitConfiguration = {
         clientToken,
-        usePciIntake: true,
-        site: 'datadoghq.com',
+        site: 'localhost:3000',
+      }
+      expect(createEndpointBuilder(config, 'rum').build('fetch', DEFAULT_PAYLOAD)).toContain(
+        'https://localhost:3000/api/v2/rum'
+      )
+    })
+
+    it('should use custom site with port', () => {
+      const config: InitConfiguration = {
+        clientToken,
+        site: 'my-custom-domain.com:8080',
       }
       expect(createEndpointBuilder(config, 'logs').build('fetch', DEFAULT_PAYLOAD)).toContain(
-        'https://pci.browser-intake-datadoghq.com'
+        'https://my-custom-domain.com:8080/api/v2/logs'
       )
     })
-    it('should not return PCI compliance intake endpoint if site is not us1', () => {
-      const config: InitConfiguration & { usePciIntake?: boolean } = {
+
+    it('should use custom site without port (defaults to 443 for https)', () => {
+      const config: InitConfiguration = {
         clientToken,
-        usePciIntake: true,
-        site: 'ap1.datadoghq.com',
+        site: 'my-custom-domain.com',
       }
-      expect(createEndpointBuilder(config, 'logs').build('fetch', DEFAULT_PAYLOAD)).not.toContain(
-        'https://pci.browser-intake-datadoghq.com'
-      )
-    })
-    it('should not return PCI compliance intake endpoint if and site is us1 and track is not logs', () => {
-      const config: InitConfiguration & { usePciIntake?: boolean } = {
-        clientToken,
-        usePciIntake: true,
-        site: 'datadoghq.com',
-      }
-      expect(createEndpointBuilder(config, 'rum').build('fetch', DEFAULT_PAYLOAD)).not.toContain(
-        'https://pci.browser-intake-datadoghq.com'
+      expect(createEndpointBuilder(config, 'rum').build('fetch', DEFAULT_PAYLOAD)).toContain(
+        'https://my-custom-domain.com/api/v2/rum'
       )
     })
   })
@@ -155,19 +154,19 @@ describe('endpointBuilder', () => {
   describe('source configuration', () => {
     it('should use the default source when no configuration is provided', () => {
       const endpoint = createEndpointBuilder(initConfiguration, 'rum').build('fetch', DEFAULT_PAYLOAD)
-      expect(endpoint).toContain('ddsource=browser')
+      expect(endpoint).toContain('mdsource=browser')
     })
 
     it('should use flutter source when provided', () => {
       const config = { ...initConfiguration, source: 'flutter' as const }
       const endpoint = createEndpointBuilder(config, 'rum').build('fetch', DEFAULT_PAYLOAD)
-      expect(endpoint).toContain('ddsource=flutter')
+      expect(endpoint).toContain('mdsource=flutter')
     })
 
     it('should use unity source when provided', () => {
       const config = { ...initConfiguration, source: 'unity' as const }
       const endpoint = createEndpointBuilder(config, 'rum').build('fetch', DEFAULT_PAYLOAD)
-      expect(endpoint).toContain('ddsource=unity')
+      expect(endpoint).toContain('mdsource=unity')
     })
   })
 })

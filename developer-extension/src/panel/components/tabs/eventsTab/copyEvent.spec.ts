@@ -43,11 +43,11 @@ describe('getIntakeUrlForEvent', () => {
 
     expect(url.host).toBe('browser-intake-datadoghq.com')
     expect(url.pathname).toBe('/api/v2/rum')
-    expect(url.searchParams.get('ddsource')).toBe('browser')
-    expect(url.searchParams.get('dd-api-key')).toBe('client-token')
-    expect(url.searchParams.get('dd-evp-origin-version')).toBe('1.2.3')
-    expect(url.searchParams.get('dd-evp-origin')).toBe('browser')
-    expect(url.searchParams.get('dd-request-id')).toMatch(/[a-f0-9-]+/)
+    expect(url.searchParams.get('mdsource')).toBe('browser')
+    expect(url.searchParams.get('md-api-key')).toBe('client-token')
+    expect(url.searchParams.get('md-evp-origin-version')).toBe('1.2.3')
+    expect(url.searchParams.get('md-evp-origin')).toBe('browser')
+    expect(url.searchParams.get('md-request-id')).toMatch(/[a-f0-9-]+/)
     expect(url.searchParams.get('batch_time')).toMatch(/[0-9]+/)
   })
 
@@ -67,7 +67,7 @@ describe('getIntakeUrlForEvent', () => {
       )!
     )
 
-    expect(url.searchParams.get('dd-evp-origin-version')).toBe('1.2.3&4')
+    expect(url.searchParams.get('md-evp-origin-version')).toBe('1.2.3&4')
   })
 
   it('should use the RUM intake for telemetry events', () => {

@@ -1,5 +1,5 @@
-import { noop } from '@datadog/browser-core'
-import type { ProfilerApi } from '@datadog/browser-rum-core'
+import { noop } from '@motadata365/browser-core'
+import type { ProfilerApi } from '@motadata365/browser-rum-core'
 
 export function makeProfilerApiStub(): ProfilerApi {
   return {

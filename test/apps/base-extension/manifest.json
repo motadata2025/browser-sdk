@@ -1,8 +1,8 @@
 {
-  "name": "Datadog RUM Testing Extension",
+  "name": "Motadata RUM Testing Extension",
   "version": "1.0",
   "manifest_version": 3,
-  "description": "Injects Datadog RUM into every page to inspect data being sent.",
+  "description": "Injects Motadata RUM into every page to inspect data being sent.",
   "permissions": ["scripting", "activeTab"],
   "host_permissions": ["<all_urls>"],
   "content_scripts": [

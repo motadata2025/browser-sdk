@@ -1,4 +1,4 @@
-import type { Duration, RelativeTime } from '@datadog/browser-core'
+import type { Duration, RelativeTime } from '@motadata365/browser-core'
 import {
   SKIPPED,
   elapsed,
@@ -9,7 +9,7 @@ import {
   relativeNow,
   DOM_EVENT,
   HookNames,
-} from '@datadog/browser-core'
+} from '@motadata365/browser-core'
 import type { RumConfiguration } from '../configuration'
 import { supportPerformanceTimingEvent, RumPerformanceEntryType } from '../../browser/performanceObservable'
 import type { PageStateServerEntry } from '../../rawRumEvent.types'
@@ -106,7 +106,7 @@ export function startPageStateHistory(
         const pageStates = pageStateEntryHistory.findAll(startTime, duration)
         return {
           type: eventType,
-          _dd: { page_states: processPageStates(pageStates, startTime, maxPageStateEntriesSelectable) },
+          _md: { page_states: processPageStates(pageStates, startTime, maxPageStateEntriesSelectable) },
         }
       }
 

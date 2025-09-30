@@ -1,6 +1,6 @@
-import type { Payload } from '@datadog/browser-core'
-import { addTelemetryDebug, buildTags, currentDrift } from '@datadog/browser-core'
-import type { RumConfiguration } from '@datadog/browser-rum-core'
+import type { Payload } from '@motadata365/browser-core'
+import { addTelemetryDebug, buildTags, currentDrift } from '@motadata365/browser-core'
+import type { RumConfiguration } from '@motadata365/browser-rum-core'
 import type { RumProfilerTrace } from '../types'
 import type { ProfileEventAttributes } from './buildProfileEventAttributes'
 import { buildProfileEventAttributes } from './buildProfileEventAttributes'
@@ -14,7 +14,7 @@ interface ProfileEvent extends ProfileEventAttributes {
   format: 'json'
   version: 4
   tags_profiler: string
-  _dd: {
+  _md: {
     clock_drift: number
   }
 }
@@ -65,7 +65,7 @@ function buildProfileEvent(
     format: 'json',
     version: 4, // Ingestion event version (not the version application tag)
     tags_profiler: profileEventTags.join(','),
-    _dd: {
+    _md: {
       clock_drift: currentDrift(),
     },
   }

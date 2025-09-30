@@ -8,13 +8,13 @@ export async function reportToDatadog(
   await fetchHandlingError('https://http-intake.logs.datadoghq.com/api/v2/logs', {
     method: 'POST',
     headers: {
-      'DD-API-KEY': getOrg2ApiKey(),
+      'md-api-key': getOrg2ApiKey(),
       'Content-Type': 'application/json',
     },
     body: JSON.stringify([
       {
         service: 'browser-sdk',
-        ddsource: 'browser-sdk',
+        mdsource: 'browser-sdk',
         env: 'ci',
         version: browserSdkVersion,
         commit: process.env.CI_COMMIT_SHORT_SHA,

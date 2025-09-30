@@ -1,7 +1,7 @@
-import type { Context, RelativeTime, TimeStamp } from '@datadog/browser-core'
-import { ErrorSource, ONE_MINUTE, getTimeStamp, noop, HookNames } from '@datadog/browser-core'
-import type { Clock } from '@datadog/browser-core/test'
-import { mockClock } from '@datadog/browser-core/test'
+import type { Context, RelativeTime, TimeStamp } from '@motadata365/browser-core'
+import { ErrorSource, ONE_MINUTE, getTimeStamp, noop, HookNames } from '@motadata365/browser-core'
+import type { Clock } from '@motadata365/browser-core/test'
+import { mockClock } from '@motadata365/browser-core/test'
 import type { LogsEvent } from '../logsEvent.types'
 import type { CommonContext } from '../rawLogsEvent.types'
 import { startLogsAssembly } from './assembly'
@@ -48,13 +48,13 @@ describe('startLogsAssembly', () => {
     hooks = createHooks()
     startRUMInternalContext(hooks)
     startLogsAssembly(configuration, lifeCycle, hooks, () => COMMON_CONTEXT, noop)
-    window.DD_RUM = {
+    window.MD_RUM = {
       getInternalContext: noop,
     }
   })
 
   afterEach(() => {
-    delete window.DD_RUM
+    delete window.MD_RUM
     serverLogs = []
   })
 
@@ -84,7 +84,7 @@ describe('startLogsAssembly', () => {
 
   describe('contexts inclusion', () => {
     it('should include message context', () => {
-      spyOn(window.DD_RUM!, 'getInternalContext').and.returnValue({
+      spyOn(window.MD_RUM!, 'getInternalContext').and.returnValue({
         view: { url: 'http://from-rum-context.com', id: 'view-id' },
       })
 
@@ -133,7 +133,7 @@ describe('startLogsAssembly', () => {
     })
 
     it('should include rum internal context related to the error time', () => {
-      window.DD_RUM = {
+      window.MD_RUM = {
         getInternalContext(startTime) {
           return { foo: startTime === 1234 ? 'b' : 'a' }
         },
@@ -147,7 +147,7 @@ describe('startLogsAssembly', () => {
     })
 
     it('should include RUM context', () => {
-      window.DD_RUM = {
+      window.MD_RUM = {
         getInternalContext() {
           return { view: { url: 'http://from-rum-context.com', id: 'view-id' } }
         },
@@ -232,18 +232,18 @@ describe('startLogsAssembly', () => {
     })
   })
 
-  describe('ddtags', () => {
+  describe('mdtags', () => {
     it('should contain and format the default tags', () => {
       lifeCycle.notify(LifeCycleEventType.RAW_LOG_COLLECTED, { rawLogsEvent: DEFAULT_MESSAGE })
-      expect(serverLogs[0].ddtags).toEqual('sdk_version:test,env:test,service:service,version:1.0.0')
+      expect(serverLogs[0].mdtags).toEqual('sdk_version:test,env:test,service:service,version:1.0.0')
     })
 
     it('should append custom tags', () => {
       lifeCycle.notify(LifeCycleEventType.RAW_LOG_COLLECTED, {
         rawLogsEvent: DEFAULT_MESSAGE,
-        ddtags: ['foo:bar'],
+        mdtags: ['foo:bar'],
       })
-      expect(serverLogs[0].ddtags).toEqual('sdk_version:test,env:test,service:service,version:1.0.0,foo:bar')
+      expect(serverLogs[0].mdtags).toEqual('sdk_version:test,env:test,service:service,version:1.0.0,foo:bar')
     })
   })
 

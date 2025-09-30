@@ -2,7 +2,7 @@ import type { Payload } from '../../transport'
 import { timeStampNow } from '../../tools/utils/timeUtils'
 import { normalizeUrl } from '../../tools/utils/urlPolyfill'
 import { generateUUID } from '../../tools/utils/stringUtils'
-import { INTAKE_SITE_FED_STAGING, INTAKE_SITE_US1, PCI_INTAKE_HOST_US1 } from '../intakeSites'
+import { INTAKE_SITE_US1 } from '../intakeSites'
 import type { InitConfiguration } from './configuration'
 
 // replaced at build time
@@ -48,7 +48,7 @@ function createEndpointUrlWithParametersBuilder(
   const proxy = initConfiguration.proxy
   if (typeof proxy === 'string') {
     const normalizedProxyUrl = normalizeUrl(proxy)
-    return (parameters) => `${normalizedProxyUrl}?ddforward=${encodeURIComponent(`${path}?${parameters}`)}`
+    return (parameters) => `${normalizedProxyUrl}?mdforward=${encodeURIComponent(`${path}?${parameters}`)}`
   }
   if (typeof proxy === 'function') {
     return (parameters) => proxy({ path, parameters })
@@ -61,23 +61,11 @@ export function buildEndpointHost(
   trackType: TrackType,
   initConfiguration: InitConfiguration & { usePciIntake?: boolean }
 ) {
-  const { site = INTAKE_SITE_US1, internalAnalyticsSubdomain } = initConfiguration
+  const { site = INTAKE_SITE_US1 } = initConfiguration
 
-  if (trackType === 'logs' && initConfiguration.usePciIntake && site === INTAKE_SITE_US1) {
-    return PCI_INTAKE_HOST_US1
-  }
-
-  if (internalAnalyticsSubdomain && site === INTAKE_SITE_US1) {
-    return `${internalAnalyticsSubdomain}.${INTAKE_SITE_US1}`
-  }
-
-  if (site === INTAKE_SITE_FED_STAGING) {
-    return `http-intake.logs.${site}`
-  }
-
-  const domainParts = site.split('.')
-  const extension = domainParts.pop()
-  return `browser-intake-${domainParts.join('-')}.${extension!}`
+  // For custom sites, use them directly
+  // If site contains port, it will be preserved
+  return site
 }
 
 /**
@@ -92,22 +80,22 @@ function buildEndpointParameters(
   extraParameters: string[] = []
 ) {
   const parameters = [
-    `ddsource=${source}`,
-    `dd-api-key=${clientToken}`,
-    `dd-evp-origin-version=${encodeURIComponent(__BUILD_ENV__SDK_VERSION__)}`,
-    'dd-evp-origin=browser',
-    `dd-request-id=${generateUUID()}`,
+    `mdsource=${source}`,
+    `md-api-key=${clientToken}`,
+    `md-evp-origin-version=${encodeURIComponent(__BUILD_ENV__SDK_VERSION__)}`,
+    'md-evp-origin=browser',
+    `md-request-id=${generateUUID()}`,
   ].concat(extraParameters)
 
   if (encoding) {
-    parameters.push(`dd-evp-encoding=${encoding}`)
+    parameters.push(`md-evp-encoding=${encoding}`)
   }
 
   if (trackType === 'rum') {
-    parameters.push(`batch_time=${timeStampNow()}`, `_dd.api=${api}`)
+    parameters.push(`batch_time=${timeStampNow()}`, `_md.api=${api}`)
 
     if (retry) {
-      parameters.push(`_dd.retry_count=${retry.count}`, `_dd.retry_after=${retry.lastFailureStatus}`)
+      parameters.push(`_md.retry_count=${retry.count}`, `_md.retry_after=${retry.lastFailureStatus}`)
     }
   }
 

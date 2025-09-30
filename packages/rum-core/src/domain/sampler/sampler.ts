@@ -1,4 +1,4 @@
-import { performDraw } from '@datadog/browser-core'
+import { performDraw } from '@motadata365/browser-core'
 
 const sampleDecisionCache: Map<number, { sessionId: string; decision: boolean }> = new Map()
 

@@ -1,4 +1,4 @@
-import type { TrackingConsentState, DeflateWorker, Context, ContextManager, BoundedBuffer } from '@datadog/browser-core'
+import type { TrackingConsentState, DeflateWorker, Context, ContextManager, BoundedBuffer } from '@motadata365/browser-core'
 import {
   createBoundedBuffer,
   display,
@@ -18,7 +18,7 @@ import {
   buildUserContextManager,
   monitorError,
   sanitize,
-} from '@datadog/browser-core'
+} from '@motadata365/browser-core'
 import type { RumConfiguration, RumInitConfiguration } from '../domain/configuration'
 import {
   validateAndBuildRumConfiguration,
@@ -110,7 +110,7 @@ export function createPreStartStrategy(
     addTelemetryConfiguration(serializeRumConfiguration(initConfiguration))
 
     if (cachedConfiguration) {
-      displayAlreadyInitializedError('DD_RUM', initConfiguration)
+      displayAlreadyInitializedError('MD_RUM', initConfiguration)
       return
     }
 

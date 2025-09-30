@@ -1,4 +1,4 @@
-import type { Context, EventRateLimiter, RawError } from '@datadog/browser-core'
+import type { Context, EventRateLimiter, RawError } from '@motadata365/browser-core'
 import {
   DISCARDED,
   ErrorSource,
@@ -7,7 +7,7 @@ import {
   combine,
   createEventRateLimiter,
   getRelativeTime,
-} from '@datadog/browser-core'
+} from '@motadata365/browser-core'
 import type { CommonContext } from '../rawLogsEvent.types'
 import type { LogsEvent } from '../logsEvent.types'
 import type { LogsConfiguration } from './configuration'
@@ -31,7 +31,7 @@ export function startLogsAssembly(
 
   lifeCycle.subscribe(
     LifeCycleEventType.RAW_LOG_COLLECTED,
-    ({ rawLogsEvent, messageContext = undefined, savedCommonContext = undefined, domainContext, ddtags = [] }) => {
+    ({ rawLogsEvent, messageContext = undefined, savedCommonContext = undefined, domainContext, mdtags = [] }) => {
       const startTime = getRelativeTime(rawLogsEvent.date)
       const commonContext = savedCommonContext || getCommonContext()
       const defaultLogsEventAttributes = hooks.triggerHook(HookNames.Assemble, {
@@ -52,7 +52,7 @@ export function startLogsAssembly(
         rawLogsEvent,
         messageContext,
         {
-          ddtags: defaultDdtags.concat(ddtags).join(','),
+          mdtags: defaultDdtags.concat(mdtags).join(','),
         }
       ) as LogsEvent & Context
 

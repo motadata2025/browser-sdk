@@ -6,8 +6,8 @@ import {
   deleteCookie,
   ONE_MINUTE,
   createContextManager,
-} from '@datadog/browser-core'
-import { interceptRequests, registerCleanupTask } from '@datadog/browser-core/test'
+} from '@motadata365/browser-core'
+import { interceptRequests, registerCleanupTask } from '@motadata365/browser-core/test'
 import { appendElement } from '../../../test'
 import type { RumInitConfiguration } from './configuration'
 import {

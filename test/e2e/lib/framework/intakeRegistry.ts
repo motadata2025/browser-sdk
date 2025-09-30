@@ -1,4 +1,4 @@
-import type { LogsEvent } from '@datadog/browser-logs'
+import type { LogsEvent } from '@motadata365/browser-logs'
 import type {
   RumEvent,
   RumActionEvent,
@@ -6,15 +6,15 @@ import type {
   RumResourceEvent,
   RumViewEvent,
   RumVitalEvent,
-} from '@datadog/browser-rum'
+} from '@motadata365/browser-rum'
 import type {
   TelemetryEvent,
   TelemetryErrorEvent,
   TelemetryConfigurationEvent,
   TelemetryUsageEvent,
-} from '@datadog/browser-core'
-import type { BrowserSegment } from '@datadog/browser-rum/src/types'
-import type { BrowserSegmentMetadataAndSegmentSizes } from '@datadog/browser-rum/src/domain/segmentCollection'
+} from '@motadata365/browser-core'
+import type { BrowserSegment } from '@motadata365/browser-rum/src/types'
+import type { BrowserSegmentMetadataAndSegmentSizes } from '@motadata365/browser-rum/src/domain/segmentCollection'
 
 interface BaseIntakeRequest {
   isBridge: boolean

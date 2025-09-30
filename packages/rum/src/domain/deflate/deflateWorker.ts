@@ -1,6 +1,6 @@
-import type { DeflateWorker, DeflateWorkerResponse } from '@datadog/browser-core'
-import { addTelemetryError, display, addEventListener, setTimeout, ONE_SECOND } from '@datadog/browser-core'
-import type { RumConfiguration } from '@datadog/browser-rum-core'
+import type { DeflateWorker, DeflateWorkerResponse } from '@motadata365/browser-core'
+import { addTelemetryError, display, addEventListener, setTimeout, ONE_SECOND } from '@motadata365/browser-core'
+import type { RumConfiguration } from '@motadata365/browser-rum-core'
 import { reportScriptLoadingError } from '../scriptLoadingError'
 
 export const INITIALIZATION_TIME_OUT_DELAY = 30 * ONE_SECOND

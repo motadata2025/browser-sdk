@@ -69,7 +69,7 @@ function computeMessage(
 }
 
 export function tryToGetFingerprint(originalError: unknown) {
-  return isError(originalError) && 'dd_fingerprint' in originalError ? String(originalError.dd_fingerprint) : undefined
+  return isError(originalError) && 'md_fingerprint' in originalError ? String(originalError.md_fingerprint) : undefined
 }
 
 export function tryToGetErrorContext(originalError: unknown) {

@@ -1,5 +1,5 @@
-import { round, ONE_SECOND, noop, elapsed } from '@datadog/browser-core'
-import type { Duration, RelativeTime, WeakRef, WeakRefConstructor } from '@datadog/browser-core'
+import { round, ONE_SECOND, noop, elapsed } from '@motadata365/browser-core'
+import type { Duration, RelativeTime, WeakRef, WeakRefConstructor } from '@motadata365/browser-core'
 import { isElementNode } from '../../../browser/htmlDomUtils'
 import type { RumLayoutShiftAttribution, RumLayoutShiftTiming } from '../../../browser/performanceObservable'
 import {

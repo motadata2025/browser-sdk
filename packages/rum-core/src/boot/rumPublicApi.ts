@@ -13,7 +13,7 @@ import type {
   Account,
   RumInternalContext,
   Telemetry,
-} from '@datadog/browser-core'
+} from '@motadata365/browser-core'
 import {
   ContextManagerMethod,
   addTelemetryUsage,
@@ -31,7 +31,7 @@ import {
   CustomerContextKey,
   defineContextMethod,
   startBufferingData,
-} from '@datadog/browser-core'
+} from '@motadata365/browser-core'
 
 import type { LifeCycle } from '../domain/lifeCycle'
 import type { ViewHistory } from '../domain/contexts/viewHistory'
@@ -74,7 +74,7 @@ export interface RumPublicApi extends PublicApi {
    * @param initConfiguration - Configuration options of the SDK
    * @example Init RUM Browser SDK example
    * ```ts
-   * datadogRum.init({
+   * motadataRum.init({
    *   applicationId: '<DATADOG_APPLICATION_ID>',
    *   clientToken: '<DATADOG_CLIENT_TOKEN>',
    *   site: '<DATADOG_SITE>',
@@ -828,7 +828,7 @@ export function makeRumPublicApi(
 function createPostStartStrategy(preStartStrategy: Strategy, startRumResult: StartRumResult): Strategy {
   return {
     init: (initConfiguration: RumInitConfiguration) => {
-      displayAlreadyInitializedError('DD_RUM', initConfiguration)
+      displayAlreadyInitializedError('MD_RUM', initConfiguration)
     },
     initConfiguration: preStartStrategy.initConfiguration,
     ...startRumResult,

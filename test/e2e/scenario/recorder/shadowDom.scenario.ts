@@ -3,22 +3,22 @@ import type {
   MouseInteractionData,
   ScrollData,
   SerializedNodeWithId,
-} from '@datadog/browser-rum/src/types'
-import { IncrementalSource, MouseInteractionType, NodeType } from '@datadog/browser-rum/src/types'
+} from '@motadata365/browser-rum/src/types'
+import { IncrementalSource, MouseInteractionType, NodeType } from '@motadata365/browser-rum/src/types'
 
-import { createMutationPayloadValidatorFromSegment } from '@datadog/browser-rum/test/mutationPayloadValidator'
+import { createMutationPayloadValidatorFromSegment } from '@motadata365/browser-rum/test/mutationPayloadValidator'
 import {
   findElementWithIdAttribute,
   findElementWithTagName,
   findNode,
   findTextContent,
   findTextNode,
-} from '@datadog/browser-rum/test/nodes'
+} from '@motadata365/browser-rum/test/nodes'
 import {
   findFullSnapshot,
   findIncrementalSnapshot,
   findMouseInteractionRecords,
-} from '@datadog/browser-rum/test/segments'
+} from '@motadata365/browser-rum/test/segments'
 
 import { test, expect } from '@playwright/test'
 import { createTest, html } from '../../lib/framework'

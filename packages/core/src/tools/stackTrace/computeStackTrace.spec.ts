@@ -960,16 +960,16 @@ Error: foo
   })
 
   it('should normalize non native errors stacktraces across browsers', () => {
-    class DatadogTestCustomError extends Error {
+    class MotadataTestCustomError extends Error {
       constructor() {
         super()
         this.name = 'Error' // set name to Error so that no browser would default to the constructor name
       }
     }
-    class DatadogTestCustomError2 extends DatadogTestCustomError {}
+    class DatadogTestCustomError2 extends MotadataTestCustomError {}
 
     const [customError, customErrorWithInheritance, customErrorWithAnonymousInheritance, nativeError] = [
-      DatadogTestCustomError,
+      MotadataTestCustomError,
       DatadogTestCustomError2,
       // this is an anonymous class, which has no name
       // we're checking if the stacktrace is correctly reported for this specific case (with the class name missing)

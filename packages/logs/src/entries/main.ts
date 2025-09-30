@@ -7,7 +7,7 @@
  * @see [Browser Log Collection](https://docs.datadoghq.com/logs/log_collection/javascript/)
  */
 
-import { defineGlobal, getGlobalObject } from '@datadog/browser-core'
+import { defineGlobal, getGlobalObject } from '@motadata365/browser-core'
 import type { LogsPublicApi } from '../boot/logsPublicApi'
 import { makeLogsPublicApi } from '../boot/logsPublicApi'
 import { startLogs } from '../boot/startLogs'
@@ -43,16 +43,16 @@ export type {
   ConsoleApiName,
   RawReportType,
   ErrorSource,
-} from '@datadog/browser-core'
+} from '@motadata365/browser-core'
 
 /**
  * The global Logs instance. Use this to call Logs methods.
  *
  * @see [Browser Log Collection](https://docs.datadoghq.com/logs/log_collection/javascript/)
  */
-export const datadogLogs = makeLogsPublicApi(startLogs)
+export const motadataLogs = makeLogsPublicApi(startLogs)
 
 interface BrowserWindow extends Window {
-  DD_LOGS?: LogsPublicApi
+  MD_LOGS?: LogsPublicApi
 }
-defineGlobal(getGlobalObject<BrowserWindow>(), 'DD_LOGS', datadogLogs)
+defineGlobal(getGlobalObject<BrowserWindow>(), 'MD_LOGS', motadataLogs)

@@ -230,14 +230,14 @@ function isWronglyReportingCustomErrors() {
   }
 
   /* eslint-disable no-restricted-syntax */
-  class DatadogTestCustomError extends Error {
+  class MotadataTestCustomError extends Error {
     constructor() {
       super()
       this.name = 'Error' // set name to Error so that no browser would default to the constructor name
     }
   }
 
-  const [customError, nativeError] = [DatadogTestCustomError, Error].map((errConstructor) => new errConstructor()) // so that both errors should exactly have the same stacktrace
+  const [customError, nativeError] = [MotadataTestCustomError, Error].map((errConstructor) => new errConstructor()) // so that both errors should exactly have the same stacktrace
 
   isWronglyReportingCustomErrorsCache =
     // If customError is not a class, it means that this was built with ES5 as target, converting the class to a normal object.

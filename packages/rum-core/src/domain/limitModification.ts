@@ -1,5 +1,5 @@
-import { sanitize, deepClone, getType, objectEntries } from '@datadog/browser-core'
-import type { Context } from '@datadog/browser-core'
+import { sanitize, deepClone, getType, objectEntries } from '@motadata365/browser-core'
+import type { Context } from '@motadata365/browser-core'
 
 export type ModifiableFieldPaths = Record<string, 'string' | 'object'>
 

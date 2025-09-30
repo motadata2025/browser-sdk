@@ -1,5 +1,5 @@
-import { sendToExtension } from '@datadog/browser-core'
-import type { LifeCycle, RumConfiguration, ViewHistory } from '@datadog/browser-rum-core'
+import { sendToExtension } from '@motadata365/browser-core'
+import type { LifeCycle, RumConfiguration, ViewHistory } from '@motadata365/browser-rum-core'
 import type { BrowserRecord } from '../../types'
 import * as replayStats from '../replayStats'
 import type { Tracker } from './trackers'

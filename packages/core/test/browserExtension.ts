@@ -1,6 +1,6 @@
 // Base case, the page has the SDK in the init and the error stack is in the page.
 export const STACK_WITH_INIT_IN_PAGE = `Error
-    at Object.init (http://localhost:8080/datadog-rum.js:3919:16)
+    at Object.init (http://localhost:8080/motadata-rum.js:3919:16)
     at http://localhost:8080/:10:14`
 
 // Base case for extension, the extension has the SDK in the init and the error stack is in the extension.

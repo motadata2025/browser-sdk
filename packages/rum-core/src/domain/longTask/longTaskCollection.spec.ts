@@ -1,4 +1,4 @@
-import type { RelativeTime, ServerDuration } from '@datadog/browser-core'
+import type { RelativeTime, ServerDuration } from '@motadata365/browser-core'
 import {
   collectAndValidateRawRumEvents,
   createPerformanceEntry,
@@ -67,7 +67,7 @@ describe('long task collection', () => {
         duration: (100 * 1e6) as ServerDuration,
       },
       type: RumEventType.LONG_TASK,
-      _dd: {
+      _md: {
         discarded: false,
       },
     })

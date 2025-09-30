@@ -1,5 +1,5 @@
 /**
- * Datadog Browser RUM SDK - Full version with Session Replay and Real User Profiling capabilities.
+ * Motadata Browser RUM SDK - Full version with Session Replay and Real User Profiling capabilities.
  * Use this package to monitor your web application's performance and user experience.
  *
  * @packageDocumentation
@@ -7,9 +7,9 @@
  */
 
 // Keep the following in sync with packages/rum-slim/src/entries/main.ts
-import { defineGlobal, getGlobalObject } from '@datadog/browser-core'
-import type { RumPublicApi } from '@datadog/browser-rum-core'
-import { makeRumPublicApi, startRum } from '@datadog/browser-rum-core'
+import { defineGlobal, getGlobalObject } from '@motadata365/browser-core'
+import type { RumPublicApi } from '@motadata365/browser-rum-core'
+import { makeRumPublicApi, startRum } from '@motadata365/browser-rum-core'
 import { makeRecorderApi } from '../boot/recorderApi'
 import { createDeflateEncoder, startDeflateWorker } from '../domain/deflate'
 import { lazyLoadRecorder } from '../boot/lazyLoadRecorder'
@@ -28,8 +28,8 @@ export type {
   ContextValue,
   ContextArray,
   RumInternalContext,
-} from '@datadog/browser-core'
-export { DefaultPrivacyLevel } from '@datadog/browser-core'
+} from '@motadata365/browser-core'
+export { DefaultPrivacyLevel } from '@motadata365/browser-core'
 
 export type {
   RumPublicApi as RumGlobal,
@@ -65,7 +65,7 @@ export type {
   RumXhrResourceEventDomainContext,
   RumOtherResourceEventDomainContext,
   RumLongTaskEventDomainContext,
-} from '@datadog/browser-rum-core'
+} from '@motadata365/browser-rum-core'
 
 const recorderApi = makeRecorderApi(lazyLoadRecorder)
 
@@ -76,13 +76,13 @@ const profilerApi = makeProfilerApi()
  *
  * @see [RUM Browser Monitoring Setup](https://docs.datadoghq.com/real_user_monitoring/browser/)
  */
-export const datadogRum = makeRumPublicApi(startRum, recorderApi, profilerApi, {
+export const motadataRum = makeRumPublicApi(startRum, recorderApi, profilerApi, {
   startDeflateWorker,
   createDeflateEncoder,
   sdkName: 'rum',
 })
 
 interface BrowserWindow extends Window {
-  DD_RUM?: RumPublicApi
+  MD_RUM?: RumPublicApi
 }
-defineGlobal(getGlobalObject<BrowserWindow>(), 'DD_RUM', datadogRum)
+defineGlobal(getGlobalObject<BrowserWindow>(), 'MD_RUM', motadataRum)

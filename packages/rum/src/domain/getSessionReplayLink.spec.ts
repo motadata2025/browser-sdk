@@ -1,5 +1,5 @@
-import type { RumConfiguration, ViewHistory } from '@datadog/browser-rum-core'
-import { registerCleanupTask } from '@datadog/browser-core/test'
+import type { RumConfiguration, ViewHistory } from '@motadata365/browser-rum-core'
+import { registerCleanupTask } from '@motadata365/browser-core/test'
 import { createRumSessionManagerMock } from '../../../rum-core/test'
 import { getSessionReplayLink } from './getSessionReplayLink'
 import { addRecord, resetReplayStats } from './replayStats'

@@ -1,8 +1,8 @@
 import ajv from 'ajv'
-import { registerCleanupTask } from '@datadog/browser-core/test'
-import type { TimeStamp, Context } from '@datadog/browser-core'
-import { combine } from '@datadog/browser-core'
-import type { CommonProperties } from '@datadog/browser-rum-core'
+import { registerCleanupTask } from '@motadata365/browser-core/test'
+import type { TimeStamp, Context } from '@motadata365/browser-core'
+import { combine } from '@motadata365/browser-core'
+import type { CommonProperties } from '@motadata365/browser-rum-core'
 import type { LifeCycle, RawRumEventCollectedData } from '../src/domain/lifeCycle'
 import { LifeCycleEventType } from '../src/domain/lifeCycle'
 import type { RawRumEvent } from '../src/rawRumEvent.types'
@@ -24,7 +24,7 @@ export function collectAndValidateRawRumEvents(lifeCycle: LifeCycle) {
 function validateRumEventFormat(rawRumEvent: RawRumEvent) {
   const fakeId = '00000000-aaaa-0000-aaaa-000000000000'
   const fakeContext: Partial<CommonProperties> = {
-    _dd: {
+    _md: {
       format_version: 2,
       drift: 0,
       configuration: {

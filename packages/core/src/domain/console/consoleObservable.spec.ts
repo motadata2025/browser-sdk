@@ -109,11 +109,11 @@ describe('console error observable', () => {
   })
 
   it('should retrieve fingerprint from error', () => {
-    interface DatadogError extends Error {
-      dd_fingerprint?: string
+    interface MotadataError extends Error {
+      md_fingerprint?: string
     }
     const error = new Error('foo')
-    ;(error as DatadogError).dd_fingerprint = 'my-fingerprint'
+    ;(error as MotadataError).md_fingerprint = 'my-fingerprint'
 
     console.error(error)
 
@@ -123,7 +123,7 @@ describe('console error observable', () => {
 
   it('should sanitize error fingerprint', () => {
     const error = new Error('foo')
-    ;(error as any).dd_fingerprint = 2
+    ;(error as any).md_fingerprint = 2
 
     console.error(error)
 
@@ -132,11 +132,11 @@ describe('console error observable', () => {
   })
 
   it('should retrieve context from error', () => {
-    interface DatadogError extends Error {
+    interface MotadataError extends Error {
       dd_context?: Record<string, unknown>
     }
     const error = new Error('foo')
-    ;(error as DatadogError).dd_context = { foo: 'bar' }
+    ;(error as MotadataError).dd_context = { foo: 'bar' }
     console.error(error)
     const consoleLog = notifyLog.calls.mostRecent().args[0]
     expect(consoleLog.error.context).toEqual({ foo: 'bar' })

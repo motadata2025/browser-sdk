@@ -1,5 +1,5 @@
 {
-  "name": "@datadog/browser-rum-react",
+  "name": "@motadata365/browser-rum-react",
   "version": "6.21.1",
   "license": "Apache-2.0",
   "main": "cjs/entries/main.js",
@@ -13,8 +13,8 @@
     "prepack": "npm run build"
   },
   "dependencies": {
-    "@datadog/browser-core": "6.21.1",
-    "@datadog/browser-rum-core": "6.21.1"
+    "@motadata365/browser-core": "6.21.1",
+    "@motadata365/browser-rum-core": "6.21.1"
   },
   "peerDependencies": {
     "react": "18 || 19",
@@ -22,10 +22,10 @@
     "react-router-dom": "6 || 7"
   },
   "peerDependenciesMeta": {
-    "@datadog/browser-rum": {
+    "@motadata365/browser-rum": {
       "optional": true
     },
-    "@datadog/browser-rum-slim": {
+    "@motadata365/browser-rum-slim": {
       "optional": true
     },
     "react": {
@@ -46,11 +46,6 @@
     "react-router": "7.9.1",
     "react-router-dom": "7.9.1",
     "react-router-dom-6": "npm:react-router-dom@6.30.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/DataDog/browser-sdk.git",
-    "directory": "packages/rum-react"
   },
   "volta": {
     "extends": "../../package.json"

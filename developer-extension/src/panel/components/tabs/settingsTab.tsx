@@ -20,7 +20,7 @@ export function SettingsTab() {
       eventCollectionStrategy,
       autoFlush,
       debugMode: debug,
-      datadogMode,
+      motadataMode,
     },
     setSetting,
   ] = useSettings()
@@ -107,7 +107,7 @@ export function SettingsTab() {
                 </Accordion.Panel>
               </Accordion.Item>
 
-              {datadogMode && (
+              {motadataMode && (
                 <Accordion.Item key="replay-sandbox" value="replay-sandbox">
                   <Accordion.Control>
                     <Group>
@@ -252,8 +252,8 @@ export function SettingsTab() {
               input={
                 <Checkbox
                   label="Datadog employee mode"
-                  checked={datadogMode}
-                  onChange={(e) => setSetting('datadogMode', isChecked(e.target))}
+                  checked={motadataMode}
+                  onChange={(e) => setSetting('motadataMode', isChecked(e.target))}
                   color="violet"
                 />
               }

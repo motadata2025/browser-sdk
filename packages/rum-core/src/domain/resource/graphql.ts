@@ -1,4 +1,4 @@
-import { matchList, ONE_KIBI_BYTE, safeTruncate } from '@datadog/browser-core'
+import { matchList, ONE_KIBI_BYTE, safeTruncate } from '@motadata365/browser-core'
 import type { RumConfiguration, GraphQlUrlOption } from '../configuration'
 
 /**

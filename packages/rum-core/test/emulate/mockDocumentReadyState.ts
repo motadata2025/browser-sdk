@@ -1,4 +1,4 @@
-import { DOM_EVENT } from '@datadog/browser-core'
+import { DOM_EVENT } from '@motadata365/browser-core'
 import { createNewEvent } from '../../../core/test'
 
 export function mockDocumentReadyState() {

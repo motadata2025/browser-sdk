@@ -1,3 +1,3 @@
 # `core`
 
-Datadog browser core utilities.
+Motadata browser core utilities.

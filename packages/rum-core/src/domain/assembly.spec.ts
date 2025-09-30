@@ -1,4 +1,4 @@
-import type { ClocksState, RelativeTime, TimeStamp } from '@datadog/browser-core'
+import type { ClocksState, RelativeTime, TimeStamp } from '@motadata365/browser-core'
 import {
   ErrorSource,
   ExperimentalFeature,
@@ -6,9 +6,9 @@ import {
   ONE_MINUTE,
   display,
   startGlobalContext,
-} from '@datadog/browser-core'
-import type { Clock } from '@datadog/browser-core/test'
-import { mockExperimentalFeatures, registerCleanupTask, mockClock } from '@datadog/browser-core/test'
+} from '@motadata365/browser-core'
+import type { Clock } from '@motadata365/browser-core/test'
+import { mockExperimentalFeatures, registerCleanupTask, mockClock } from '@motadata365/browser-core/test'
 import {
   createRumSessionManagerMock,
   createRawRumEvent,
@@ -399,7 +399,7 @@ describe('rum assembly', () => {
       })
     })
 
-    it('should be added to the event as ddtags', () => {
+    it('should be added to the event as mdtags', () => {
       const { lifeCycle, serverRumEvents } = setupAssemblyTestWithDefaults({
         partialConfiguration: extraConfigurationOptions,
       })
@@ -407,7 +407,7 @@ describe('rum assembly', () => {
         rawRumEvent: createRawRumEvent(RumEventType.VIEW),
       })
 
-      expect(serverRumEvents[0].ddtags).toEqual('sdk_version:test,service:default-service,version:default-version')
+      expect(serverRumEvents[0].mdtags).toEqual('sdk_version:test,service:default-service,version:default-version')
     })
   })
 

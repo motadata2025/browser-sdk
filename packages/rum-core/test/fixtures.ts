@@ -1,6 +1,6 @@
-import type { Context, Duration, RelativeTime, ServerDuration, TimeStamp } from '@datadog/browser-core'
-import { combine, ErrorHandling, ErrorSource, generateUUID, relativeNow, ResourceType } from '@datadog/browser-core'
-import type { RumMutationRecord } from '@datadog/browser-rum-core'
+import type { Context, Duration, RelativeTime, ServerDuration, TimeStamp } from '@motadata365/browser-core'
+import { combine, ErrorHandling, ErrorSource, generateUUID, relativeNow, ResourceType } from '@motadata365/browser-core'
+import type { RumMutationRecord } from '@motadata365/browser-rum-core'
 import {
   type RumPerformanceEntry,
   type RumLayoutShiftAttribution,
@@ -51,7 +51,7 @@ export function createRawRumEvent(type: RumEventType, overrides?: Context): RawR
             duration: 0 as ServerDuration,
             entry_type: RumLongTaskEntryType.LONG_TASK,
           },
-          _dd: {
+          _md: {
             discarded: false,
           },
         },
@@ -84,7 +84,7 @@ export function createRawRumEvent(type: RumEventType, overrides?: Context): RawR
             type: ResourceType.OTHER,
             url: 'http://foo.bar',
           },
-          _dd: {
+          _md: {
             discarded: false,
           },
         },
@@ -94,7 +94,7 @@ export function createRawRumEvent(type: RumEventType, overrides?: Context): RawR
       return combine(
         {
           type,
-          _dd: {
+          _md: {
             document_version: 0,
             configuration: {
               start_session_replay_recording_manually: false,

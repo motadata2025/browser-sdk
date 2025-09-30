@@ -1,4 +1,4 @@
-import type { RelativeTime, RumInternalContext } from '@datadog/browser-core'
+import type { RelativeTime, RumInternalContext } from '@motadata365/browser-core'
 import type { ActionContexts } from '../action/actionCollection'
 import type { RumSessionManager } from '../rumSessionManager'
 import type { ViewHistory } from './viewHistory'

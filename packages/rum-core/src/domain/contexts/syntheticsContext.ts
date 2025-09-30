@@ -5,7 +5,7 @@ import {
   HookNames,
   willSyntheticsInjectRum,
   isSyntheticsTest,
-} from '@datadog/browser-core'
+} from '@motadata365/browser-core'
 import { SessionType } from '../rumSessionManager'
 import type { DefaultRumEventAttributes, Hooks } from '../hooks'
 

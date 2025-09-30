@@ -5,46 +5,46 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
-"@datadog/browser-core@file:../../../packages/core/package.tgz::locator=app%40workspace%3A.":
+"@motadata365/browser-core@file:../../../packages/core/package.tgz::locator=app%40workspace%3A.":
   version: 6.21.1
-  resolution: "@datadog/browser-core@file:../../../packages/core/package.tgz#../../../packages/core/package.tgz::hash=7a9f3f&locator=app%40workspace%3A."
+  resolution: "@motadata365/browser-core@file:../../../packages/core/package.tgz#../../../packages/core/package.tgz::hash=7a9f3f&locator=app%40workspace%3A."
   checksum: 10c0/4a42aca1f7fe4af3048e7483052efa47aa4cc901c056c5e7171aa64526bb6f1b2f48b73655b85c9a55510871d5940d7900e3562d63afcd3aa431e938e91d59be
   languageName: node
   linkType: hard
 
-"@datadog/browser-logs@file:../../../packages/logs/package.tgz::locator=app%40workspace%3A.":
+"@motadata365/browser-logs@file:../../../packages/logs/package.tgz::locator=app%40workspace%3A.":
   version: 6.21.1
-  resolution: "@datadog/browser-logs@file:../../../packages/logs/package.tgz#../../../packages/logs/package.tgz::hash=e43f7a&locator=app%40workspace%3A."
+  resolution: "@motadata365/browser-logs@file:../../../packages/logs/package.tgz#../../../packages/logs/package.tgz::hash=e43f7a&locator=app%40workspace%3A."
   dependencies:
-    "@datadog/browser-core": "npm:6.21.1"
+    "@motadata365/browser-core": "npm:6.21.1"
   peerDependencies:
-    "@datadog/browser-rum": 6.21.1
+    "@motadata365/browser-rum": 6.21.1
   peerDependenciesMeta:
-    "@datadog/browser-rum":
+    "@motadata365/browser-rum":
       optional: true
   checksum: 10c0/44e2b561861159e9a261677b5c306f6140aa22ec792ad7b0a1d9cfc8b308b3e42a004613431d28293504c894bd010b486b060dee984eb6fec490621edef92212
   languageName: node
   linkType: hard
 
-"@datadog/browser-rum-core@file:../../../packages/rum-core/package.tgz::locator=app%40workspace%3A.":
+"@motadata365/browser-rum-core@file:../../../packages/rum-core/package.tgz::locator=app%40workspace%3A.":
   version: 6.21.1
-  resolution: "@datadog/browser-rum-core@file:../../../packages/rum-core/package.tgz#../../../packages/rum-core/package.tgz::hash=ceb454&locator=app%40workspace%3A."
+  resolution: "@motadata365/browser-rum-core@file:../../../packages/rum-core/package.tgz#../../../packages/rum-core/package.tgz::hash=ceb454&locator=app%40workspace%3A."
   dependencies:
-    "@datadog/browser-core": "npm:6.21.1"
+    "@motadata365/browser-core": "npm:6.21.1"
   checksum: 10c0/de7abc905d3ebb6223d7b5d0a5ad4336a3788071f6d19e6cffbb60db7ad3827707174d665b206e5ea098f14cc5219bdf84aca8c1eb070a20b4d53aa534502364
   languageName: node
   linkType: hard
 
-"@datadog/browser-rum@file:../../../packages/rum/package.tgz::locator=app%40workspace%3A.":
+"@motadata365/browser-rum@file:../../../packages/rum/package.tgz::locator=app%40workspace%3A.":
   version: 6.21.1
-  resolution: "@datadog/browser-rum@file:../../../packages/rum/package.tgz#../../../packages/rum/package.tgz::hash=d61962&locator=app%40workspace%3A."
+  resolution: "@motadata365/browser-rum@file:../../../packages/rum/package.tgz#../../../packages/rum/package.tgz::hash=d61962&locator=app%40workspace%3A."
   dependencies:
-    "@datadog/browser-core": "npm:6.21.1"
-    "@datadog/browser-rum-core": "npm:6.21.1"
+    "@motadata365/browser-core": "npm:6.21.1"
+    "@motadata365/browser-rum-core": "npm:6.21.1"
   peerDependencies:
-    "@datadog/browser-logs": 6.21.1
+    "@motadata365/browser-logs": 6.21.1
   peerDependenciesMeta:
-    "@datadog/browser-logs":
+    "@motadata365/browser-logs":
       optional: true
   checksum: 10c0/592853e9554f1f75b2fb019c453ea232558f2cfbf951e690abb3dd30592e0343ebdf14510230a45c8b9605cee2366816a3dcdad9232035dd435597ca4f64fef6
   languageName: node
@@ -356,8 +356,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "app@workspace:."
   dependencies:
-    "@datadog/browser-logs": "file:../../../packages/logs/package.tgz"
-    "@datadog/browser-rum": "file:../../../packages/rum/package.tgz"
+    "@motadata365/browser-logs": "file:../../../packages/logs/package.tgz"
+    "@motadata365/browser-rum": "file:../../../packages/rum/package.tgz"
     ts-loader: "npm:6.2.1"
     typescript: "npm:3.8.2"
     webpack: "npm:5.94.0"

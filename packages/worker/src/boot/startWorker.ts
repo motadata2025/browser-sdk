@@ -1,5 +1,5 @@
-import type { DeflateWorkerAction, DeflateWorkerResponse, Uint8ArrayBuffer } from '@datadog/browser-core'
-import { concatBuffers } from '@datadog/browser-core'
+import type { DeflateWorkerAction, DeflateWorkerResponse, Uint8ArrayBuffer } from '@motadata365/browser-core'
+import { concatBuffers } from '@motadata365/browser-core'
 import { Deflate, constants, string2buf } from '../domain/deflate'
 
 declare const __BUILD_ENV__SDK_VERSION__: string

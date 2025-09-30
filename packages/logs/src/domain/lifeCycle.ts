@@ -1,5 +1,5 @@
-import { AbstractLifeCycle } from '@datadog/browser-core'
-import type { Context } from '@datadog/browser-core'
+import { AbstractLifeCycle } from '@motadata365/browser-core'
+import type { Context } from '@motadata365/browser-core'
 import type { LogsEvent } from '../logsEvent.types'
 import type { CommonContext, RawLogsEvent } from '../rawLogsEvent.types'
 import type { LogsEventDomainContext } from '../domainContext.types'
@@ -22,5 +22,5 @@ export interface RawLogsEventCollectedData<E extends RawLogsEvent = RawLogsEvent
   messageContext?: Context
   savedCommonContext?: CommonContext
   domainContext?: LogsEventDomainContext<E['origin']>
-  ddtags?: string[]
+  mdtags?: string[]
 }

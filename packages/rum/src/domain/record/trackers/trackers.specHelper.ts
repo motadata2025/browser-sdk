@@ -1,6 +1,6 @@
-import { noop } from '@datadog/browser-core'
-import { NodePrivacyLevel } from '@datadog/browser-rum-core'
-import type { RumConfiguration } from '@datadog/browser-rum-core'
+import { noop } from '@motadata365/browser-core'
+import { NodePrivacyLevel } from '@motadata365/browser-rum-core'
+import type { RumConfiguration } from '@motadata365/browser-rum-core'
 import type { ShadowRootsController } from '../shadowRootsController'
 
 export const DEFAULT_SHADOW_ROOT_CONTROLLER: ShadowRootsController = {

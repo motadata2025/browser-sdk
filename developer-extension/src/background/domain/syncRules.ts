@@ -65,14 +65,14 @@ function buildRules(
       createRedirectRule(/^https:\/\/.*\/datadog-(rum|rum-slim|logs)(-[\w-]+)?\.js$/, {
         regexSubstitution: `${DEV_SERVER_ORIGIN}/datadog-\\1.js`,
       }),
-      createRedirectRule(/^https:\/\/.*\/chunks\/(\w+)(-\w+)?-datadog-rum.js$/, {
-        regexSubstitution: `${DEV_SERVER_ORIGIN}/chunks/\\1-datadog-rum.js`,
+      createRedirectRule(/^https:\/\/.*\/chunks\/(\w+)(-\w+)?-motadata-rum.js$/, {
+        regexSubstitution: `${DEV_SERVER_ORIGIN}/chunks/\\1-motadata-rum.js`,
       }),
-      createRedirectRule('https://localhost:8443/static/datadog-rum-hotdog.js', { url: devRumUrl })
+      createRedirectRule('https://localhost:8443/static/motadata-rum-hotdog.js', { url: devRumUrl })
     )
   } else if (useRumSlim) {
     logger.log('add redirect to rum slim rule')
-    rules.push(createRedirectRule(/^(https:\/\/.*\/datadog-rum)(-slim)?/, { regexSubstitution: '\\1-slim' }))
+    rules.push(createRedirectRule(/^(https:\/\/.*\/motadata-rum)(-slim)?/, { regexSubstitution: '\\1-slim' }))
   }
 
   if (blockIntakeRequests) {

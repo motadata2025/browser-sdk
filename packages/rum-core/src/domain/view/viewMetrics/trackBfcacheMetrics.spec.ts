@@ -1,6 +1,6 @@
-import type { Duration, RelativeTime, TimeStamp } from '@datadog/browser-core'
-import type { Clock } from '@datadog/browser-core/test'
-import { createNewEvent, mockClock } from '@datadog/browser-core/test'
+import type { Duration, RelativeTime, TimeStamp } from '@motadata365/browser-core'
+import type { Clock } from '@motadata365/browser-core/test'
+import { createNewEvent, mockClock } from '@motadata365/browser-core/test'
 import { trackBfcacheMetrics } from './trackBfcacheMetrics'
 import type { InitialViewMetrics } from './trackInitialViewMetrics'
 

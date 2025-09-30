@@ -1,5 +1,5 @@
-import type { ContextManager, TimeStamp } from '@datadog/browser-core'
-import { monitor, display, createContextManager } from '@datadog/browser-core'
+import type { ContextManager, TimeStamp } from '@motadata365/browser-core'
+import { monitor, display, createContextManager } from '@motadata365/browser-core'
 import type { Logger, LogsMessage } from '../domain/logger'
 import { HandlerType } from '../domain/logger'
 import { StatusType } from '../domain/logger/isAuthorized'

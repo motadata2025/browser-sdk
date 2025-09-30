@@ -1,4 +1,4 @@
-import { INTAKE_SITE_FED_STAGING } from '../intakeSites'
+// Removed hardcoded Datadog sites - using flexible configuration
 import type { Payload } from '../../transport'
 import { computeTransportConfiguration, isIntakeUrl } from './transportConfiguration'
 
@@ -7,7 +7,7 @@ const DEFAULT_PAYLOAD = {} as Payload
 describe('transportConfiguration', () => {
   const clientToken = 'some_client_token'
   const internalAnalyticsSubdomain = 'ia-rum-intake'
-  const intakeParameters = 'ddsource=browser&dd-api-key=xxxx&dd-request-id=1234567890'
+  const intakeParameters = 'mdsource=browser&md-api-key=xxxx&md-request-id=1234567890'
 
   describe('site', () => {
     it('should use US site by default', () => {
@@ -16,12 +16,10 @@ describe('transportConfiguration', () => {
       expect(configuration.site).toBe('datadoghq.com')
     })
 
-    it('should use logs intake domain for fed staging', () => {
-      const configuration = computeTransportConfiguration({ clientToken, site: INTAKE_SITE_FED_STAGING })
-      expect(configuration.rumEndpointBuilder.build('fetch', DEFAULT_PAYLOAD)).toContain(
-        'http-intake.logs.dd0g-gov.com'
-      )
-      expect(configuration.site).toBe(INTAKE_SITE_FED_STAGING)
+    it('should use custom site when provided', () => {
+      const configuration = computeTransportConfiguration({ clientToken, site: 'localhost:3000' })
+      expect(configuration.rumEndpointBuilder.build('fetch', DEFAULT_PAYLOAD)).toContain('localhost:3000')
+      expect(configuration.site).toBe('localhost:3000')
     })
 
     it('should use site value when set', () => {
@@ -110,11 +108,11 @@ describe('transportConfiguration', () => {
     describe('proxy configuration', () => {
       it('should detect proxy intake request', () => {
         expect(
-          isIntakeUrl(`https://www.proxy.com/?ddforward=${encodeURIComponent(`/api/v2/rum?${intakeParameters}`)}`)
+          isIntakeUrl(`https://www.proxy.com/?mdforward=${encodeURIComponent(`/api/v2/rum?${intakeParameters}`)}`)
         ).toBe(true)
         expect(
           isIntakeUrl(
-            `https://www.proxy.com/custom/path?ddforward=${encodeURIComponent(`/api/v2/rum?${intakeParameters}`)}`
+            `https://www.proxy.com/custom/path?mdforward=${encodeURIComponent(`/api/v2/rum?${intakeParameters}`)}`
           )
         ).toBe(true)
       })

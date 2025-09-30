@@ -234,7 +234,7 @@ describe('telemetry', () => {
     expect((await getTelemetryEvents()).length).toBe(1)
   })
 
-  it('should collect ddtags', async () => {
+  it('should collect mdtags', async () => {
     const { getTelemetryEvents } = startAndSpyTelemetry({
       service: 'foo',
       env: 'bar',
@@ -243,7 +243,7 @@ describe('telemetry', () => {
 
     addTelemetryUsage({ feature: 'set-tracking-consent', tracking_consent: 'granted' })
 
-    expect((await getTelemetryEvents())[0].ddtags).toEqual('sdk_version:test,env:bar,service:foo,version:123')
+    expect((await getTelemetryEvents())[0].mdtags).toEqual('sdk_version:test,env:bar,service:foo,version:123')
   })
 
   describe('assemble telemetry hook', () => {
@@ -467,10 +467,10 @@ describe('formatError', () => {
 describe('scrubCustomerFrames', () => {
   it('should remove stack trace frames that are related to customer files', () => {
     ;[
-      { scrub: false, url: 'https://www.datadoghq-browser-agent.com/datadog-rum-v4.js' },
-      { scrub: false, url: 'https://www.datad0g-browser-agent.com/datadog-rum-v5.js' },
+      { scrub: false, url: 'https://www.datadoghq-browser-agent.com/motadata-rum-v4.js' },
+      { scrub: false, url: 'https://www.datad0g-browser-agent.com/motadata-rum-v5.js' },
       { scrub: false, url: 'https://d3uc069fcn7uxw.cloudfront.net/datadog-logs-staging.js' },
-      { scrub: false, url: 'https://d20xtzwzcl0ceb.cloudfront.net/datadog-rum-canary.js' },
+      { scrub: false, url: 'https://d20xtzwzcl0ceb.cloudfront.net/motadata-rum-canary.js' },
       { scrub: false, url: 'http://localhost/index.html' },
       { scrub: false, url: undefined },
       { scrub: false, url: '<anonymous>' },

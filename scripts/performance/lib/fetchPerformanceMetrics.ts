@@ -3,7 +3,7 @@ import { fetchHandlingError } from '../../lib/executionUtils.ts'
 
 const ONE_DAY_IN_SECOND = 24 * 60 * 60
 
-interface DatadogResponse {
+interface MotadataResponse {
   series?: Array<{
     pointlist?: Array<[number, number]>
   }>
@@ -45,11 +45,11 @@ async function fetchMetric(type: string, name: string, commitId: string): Promis
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'DD-API-KEY': getOrg2ApiKey(),
-      'DD-APPLICATION-KEY': getOrg2AppKey(),
+      'md-api-key': getOrg2ApiKey(),
+      'MD-APPLICATION-KEY': getOrg2AppKey(),
     },
   })
-  const data = (await response.json()) as DatadogResponse
+  const data = (await response.json()) as MotadataResponse
   if (data.series && data.series.length > 0 && data.series[0].pointlist && data.series[0].pointlist.length > 0) {
     return {
       name,

@@ -1,4 +1,4 @@
-import { registerCleanupTask } from '@datadog/browser-core/test'
+import { registerCleanupTask } from '@motadata365/browser-core/test'
 import { LifeCycle, LifeCycleEventType } from '../lifeCycle'
 import type { AssembledRumEvent } from '../../rawRumEvent.types'
 import { RumEventType } from '../../rawRumEvent.types'

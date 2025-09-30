@@ -8,8 +8,8 @@ import {
   ErrorSource,
   generateUUID,
   NonErrorPrefix,
-} from '@datadog/browser-core'
-import { RumEventType } from '@datadog/browser-rum-core'
+} from '@motadata365/browser-core'
+import { RumEventType } from '@motadata365/browser-rum-core'
 import { onRumStart } from '../reactPlugin'
 
 export function addReactError(error: Error, info: ErrorInfo) {

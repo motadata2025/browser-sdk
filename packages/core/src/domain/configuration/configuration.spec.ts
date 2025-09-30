@@ -181,11 +181,15 @@ describe('validateAndBuildConfiguration', () => {
   })
 
   describe('site parameter validation', () => {
-    it('should validate the site parameter', () => {
-      validateAndBuildConfiguration({ clientToken, site: 'foo.com' as any })
-      expect(displaySpy).toHaveBeenCalledOnceWith(
-        `Site should be a valid Datadog site. ${MORE_DETAILS} ${DOCS_ORIGIN}/getting_started/site/.`
-      )
+    it('should accept any string as site parameter', () => {
+      const config = validateAndBuildConfiguration({ clientToken, site: 'localhost:3000' })
+      expect(config).toBeDefined()
+      expect(config!.site).toBe('localhost:3000')
+    })
+
+    it('should reject non-string site parameter', () => {
+      validateAndBuildConfiguration({ clientToken, site: 123 as any })
+      expect(displaySpy).toHaveBeenCalledOnceWith('Site should be a string')
     })
   })
 

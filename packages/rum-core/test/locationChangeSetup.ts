@@ -1,5 +1,5 @@
-import { buildLocation } from '@datadog/browser-core/test'
-import { Observable } from '@datadog/browser-core'
+import { buildLocation } from '@motadata365/browser-core/test'
+import { Observable } from '@motadata365/browser-core'
 import type { LocationChange } from '../src/browser/locationChangeObservable'
 
 export function setupLocationObserver(initialLocation?: string) {

@@ -1,4 +1,4 @@
-import type { Configuration, CookieStore } from '@datadog/browser-core'
+import type { Configuration, CookieStore } from '@motadata365/browser-core'
 import {
   setInterval,
   clearInterval,
@@ -7,7 +7,7 @@ import {
   ONE_SECOND,
   findCommaSeparatedValue,
   DOM_EVENT,
-} from '@datadog/browser-core'
+} from '@motadata365/browser-core'
 
 export interface CookieStoreWindow {
   cookieStore?: CookieStore

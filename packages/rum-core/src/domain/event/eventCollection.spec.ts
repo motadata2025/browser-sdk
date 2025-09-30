@@ -1,4 +1,4 @@
-import type { Duration, RelativeTime, TimeStamp } from '@datadog/browser-core'
+import type { Duration, RelativeTime, TimeStamp } from '@motadata365/browser-core'
 import type { RumEventDomainContext } from '../../domainContext.types'
 import { LifeCycle, LifeCycleEventType } from '../lifeCycle'
 import { RumEventType, VitalType } from '../../rawRumEvent.types'

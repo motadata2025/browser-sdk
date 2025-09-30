@@ -5,9 +5,9 @@ import type {
   DeflateWorker,
   EncoderResult,
   Uint8ArrayBuffer,
-} from '@datadog/browser-core'
-import { addEventListener, concatBuffers } from '@datadog/browser-core'
-import type { RumConfiguration } from '@datadog/browser-rum-core'
+} from '@motadata365/browser-core'
+import { addEventListener, concatBuffers } from '@motadata365/browser-core'
+import type { RumConfiguration } from '@motadata365/browser-rum-core'
 
 export function createDeflateEncoder(
   configuration: RumConfiguration,

@@ -4,7 +4,7 @@ import { SESSION_STORE_KEY } from './storeStrategies/sessionStoreStrategy'
 import type { SessionState } from './sessionState'
 import { expandSessionState, isSessionStarted } from './sessionState'
 
-export const OLD_SESSION_COOKIE_NAME = '_dd'
+export const OLD_SESSION_COOKIE_NAME = '_md'
 export const OLD_RUM_COOKIE_NAME = '_dd_r'
 export const OLD_LOGS_COOKIE_NAME = '_dd_l'
 

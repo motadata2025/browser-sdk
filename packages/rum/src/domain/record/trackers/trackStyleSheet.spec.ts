@@ -1,4 +1,4 @@
-import { isFirefox, registerCleanupTask } from '@datadog/browser-core/test'
+import { isFirefox, registerCleanupTask } from '@motadata365/browser-core/test'
 import { serializeDocument, SerializationContextStatus, createSerializationStats } from '../serialization'
 import { createElementsScrollPositions } from '../elementsScrollPositions'
 import { IncrementalSource, RecordType } from '../../../types'

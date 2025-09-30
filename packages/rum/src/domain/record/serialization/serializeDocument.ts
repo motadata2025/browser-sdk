@@ -1,5 +1,5 @@
-import { elapsed, timeStampNow } from '@datadog/browser-core'
-import type { RumConfiguration } from '@datadog/browser-rum-core'
+import { elapsed, timeStampNow } from '@motadata365/browser-core'
+import type { RumConfiguration } from '@motadata365/browser-rum-core'
 import type { SerializedNodeWithId } from '../../../types'
 import type { SerializationContext } from './serialization.types'
 import { serializeNodeWithId } from './serializeNode'

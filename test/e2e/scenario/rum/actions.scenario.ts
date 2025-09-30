@@ -42,7 +42,7 @@ test.describe('action collection', () => {
               type: [],
             },
           },
-          _dd: expect.objectContaining({
+          _md: expect.objectContaining({
             action: {
               target: expect.objectContaining({
                 selector: expect.any(String),
@@ -81,7 +81,7 @@ test.describe('action collection', () => {
 
       expect(actionEvents).toHaveLength(1)
       expect(actionEvents[0].action?.target?.name).toBe('click me')
-      expect(actionEvents[0]._dd.action?.target?.selector).toBe('BODY>BUTTON')
+      expect(actionEvents[0]._md.action?.target?.selector).toBe('BODY>BUTTON')
     })
 
   createTest('does not report a click on the body when the target element changes between mousedown and mouseup')

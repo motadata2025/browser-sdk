@@ -5,10 +5,10 @@ import type {
   StartRecordingOptions,
   ViewHistory,
   RumSession,
-} from '@datadog/browser-rum-core'
-import { LifeCycleEventType, SessionReplayState } from '@datadog/browser-rum-core'
-import type { Telemetry, DeflateEncoder } from '@datadog/browser-core'
-import { asyncRunOnReadyState, monitorError, Observable } from '@datadog/browser-core'
+} from '@motadata365/browser-rum-core'
+import { LifeCycleEventType, SessionReplayState } from '@motadata365/browser-rum-core'
+import type { Telemetry, DeflateEncoder } from '@motadata365/browser-core'
+import { asyncRunOnReadyState, monitorError, Observable } from '@motadata365/browser-core'
 import { getSessionReplayLink } from '../domain/getSessionReplayLink'
 import { startRecorderInitTelemetry } from '../domain/startRecorderInitTelemetry'
 import type { startRecording } from './startRecording'

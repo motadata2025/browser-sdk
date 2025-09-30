@@ -1,5 +1,5 @@
-import type { Context } from '@datadog/browser-core'
-import { objectEntries } from '@datadog/browser-core'
+import type { Context } from '@motadata365/browser-core'
+import { objectEntries } from '@motadata365/browser-core'
 import type { ModifiableFieldPaths } from './limitModification'
 import { limitModification } from './limitModification'
 

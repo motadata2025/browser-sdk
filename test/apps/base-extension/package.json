@@ -6,14 +6,14 @@
     "build": "webpack"
   },
   "dependencies": {
-    "@datadog/browser-logs": "file:../../../packages/logs/package.tgz",
-    "@datadog/browser-rum": "file:../../../packages/rum/package.tgz"
+    "@motadata365/browser-logs": "file:../../../packages/logs/package.tgz",
+    "@motadata365/browser-rum": "file:../../../packages/rum/package.tgz"
   },
   "resolutions": {
-    "@datadog/browser-rum-core": "file:../../../packages/rum-core/package.tgz",
-    "@datadog/browser-core": "file:../../../packages/core/package.tgz",
-    "@datadog/browser-rum-slim": "file:../../../packages/rum-slim/package.tgz",
-    "@datadog/browser-worker": "file:../../../packages/worker/package.tgz"
+    "@motadata365/browser-rum-core": "file:../../../packages/rum-core/package.tgz",
+    "@motadata365/browser-core": "file:../../../packages/core/package.tgz",
+    "@motadata365/browser-rum-slim": "file:../../../packages/rum-slim/package.tgz",
+    "@motadata365/browser-worker": "file:../../../packages/worker/package.tgz"
   },
   "devDependencies": {
     "webpack": "5.94.0",

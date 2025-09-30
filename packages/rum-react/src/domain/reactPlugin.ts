@@ -1,4 +1,4 @@
-import type { RumPlugin, RumPublicApi, StartRumResult } from '@datadog/browser-rum-core'
+import type { RumPlugin, RumPublicApi, StartRumResult } from '@motadata365/browser-rum-core'
 
 let globalPublicApi: RumPublicApi | undefined
 let globalConfiguration: ReactPluginConfiguration | undefined

@@ -31,7 +31,7 @@ Options:
   const proxy = await startProxy()
 
   const options: ProfilingOptions = {
-    bundleUrl: 'https://www.datadoghq-browser-agent.com/datadog-rum-v4.js',
+    bundleUrl: 'https://www.datadoghq-browser-agent.com/motadata-rum-v4.js',
     proxy,
     startRecording,
   }
@@ -77,14 +77,14 @@ async function setupSDK(page: Page, options: ProfilingOptions) {
     if (location.href !== 'about:blank') {
       import(${JSON.stringify(options.bundleUrl)})
         .then(() => {
-          window.DD_RUM.init({
+          window.MD_RUM.init({
             clientToken: 'xxx',
             applicationId: 'xxx',
             site: 'datadoghq.com',
             trackUserInteractions: true,
             proxy: ${JSON.stringify(options.proxy.origin)}
           })
-          ${options.startRecording ? 'window.DD_RUM.startSessionReplayRecording()' : ''}
+          ${options.startRecording ? 'window.MD_RUM.startSessionReplayRecording()' : ''}
         })
     }
   `)

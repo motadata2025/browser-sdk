@@ -215,151 +215,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@datadog/browser-core@npm:6.21.1, @datadog/browser-core@workspace:*, @datadog/browser-core@workspace:packages/core":
-  version: 0.0.0-use.local
-  resolution: "@datadog/browser-core@workspace:packages/core"
-  languageName: unknown
-  linkType: soft
-
-"@datadog/browser-flagging@workspace:packages/flagging":
-  version: 0.0.0-use.local
-  resolution: "@datadog/browser-flagging@workspace:packages/flagging"
-  dependencies:
-    "@datadog/browser-core": "npm:6.21.1"
-    npm-run-all: "npm:4.1.5"
-    webpack: "npm:5.101.3"
-  peerDependencies:
-    "@datadog/browser-rum": 6.21.1
-  peerDependenciesMeta:
-    "@datadog/browser-rum":
-      optional: true
-  languageName: unknown
-  linkType: soft
-
-"@datadog/browser-logs@workspace:*, @datadog/browser-logs@workspace:packages/logs":
-  version: 0.0.0-use.local
-  resolution: "@datadog/browser-logs@workspace:packages/logs"
-  dependencies:
-    "@datadog/browser-core": "npm:6.21.1"
-  peerDependencies:
-    "@datadog/browser-rum": 6.21.1
-  peerDependenciesMeta:
-    "@datadog/browser-rum":
-      optional: true
-  languageName: unknown
-  linkType: soft
-
-"@datadog/browser-rum-core@npm:6.21.1, @datadog/browser-rum-core@workspace:packages/rum-core":
-  version: 0.0.0-use.local
-  resolution: "@datadog/browser-rum-core@workspace:packages/rum-core"
-  dependencies:
-    "@datadog/browser-core": "npm:6.21.1"
-    ajv: "npm:8.17.1"
-  languageName: unknown
-  linkType: soft
-
-"@datadog/browser-rum-react@workspace:packages/rum-react":
-  version: 0.0.0-use.local
-  resolution: "@datadog/browser-rum-react@workspace:packages/rum-react"
-  dependencies:
-    "@datadog/browser-core": "npm:6.21.1"
-    "@datadog/browser-rum-core": "npm:6.21.1"
-    "@types/react": "npm:19.1.13"
-    "@types/react-dom": "npm:19.1.9"
-    react: "npm:19.1.1"
-    react-dom: "npm:19.1.1"
-    react-router: "npm:7.9.1"
-    react-router-dom: "npm:7.9.1"
-    react-router-dom-6: "npm:react-router-dom@6.30.1"
-  peerDependencies:
-    react: 18 || 19
-    react-router: 7
-    react-router-dom: 6 || 7
-  peerDependenciesMeta:
-    "@datadog/browser-rum":
-      optional: true
-    "@datadog/browser-rum-slim":
-      optional: true
-    react:
-      optional: true
-    react-router:
-      optional: true
-    react-router-dom:
-      optional: true
-  languageName: unknown
-  linkType: soft
-
-"@datadog/browser-rum-slim@workspace:packages/rum-slim":
-  version: 0.0.0-use.local
-  resolution: "@datadog/browser-rum-slim@workspace:packages/rum-slim"
-  dependencies:
-    "@datadog/browser-core": "npm:6.21.1"
-    "@datadog/browser-rum-core": "npm:6.21.1"
-  peerDependencies:
-    "@datadog/browser-logs": 6.21.1
-  peerDependenciesMeta:
-    "@datadog/browser-logs":
-      optional: true
-  languageName: unknown
-  linkType: soft
-
-"@datadog/browser-rum@workspace:*, @datadog/browser-rum@workspace:packages/rum":
-  version: 0.0.0-use.local
-  resolution: "@datadog/browser-rum@workspace:packages/rum"
-  dependencies:
-    "@datadog/browser-core": "npm:6.21.1"
-    "@datadog/browser-rum-core": "npm:6.21.1"
-    "@types/pako": "npm:2.0.4"
-    pako: "npm:2.1.0"
-  peerDependencies:
-    "@datadog/browser-logs": 6.21.1
-  peerDependenciesMeta:
-    "@datadog/browser-logs":
-      optional: true
-  languageName: unknown
-  linkType: soft
-
-"@datadog/browser-sdk-developer-extension@workspace:developer-extension":
-  version: 0.0.0-use.local
-  resolution: "@datadog/browser-sdk-developer-extension@workspace:developer-extension"
-  dependencies:
-    "@datadog/browser-core": "workspace:*"
-    "@datadog/browser-logs": "workspace:*"
-    "@datadog/browser-rum": "workspace:*"
-    "@mantine/core": "npm:8.3.1"
-    "@mantine/hooks": "npm:8.3.1"
-    "@pmmmwh/react-refresh-webpack-plugin": "npm:^0.6.0"
-    "@tabler/icons-react": "npm:3.34.1"
-    "@types/chrome": "npm:0.1.11"
-    "@types/react": "npm:19.1.13"
-    "@types/react-dom": "npm:19.1.9"
-    "@types/webpack-env": "npm:^1.18.4"
-    "@webextension-toolbox/webpack-webextension-plugin": "npm:3.3.1"
-    clsx: "npm:2.1.1"
-    copy-webpack-plugin: "npm:13.0.1"
-    css-loader: "npm:7.1.2"
-    html-webpack-plugin: "npm:5.6.4"
-    react: "npm:19.1.1"
-    react-dom: "npm:19.1.1"
-    react-refresh: "npm:^0.17.0"
-    react-refresh-typescript: "npm:^2.0.9"
-    style-loader: "npm:4.0.0"
-    typescript: "npm:5.9.2"
-    webpack: "npm:5.101.3"
-    webpack-cli: "npm:^6.0.0"
-    webpack-dev-server: "npm:^5.0.4"
-  languageName: unknown
-  linkType: soft
-
-"@datadog/browser-worker@workspace:packages/worker":
-  version: 0.0.0-use.local
-  resolution: "@datadog/browser-worker@workspace:packages/worker"
-  dependencies:
-    "@datadog/browser-core": "npm:6.21.1"
-    webpack: "npm:5.101.3"
-  languageName: unknown
-  linkType: soft
-
 "@discoveryjs/json-ext@npm:^0.6.1":
   version: 0.6.3
   resolution: "@discoveryjs/json-ext@npm:0.6.3"
@@ -936,6 +791,151 @@ __metadata:
   checksum: 10c0/d64ea9c848a687668ce34007e3ab226b5c45c52ea1f4bdd721ca17b07d7f7a642b86e23ee65777179d6cd1ae9c3ce56fe43602828f332bfc2cbd59658b1c9047
   languageName: node
   linkType: hard
+
+"@motadata365/browser-core@npm:6.21.1, @motadata365/browser-core@workspace:*, @motadata365/browser-core@workspace:packages/core":
+  version: 0.0.0-use.local
+  resolution: "@motadata365/browser-core@workspace:packages/core"
+  languageName: unknown
+  linkType: soft
+
+"@motadata365/browser-flagging@workspace:packages/flagging":
+  version: 0.0.0-use.local
+  resolution: "@motadata365/browser-flagging@workspace:packages/flagging"
+  dependencies:
+    "@motadata365/browser-core": "npm:6.21.1"
+    npm-run-all: "npm:4.1.5"
+    webpack: "npm:5.101.3"
+  peerDependencies:
+    "@motadata365/browser-rum": 6.21.1
+  peerDependenciesMeta:
+    "@motadata365/browser-rum":
+      optional: true
+  languageName: unknown
+  linkType: soft
+
+"@motadata365/browser-logs@workspace:*, @motadata365/browser-logs@workspace:packages/logs":
+  version: 0.0.0-use.local
+  resolution: "@motadata365/browser-logs@workspace:packages/logs"
+  dependencies:
+    "@motadata365/browser-core": "npm:6.21.1"
+  peerDependencies:
+    "@motadata365/browser-rum": 6.21.1
+  peerDependenciesMeta:
+    "@motadata365/browser-rum":
+      optional: true
+  languageName: unknown
+  linkType: soft
+
+"@motadata365/browser-rum-core@npm:6.21.1, @motadata365/browser-rum-core@workspace:packages/rum-core":
+  version: 0.0.0-use.local
+  resolution: "@motadata365/browser-rum-core@workspace:packages/rum-core"
+  dependencies:
+    "@motadata365/browser-core": "npm:6.21.1"
+    ajv: "npm:8.17.1"
+  languageName: unknown
+  linkType: soft
+
+"@motadata365/browser-rum-react@workspace:packages/rum-react":
+  version: 0.0.0-use.local
+  resolution: "@motadata365/browser-rum-react@workspace:packages/rum-react"
+  dependencies:
+    "@motadata365/browser-core": "npm:6.21.1"
+    "@motadata365/browser-rum-core": "npm:6.21.1"
+    "@types/react": "npm:19.1.13"
+    "@types/react-dom": "npm:19.1.9"
+    react: "npm:19.1.1"
+    react-dom: "npm:19.1.1"
+    react-router: "npm:7.9.1"
+    react-router-dom: "npm:7.9.1"
+    react-router-dom-6: "npm:react-router-dom@6.30.1"
+  peerDependencies:
+    react: 18 || 19
+    react-router: 7
+    react-router-dom: 6 || 7
+  peerDependenciesMeta:
+    "@motadata365/browser-rum":
+      optional: true
+    "@motadata365/browser-rum-slim":
+      optional: true
+    react:
+      optional: true
+    react-router:
+      optional: true
+    react-router-dom:
+      optional: true
+  languageName: unknown
+  linkType: soft
+
+"@motadata365/browser-rum-slim@workspace:packages/rum-slim":
+  version: 0.0.0-use.local
+  resolution: "@motadata365/browser-rum-slim@workspace:packages/rum-slim"
+  dependencies:
+    "@motadata365/browser-core": "npm:6.21.1"
+    "@motadata365/browser-rum-core": "npm:6.21.1"
+  peerDependencies:
+    "@motadata365/browser-logs": 6.21.1
+  peerDependenciesMeta:
+    "@motadata365/browser-logs":
+      optional: true
+  languageName: unknown
+  linkType: soft
+
+"@motadata365/browser-rum@workspace:*, @motadata365/browser-rum@workspace:packages/rum":
+  version: 0.0.0-use.local
+  resolution: "@motadata365/browser-rum@workspace:packages/rum"
+  dependencies:
+    "@motadata365/browser-core": "npm:6.21.1"
+    "@motadata365/browser-rum-core": "npm:6.21.1"
+    "@types/pako": "npm:2.0.4"
+    pako: "npm:2.1.0"
+  peerDependencies:
+    "@motadata365/browser-logs": 6.21.1
+  peerDependenciesMeta:
+    "@motadata365/browser-logs":
+      optional: true
+  languageName: unknown
+  linkType: soft
+
+"@motadata365/browser-sdk-developer-extension@workspace:developer-extension":
+  version: 0.0.0-use.local
+  resolution: "@motadata365/browser-sdk-developer-extension@workspace:developer-extension"
+  dependencies:
+    "@mantine/core": "npm:8.3.1"
+    "@mantine/hooks": "npm:8.3.1"
+    "@motadata365/browser-core": "workspace:*"
+    "@motadata365/browser-logs": "workspace:*"
+    "@motadata365/browser-rum": "workspace:*"
+    "@pmmmwh/react-refresh-webpack-plugin": "npm:^0.6.0"
+    "@tabler/icons-react": "npm:3.34.1"
+    "@types/chrome": "npm:0.1.11"
+    "@types/react": "npm:19.1.13"
+    "@types/react-dom": "npm:19.1.9"
+    "@types/webpack-env": "npm:^1.18.4"
+    "@webextension-toolbox/webpack-webextension-plugin": "npm:3.3.1"
+    clsx: "npm:2.1.1"
+    copy-webpack-plugin: "npm:13.0.1"
+    css-loader: "npm:7.1.2"
+    html-webpack-plugin: "npm:5.6.4"
+    react: "npm:19.1.1"
+    react-dom: "npm:19.1.1"
+    react-refresh: "npm:^0.17.0"
+    react-refresh-typescript: "npm:^2.0.9"
+    style-loader: "npm:4.0.0"
+    typescript: "npm:5.9.2"
+    webpack: "npm:5.101.3"
+    webpack-cli: "npm:^6.0.0"
+    webpack-dev-server: "npm:^5.0.4"
+  languageName: unknown
+  linkType: soft
+
+"@motadata365/browser-worker@workspace:packages/worker":
+  version: 0.0.0-use.local
+  resolution: "@motadata365/browser-worker@workspace:packages/worker"
+  dependencies:
+    "@motadata365/browser-core": "npm:6.21.1"
+    webpack: "npm:5.101.3"
+  languageName: unknown
+  linkType: soft
 
 "@napi-rs/wasm-runtime@npm:0.2.4":
   version: 0.2.4

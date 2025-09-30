@@ -1,4 +1,4 @@
-import type { BufferedData, Payload } from '@datadog/browser-core'
+import type { BufferedData, Payload } from '@motadata365/browser-core'
 import {
   ErrorSource,
   display,
@@ -11,8 +11,8 @@ import {
   STORAGE_POLL_DELAY,
   ONE_MINUTE,
   BufferedObservable,
-} from '@datadog/browser-core'
-import type { Clock, Request } from '@datadog/browser-core/test'
+} from '@motadata365/browser-core'
+import type { Clock, Request } from '@motadata365/browser-core/test'
 import {
   interceptRequests,
   mockEndpointBuilder,
@@ -22,7 +22,7 @@ import {
   mockClock,
   expireCookie,
   DEFAULT_FETCH_MOCK,
-} from '@datadog/browser-core/test'
+} from '@motadata365/browser-core/test'
 
 import type { LogsConfiguration } from '../domain/configuration'
 import { validateAndBuildLogsConfiguration } from '../domain/configuration'
@@ -40,7 +40,7 @@ interface Rum {
 }
 declare global {
   interface Window {
-    DD_RUM?: Rum
+    MD_RUM?: Rum
     DD_RUM_SYNTHETICS?: Rum
   }
 }
@@ -85,7 +85,7 @@ describe('logs', () => {
   })
 
   afterEach(() => {
-    delete window.DD_RUM
+    delete window.MD_RUM
     stopSessionManager()
   })
 
@@ -109,7 +109,7 @@ describe('logs', () => {
         foo: 'bar',
         message: 'message',
         service: 'service',
-        ddtags: 'sdk_version:test,service:service',
+        mdtags: 'sdk_version:test,service:service',
         session_id: jasmine.any(String),
         session: {
           id: jasmine.any(String),
@@ -281,7 +281,7 @@ describe('logs', () => {
 
     it('RUM context should take precedence over global context', () => {
       const { handleLog, logger, globalContext } = startLogsWithDefaults()
-      window.DD_RUM = {
+      window.MD_RUM = {
         getInternalContext: () => ({ view: { url: 'from-rum-context' } }),
       }
       globalContext.setContext({ view: { url: 'from-global-context' } })

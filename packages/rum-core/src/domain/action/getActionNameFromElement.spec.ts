@@ -1,4 +1,4 @@
-import { ExperimentalFeature } from '@datadog/browser-core'
+import { ExperimentalFeature } from '@motadata365/browser-core'
 import { mockExperimentalFeatures } from '../../../../core/test'
 import { appendElement, mockRumConfiguration } from '../../../test'
 import { NodePrivacyLevel } from '../privacyConstants'

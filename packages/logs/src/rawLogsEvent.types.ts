@@ -1,4 +1,4 @@
-import type { ErrorSource, RawErrorCause, TimeStamp, ErrorHandling } from '@datadog/browser-core'
+import type { ErrorSource, RawErrorCause, TimeStamp, ErrorHandling } from '@motadata365/browser-core'
 import type { StatusType } from './domain/logger/isAuthorized'
 
 export type RawLogsEvent =

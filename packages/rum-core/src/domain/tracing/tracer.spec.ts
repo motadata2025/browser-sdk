@@ -1,5 +1,5 @@
-import type { ContextManager, ContextValue } from '@datadog/browser-core'
-import { display, objectEntries, TraceContextInjection } from '@datadog/browser-core'
+import type { ContextManager, ContextValue } from '@motadata365/browser-core'
+import { display, objectEntries, TraceContextInjection } from '@motadata365/browser-core'
 import type { RumSessionManagerMock } from '../../../test'
 import { createRumSessionManagerMock } from '../../../test'
 import type { RumFetchResolveContext, RumFetchStartContext, RumXhrStartContext } from '../requestCollection'
@@ -179,10 +179,10 @@ describe('tracer', () => {
         })
       )
 
-      expect(xhr.headers['x-datadog-origin']).toBeUndefined()
-      expect(xhr.headers['x-datadog-parent-id']).toBeUndefined()
-      expect(xhr.headers['x-datadog-trace-id']).toBeUndefined()
-      expect(xhr.headers['x-datadog-sampling-priority']).toBeUndefined()
+      expect(xhr.headers['x-motadata-origin']).toBeUndefined()
+      expect(xhr.headers['x-motadata-parent-id']).toBeUndefined()
+      expect(xhr.headers['x-motadata-trace-id']).toBeUndefined()
+      expect(xhr.headers['x-motadata-sampling-priority']).toBeUndefined()
     })
 
     it('should add headers for B3 (single) and tracecontext propagators', () => {
@@ -215,7 +215,7 @@ describe('tracer', () => {
       expect(xhr.headers['b3']).toBeUndefined()
       expect(xhr.headers['traceparent']).toBeUndefined()
       expect(xhr.headers['tracestate']).toBeUndefined()
-      expect(xhr.headers['x-datadog-trace-id']).toBeUndefined()
+      expect(xhr.headers['x-motadata-trace-id']).toBeUndefined()
       expect(xhr.headers['X-B3-TraceId']).toBeUndefined()
     })
 
@@ -228,8 +228,8 @@ describe('tracer', () => {
       const context = { ...ALLOWED_DOMAIN_CONTEXT }
       tracer.traceXhr(context, xhr as unknown as XMLHttpRequest)
 
-      expect(xhr.headers['x-datadog-trace-id']).toBeUndefined()
-      expect(xhr.headers['x-datadog-sampling-priority']).toBeUndefined()
+      expect(xhr.headers['x-motadata-trace-id']).toBeUndefined()
+      expect(xhr.headers['x-motadata-sampling-priority']).toBeUndefined()
     })
 
     it('should add headers when trace sampled and config set to sampled', () => {
@@ -241,8 +241,8 @@ describe('tracer', () => {
       const context = { ...ALLOWED_DOMAIN_CONTEXT }
       tracer.traceXhr(context, xhr as unknown as XMLHttpRequest)
 
-      expect(xhr.headers['x-datadog-trace-id']).toBeDefined()
-      expect(xhr.headers['x-datadog-sampling-priority']).toBeDefined()
+      expect(xhr.headers['x-motadata-trace-id']).toBeDefined()
+      expect(xhr.headers['x-motadata-sampling-priority']).toBeDefined()
     })
 
     it('should add headers when trace not sampled and config set to all', () => {
@@ -255,8 +255,8 @@ describe('tracer', () => {
       const context = { ...ALLOWED_DOMAIN_CONTEXT }
       tracer.traceXhr(context, xhr as unknown as XMLHttpRequest)
 
-      expect(xhr.headers['x-datadog-trace-id']).toBeDefined()
-      expect(xhr.headers['x-datadog-sampling-priority']).toBeDefined()
+      expect(xhr.headers['x-motadata-trace-id']).toBeDefined()
+      expect(xhr.headers['x-motadata-sampling-priority']).toBeDefined()
     })
 
     describe('baggage propagation header', () => {
@@ -327,7 +327,7 @@ describe('tracer', () => {
       expect(xhr.headers['b3']).toBeUndefined()
       expect(xhr.headers['traceparent']).toBeUndefined()
       expect(xhr.headers['tracestate']).toBeUndefined()
-      expect(xhr.headers['x-datadog-trace-id']).toBeUndefined()
+      expect(xhr.headers['x-motadata-trace-id']).toBeUndefined()
       expect(xhr.headers['X-B3-TraceId']).toBeUndefined()
     })
 
@@ -585,10 +585,10 @@ describe('tracer', () => {
         ])
       )
 
-      expect(context.init!.headers).not.toContain(jasmine.arrayContaining(['x-datadog-origin']))
-      expect(context.init!.headers).not.toContain(jasmine.arrayContaining(['x-datadog-parent-id']))
-      expect(context.init!.headers).not.toContain(jasmine.arrayContaining(['x-datadog-trace-id']))
-      expect(context.init!.headers).not.toContain(jasmine.arrayContaining(['x-datadog-sampling-priority']))
+      expect(context.init!.headers).not.toContain(jasmine.arrayContaining(['x-motadata-origin']))
+      expect(context.init!.headers).not.toContain(jasmine.arrayContaining(['x-motadata-parent-id']))
+      expect(context.init!.headers).not.toContain(jasmine.arrayContaining(['x-motadata-trace-id']))
+      expect(context.init!.headers).not.toContain(jasmine.arrayContaining(['x-motadata-sampling-priority']))
     })
 
     it('should add headers for b3 (single) and tracecontext propagators', () => {
@@ -623,7 +623,7 @@ describe('tracer', () => {
       expect(context.init!.headers).not.toContain(jasmine.arrayContaining(['b3']))
       expect(context.init!.headers).not.toContain(jasmine.arrayContaining(['traceparent']))
       expect(context.init!.headers).not.toContain(jasmine.arrayContaining(['tracestate']))
-      expect(context.init!.headers).not.toContain(jasmine.arrayContaining(['x-datadog-trace-id']))
+      expect(context.init!.headers).not.toContain(jasmine.arrayContaining(['x-motadata-trace-id']))
       expect(context.init!.headers).not.toContain(jasmine.arrayContaining(['X-B3-TraceId']))
     })
     it('should not add headers when trace not sampled and config set to sampled', () => {
@@ -651,10 +651,10 @@ describe('tracer', () => {
       const context: Partial<RumFetchStartContext> = { ...ALLOWED_DOMAIN_CONTEXT }
       tracer.traceFetch(context)
 
-      expect(context.init!.headers).toContain(jasmine.arrayContaining(['x-datadog-origin']))
-      expect(context.init!.headers).toContain(jasmine.arrayContaining(['x-datadog-parent-id']))
-      expect(context.init!.headers).toContain(jasmine.arrayContaining(['x-datadog-trace-id']))
-      expect(context.init!.headers).toContain(jasmine.arrayContaining(['x-datadog-sampling-priority']))
+      expect(context.init!.headers).toContain(jasmine.arrayContaining(['x-motadata-origin']))
+      expect(context.init!.headers).toContain(jasmine.arrayContaining(['x-motadata-parent-id']))
+      expect(context.init!.headers).toContain(jasmine.arrayContaining(['x-motadata-trace-id']))
+      expect(context.init!.headers).toContain(jasmine.arrayContaining(['x-motadata-sampling-priority']))
     })
 
     it('should add headers when trace not sampled and config set to all', () => {
@@ -668,10 +668,10 @@ describe('tracer', () => {
       const context: Partial<RumFetchStartContext> = { ...ALLOWED_DOMAIN_CONTEXT }
       tracer.traceFetch(context)
 
-      expect(context.init!.headers).toContain(jasmine.arrayContaining(['x-datadog-origin']))
-      expect(context.init!.headers).toContain(jasmine.arrayContaining(['x-datadog-parent-id']))
-      expect(context.init!.headers).toContain(jasmine.arrayContaining(['x-datadog-trace-id']))
-      expect(context.init!.headers).toContain(jasmine.arrayContaining(['x-datadog-sampling-priority']))
+      expect(context.init!.headers).toContain(jasmine.arrayContaining(['x-motadata-origin']))
+      expect(context.init!.headers).toContain(jasmine.arrayContaining(['x-motadata-parent-id']))
+      expect(context.init!.headers).toContain(jasmine.arrayContaining(['x-motadata-trace-id']))
+      expect(context.init!.headers).toContain(jasmine.arrayContaining(['x-motadata-sampling-priority']))
     })
   })
 
@@ -716,10 +716,10 @@ function toPlainObject(headers: Headers) {
 
 function tracingHeadersFor(traceId: TraceIdentifier, spanId: SpanIdentifier, samplingPriority: '1' | '0') {
   return {
-    'x-datadog-origin': 'rum',
-    'x-datadog-parent-id': spanId.toString(),
-    'x-datadog-sampling-priority': samplingPriority,
-    'x-datadog-trace-id': traceId.toString(),
+    'x-motadata-origin': 'rum',
+    'x-motadata-parent-id': spanId.toString(),
+    'x-motadata-sampling-priority': samplingPriority,
+    'x-motadata-trace-id': traceId.toString(),
   }
 }
 

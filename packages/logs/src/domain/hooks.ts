@@ -5,8 +5,8 @@ import type {
   RelativeTime,
   SKIPPED,
   TelemetryEvent,
-} from '@datadog/browser-core'
-import { abstractHooks } from '@datadog/browser-core'
+} from '@motadata365/browser-core'
+import { abstractHooks } from '@motadata365/browser-core'
 import type { LogsEvent } from '../logsEvent.types'
 
 export type DefaultLogsEventAttributes = RecursivePartial<LogsEvent>

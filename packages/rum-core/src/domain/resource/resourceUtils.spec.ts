@@ -1,6 +1,6 @@
-import { type Duration, type RelativeTime, type ServerDuration } from '@datadog/browser-core'
-import { ExperimentalFeature } from '@datadog/browser-core'
-import { mockExperimentalFeatures } from '@datadog/browser-core/test'
+import { type Duration, type RelativeTime, type ServerDuration } from '@motadata365/browser-core'
+import { ExperimentalFeature } from '@motadata365/browser-core'
+import { mockExperimentalFeatures } from '@motadata365/browser-core/test'
 import { RumPerformanceEntryType, type RumPerformanceResourceTiming } from '../../browser/performanceObservable'
 import {
   MAX_RESOURCE_VALUE_CHAR_LENGTH,
@@ -290,7 +290,7 @@ describe('computeResourceEntryDuration', () => {
 })
 
 describe('shouldTrackResource', () => {
-  const intakeParameters = 'ddsource=browser&dd-api-key=xxxx&dd-request-id=1234567890'
+  const intakeParameters = 'mdsource=browser&md-api-key=xxxx&md-request-id=1234567890'
   it('should exclude requests on intakes endpoints', () => {
     expect(isAllowedRequestUrl(`https://rum-intake.com/v1/input/abcde?${intakeParameters}`)).toBe(false)
   })

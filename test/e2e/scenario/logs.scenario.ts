@@ -1,4 +1,4 @@
-import { DEFAULT_REQUEST_ERROR_RESPONSE_LENGTH_LIMIT } from '@datadog/browser-logs/cjs/domain/configuration'
+import { DEFAULT_REQUEST_ERROR_RESPONSE_LENGTH_LIMIT } from '@motadata365/browser-logs/cjs/domain/configuration'
 import { test, expect } from '@playwright/test'
 import { createTest } from '../lib/framework'
 import { APPLICATION_ID } from '../lib/helpers/configuration'
@@ -68,7 +68,7 @@ test.describe('logs', () => {
     .withLogs()
     .run(async ({ intakeRegistry, flushEvents, page }) => {
       await page.evaluate(() => {
-        window.DD_LOGS!.logger.log('hello')
+        window.MD_LOGS!.logger.log('hello')
       })
       await flushEvents()
       expect(intakeRegistry.logsEvents).toHaveLength(1)
@@ -79,8 +79,8 @@ test.describe('logs', () => {
     .withLogs()
     .run(async ({ intakeRegistry, flushEvents, page, withBrowserLogs }) => {
       await page.evaluate(() => {
-        window.DD_LOGS!.logger.setHandler('console')
-        window.DD_LOGS!.logger.warn('hello')
+        window.MD_LOGS!.logger.setHandler('console')
+        window.MD_LOGS!.logger.warn('hello')
       })
       await flushEvents()
       expect(intakeRegistry.logsEvents).toHaveLength(0)
@@ -88,7 +88,7 @@ test.describe('logs', () => {
       withBrowserLogs((logs) => {
         expect(logs).toHaveLength(1)
         expect(logs[0].level).toBe('warning')
-        expect(logs[0].message).not.toEqual(expect.stringContaining('Datadog Browser SDK'))
+        expect(logs[0].message).not.toEqual(expect.stringContaining('Motadata Browser SDK'))
         expect(logs[0].message).toEqual(expect.stringContaining('hello'))
       })
     })
@@ -237,7 +237,7 @@ test.describe('logs', () => {
         throw new Error('oh snap')
       })
       // Simulate a late initialization of the RUM SDK
-      setTimeout(() => window.DD_LOGS!.init(configuration))
+      setTimeout(() => window.MD_LOGS!.init(configuration))
     })
     .run(async ({ intakeRegistry, flushEvents, withBrowserLogs }) => {
       await flushEvents()
@@ -253,7 +253,7 @@ test.describe('logs', () => {
     .withLogs()
     .run(async ({ intakeRegistry, flushEvents, page }) => {
       await page.evaluate(() => {
-        window.DD_LOGS!.logger.log('hello')
+        window.MD_LOGS!.logger.log('hello')
       })
       await flushEvents()
       expect(intakeRegistry.logsEvents).toHaveLength(1)
@@ -269,37 +269,37 @@ test.describe('logs', () => {
     })
     .run(async ({ intakeRegistry, flushEvents, page }) => {
       await page.evaluate(() => {
-        window.DD_LOGS!.logger.log('hello world!')
+        window.MD_LOGS!.logger.log('hello world!')
       })
       await flushEvents()
       expect(intakeRegistry.logsEvents).toHaveLength(1)
-      expect(intakeRegistry.logsEvents[0].ddtags).toMatch(/sdk_version:(.*),env:dev,service:foo,version:1.0.0$/)
+      expect(intakeRegistry.logsEvents[0].mdtags).toMatch(/sdk_version:(.*),env:dev,service:foo,version:1.0.0$/)
     })
 
   createTest('add tags to the logger')
     .withLogs()
     .run(async ({ intakeRegistry, flushEvents, page }) => {
       await page.evaluate(() => {
-        window.DD_LOGS!.logger.addTag('planet', 'mars')
-        window.DD_LOGS!.logger.log('hello world!')
+        window.MD_LOGS!.logger.addTag('planet', 'mars')
+        window.MD_LOGS!.logger.log('hello world!')
       })
 
       await flushEvents()
       expect(intakeRegistry.logsEvents).toHaveLength(1)
-      expect(intakeRegistry.logsEvents[0].ddtags).toMatch(/sdk_version:(.*),planet:mars$/)
+      expect(intakeRegistry.logsEvents[0].mdtags).toMatch(/sdk_version:(.*),planet:mars$/)
     })
 
   createTest('ignore tags from message context and logger context')
     .withLogs()
     .run(async ({ intakeRegistry, flushEvents, page }) => {
       await page.evaluate(() => {
-        window.DD_LOGS!.logger.setContextProperty('ddtags', 'planet:mars')
-        window.DD_LOGS!.logger.log('hello world!', { ddtags: 'planet:earth' })
+        window.MD_LOGS!.logger.setContextProperty('mdtags', 'planet:mars')
+        window.MD_LOGS!.logger.log('hello world!', { mdtags: 'planet:earth' })
       })
 
       await flushEvents()
       expect(intakeRegistry.logsEvents).toHaveLength(1)
-      expect(intakeRegistry.logsEvents[0].ddtags).toMatch(/sdk_version:(.*)$/)
+      expect(intakeRegistry.logsEvents[0].mdtags).toMatch(/sdk_version:(.*)$/)
     })
 
   createTest('allow to modify events')
@@ -311,7 +311,7 @@ test.describe('logs', () => {
     })
     .run(async ({ intakeRegistry, flushEvents, page }) => {
       await page.evaluate(() => {
-        window.DD_LOGS!.logger.log('hello', {})
+        window.MD_LOGS!.logger.log('hello', {})
       })
       await flushEvents()
       expect(intakeRegistry.logsEvents).toHaveLength(1)

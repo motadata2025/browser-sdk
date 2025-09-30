@@ -1,4 +1,4 @@
-import { toServerDuration, relativeToClocks, generateUUID } from '@datadog/browser-core'
+import { toServerDuration, relativeToClocks, generateUUID } from '@motadata365/browser-core'
 import type { RawRumLongTaskEvent } from '../../rawRumEvent.types'
 import { RumEventType, RumLongTaskEntryType } from '../../rawRumEvent.types'
 import type { LifeCycle } from '../lifeCycle'
@@ -26,7 +26,7 @@ export function startLongTaskCollection(lifeCycle: LifeCycle, configuration: Rum
           duration: toServerDuration(entry.duration),
         },
         type: RumEventType.LONG_TASK,
-        _dd: {
+        _md: {
           discarded: false,
         },
       }

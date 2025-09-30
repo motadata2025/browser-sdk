@@ -1,5 +1,5 @@
-import type { Context, Observable, PageMayExitEvent, RawError } from '@datadog/browser-core'
-import { createBatch, createFlushController, createHttpRequest, createIdentityEncoder } from '@datadog/browser-core'
+import type { Context, Observable, PageMayExitEvent, RawError } from '@motadata365/browser-core'
+import { createBatch, createFlushController, createHttpRequest, createIdentityEncoder } from '@motadata365/browser-core'
 import type { LogsConfiguration } from '../domain/configuration'
 import type { LifeCycle } from '../domain/lifeCycle'
 import { LifeCycleEventType } from '../domain/lifeCycle'

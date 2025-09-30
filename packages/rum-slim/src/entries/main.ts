@@ -1,7 +1,7 @@
 // Keep the following in sync with packages/rum/src/entries/main.ts
-import { defineGlobal, getGlobalObject } from '@datadog/browser-core'
-import type { RumPublicApi } from '@datadog/browser-rum-core'
-import { makeRumPublicApi, startRum } from '@datadog/browser-rum-core'
+import { defineGlobal, getGlobalObject } from '@motadata365/browser-core'
+import type { RumPublicApi } from '@motadata365/browser-rum-core'
+import { makeRumPublicApi, startRum } from '@motadata365/browser-rum-core'
 import { makeRecorderApiStub } from '../boot/stubRecorderApi'
 import { makeProfilerApiStub } from '../boot/stubProfilerApi'
 
@@ -18,7 +18,7 @@ export type {
   ContextValue,
   ContextArray,
   RumInternalContext,
-} from '@datadog/browser-core'
+} from '@motadata365/browser-core'
 
 export type {
   RumPublicApi as RumGlobal,
@@ -54,14 +54,14 @@ export type {
   RumXhrResourceEventDomainContext,
   RumOtherResourceEventDomainContext,
   RumLongTaskEventDomainContext,
-} from '@datadog/browser-rum-core'
-export { DefaultPrivacyLevel } from '@datadog/browser-core'
+} from '@motadata365/browser-rum-core'
+export { DefaultPrivacyLevel } from '@motadata365/browser-core'
 
-export const datadogRum = makeRumPublicApi(startRum, makeRecorderApiStub(), makeProfilerApiStub(), {
+export const motadataRum = makeRumPublicApi(startRum, makeRecorderApiStub(), makeProfilerApiStub(), {
   sdkName: 'rum-slim',
 })
 
 interface BrowserWindow extends Window {
-  DD_RUM?: RumPublicApi
+  MD_RUM?: RumPublicApi
 }
-defineGlobal(getGlobalObject<BrowserWindow>(), 'DD_RUM', datadogRum)
+defineGlobal(getGlobalObject<BrowserWindow>(), 'MD_RUM', motadataRum)
