@@ -5,7 +5,7 @@ import { toStackTraceString } from '../../tools/stackTrace/handlingStack'
 import { getExperimentalFeatures } from '../../tools/experimentalFeatures'
 import type { Configuration } from '../configuration'
 import { buildTags } from '../tags'
-import { INTAKE_SITE_STAGING, INTAKE_SITE_US1_FED } from '../intakeSites'
+import { DEFAULT_SITE } from '../intakeSites'
 import { BufferedObservable, Observable } from '../../tools/observable'
 import { clocksNow } from '../../tools/utils/timeUtils'
 import { displayIfDebugEnabled, startMonitorErrorCollection } from '../../tools/monitor'
@@ -74,7 +74,7 @@ export const enum TelemetryMetrics {
 
 const METRIC_SAMPLE_RATE = 1
 
-const TELEMETRY_EXCLUDED_SITES: string[] = [INTAKE_SITE_US1_FED]
+const TELEMETRY_EXCLUDED_SITES: string[] = []
 
 let telemetryObservable: BufferedObservable<{ rawEvent: RawTelemetryEvent; metricName?: string }> | undefined
 
@@ -258,11 +258,10 @@ export function resetTelemetry() {
 }
 
 /**
- * Avoid mixing telemetry events from different data centers
- * but keep replicating staging events for reliability
+ * Telemetry replication is disabled for flexible endpoint configuration
  */
 function isTelemetryReplicationAllowed(configuration: Configuration) {
-  return configuration.site === INTAKE_SITE_STAGING
+  return false
 }
 
 export function addTelemetryDebug(message: string, context?: Context) {

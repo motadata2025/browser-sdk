@@ -1,5 +1,5 @@
 import type { Site } from '../intakeSites'
-import { INTAKE_SITE_US1, INTAKE_URL_PARAMETERS } from '../intakeSites'
+import { DEFAULT_SITE, INTAKE_URL_PARAMETERS } from '../intakeSites'
 import type { InitConfiguration } from './configuration'
 import type { EndpointBuilder } from './endpointBuilder'
 import { createEndpointBuilder } from './endpointBuilder'
@@ -22,7 +22,7 @@ export interface ReplicaConfiguration {
 }
 
 export function computeTransportConfiguration(initConfiguration: InitConfiguration): TransportConfiguration {
-  const site = initConfiguration.site || INTAKE_SITE_US1
+  const site = initConfiguration.site || DEFAULT_SITE
   const source = validateSource(initConfiguration.source)
 
   const endpointBuilders = computeEndpointBuilders({ ...initConfiguration, site, source })
@@ -60,7 +60,7 @@ function computeReplicaConfiguration(initConfiguration: InitConfiguration): Repl
 
   const replicaConfiguration: InitConfiguration = {
     ...initConfiguration,
-    site: INTAKE_SITE_US1,
+    site: DEFAULT_SITE,
     clientToken: initConfiguration.replica.clientToken,
   }
 

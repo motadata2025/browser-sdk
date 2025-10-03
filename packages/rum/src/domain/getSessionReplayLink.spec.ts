@@ -5,7 +5,7 @@ import { getSessionReplayLink } from './getSessionReplayLink'
 import { addRecord, resetReplayStats } from './replayStats'
 
 const DEFAULT_CONFIGURATION = {
-  site: 'datadoghq.com',
+  site: '127.0.0.1:3000',
 } as RumConfiguration
 
 describe('getReplayLink', () => {
@@ -40,7 +40,7 @@ describe('getReplayLink', () => {
       true
     )
 
-    expect(link).toBe('https://toto.datadoghq.com/rum/replay/sessions/session-id-1?seed=view-id-1&from=123456')
+    expect(link).toBe('https://toto.127.0.0.1:3000/rum/replay/sessions/session-id-1?seed=view-id-1&from=123456')
   })
 
   it('should return link when replay is forced', () => {
@@ -140,7 +140,7 @@ describe('getReplayLink', () => {
       const link = getSessionReplayLink(DEFAULT_CONFIGURATION, sessionManager, viewContexts, false)
 
       expect(link).toBe(
-        'https://app.datadoghq.com/rum/replay/sessions/session-id-1?error-type=browser-not-supported&seed=view-id-1&from=123456'
+        'https://127.0.0.1:3000/rum/replay/sessions/session-id-1?error-type=browser-not-supported&seed=view-id-1&from=123456'
       )
     })
   })

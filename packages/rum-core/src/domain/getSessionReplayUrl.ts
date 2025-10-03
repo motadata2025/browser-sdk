@@ -1,4 +1,4 @@
-import { INTAKE_SITE_STAGING, INTAKE_SITE_US1, INTAKE_SITE_EU1 } from '@datadog/browser-core'
+import { DEFAULT_SITE } from '@datadog/browser-core'
 import type { RumConfiguration } from './configuration'
 import type { ViewHistoryEntry } from './contexts/viewHistory'
 import type { RumSession } from './rumSessionManager'
@@ -31,19 +31,22 @@ export function getSessionReplayUrl(
 }
 
 export function getDatadogSiteUrl(rumConfiguration: RumConfiguration) {
-  const site = rumConfiguration.site
-  const subdomain = rumConfiguration.subdomain || getSiteDefaultSubdomain(rumConfiguration)
-  return `https://${subdomain ? `${subdomain}.` : ''}${site}`
-}
+  const site = rumConfiguration.site || DEFAULT_SITE
+  const subdomain = rumConfiguration.subdomain
 
-function getSiteDefaultSubdomain(configuration: RumConfiguration): string | undefined {
-  switch (configuration.site) {
-    case INTAKE_SITE_US1:
-    case INTAKE_SITE_EU1:
-      return 'app'
-    case INTAKE_SITE_STAGING:
-      return 'dd'
-    default:
-      return undefined
+  // For custom sites, use them directly with optional subdomain
+  if (subdomain) {
+    // Check if site already has a port
+    const hasPort = site.includes(':')
+    if (hasPort) {
+      const [hostname, port] = site.split(':')
+      return `https://${subdomain}.${hostname}:${port}`
+    } else {
+      return `https://${subdomain}.${site}`
+    }
   }
+
+  // Return the site as-is for flexible configuration
+  // Port 443 will be used by default for HTTPS if no port is specified
+  return `https://${site}`
 }

@@ -87,11 +87,7 @@ export function validateAndBuildLogsConfiguration(
   initConfiguration: LogsInitConfiguration,
   errorStack?: string
 ): LogsConfiguration | undefined {
-  if (initConfiguration.usePciIntake === true && initConfiguration.site && initConfiguration.site !== 'datadoghq.com') {
-    display.warn(
-      'PCI compliance for Logs is only available for Datadog organizations in the US1 site. Default intake will be used.'
-    )
-  }
+  // PCI intake validation removed for flexible endpoint configuration
 
   const baseConfiguration = validateAndBuildConfiguration(initConfiguration, errorStack)
 

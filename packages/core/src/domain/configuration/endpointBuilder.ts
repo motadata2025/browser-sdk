@@ -2,7 +2,7 @@ import type { Payload } from '../../transport'
 import { timeStampNow } from '../../tools/utils/timeUtils'
 import { normalizeUrl } from '../../tools/utils/urlPolyfill'
 import { generateUUID } from '../../tools/utils/stringUtils'
-import { INTAKE_SITE_FED_STAGING, INTAKE_SITE_US1, PCI_INTAKE_HOST_US1 } from '../intakeSites'
+import { DEFAULT_SITE } from '../intakeSites'
 import type { InitConfiguration } from './configuration'
 
 // replaced at build time
@@ -61,23 +61,24 @@ export function buildEndpointHost(
   trackType: TrackType,
   initConfiguration: InitConfiguration & { usePciIntake?: boolean }
 ) {
-  const { site = INTAKE_SITE_US1, internalAnalyticsSubdomain } = initConfiguration
+  const { site = DEFAULT_SITE, internalAnalyticsSubdomain } = initConfiguration
 
-  if (trackType === 'logs' && initConfiguration.usePciIntake && site === INTAKE_SITE_US1) {
-    return PCI_INTAKE_HOST_US1
+  // For custom sites, use them directly
+  // If the site contains a port, it will be preserved
+  // If no port is specified, HTTPS will use port 443 by default
+  if (internalAnalyticsSubdomain) {
+    // Check if site already has a port
+    const hasPort = site.includes(':')
+    if (hasPort) {
+      const [hostname, port] = site.split(':')
+      return `${internalAnalyticsSubdomain}.${hostname}:${port}`
+    } else {
+      return `${internalAnalyticsSubdomain}.${site}`
+    }
   }
 
-  if (internalAnalyticsSubdomain && site === INTAKE_SITE_US1) {
-    return `${internalAnalyticsSubdomain}.${INTAKE_SITE_US1}`
-  }
-
-  if (site === INTAKE_SITE_FED_STAGING) {
-    return `http-intake.logs.${site}`
-  }
-
-  const domainParts = site.split('.')
-  const extension = domainParts.pop()
-  return `browser-intake-${domainParts.join('-')}.${extension!}`
+  // Return the site as-is for flexible endpoint configuration
+  return site
 }
 
 /**

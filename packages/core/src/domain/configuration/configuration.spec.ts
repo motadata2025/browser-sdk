@@ -181,11 +181,38 @@ describe('validateAndBuildConfiguration', () => {
   })
 
   describe('site parameter validation', () => {
-    it('should validate the site parameter', () => {
-      validateAndBuildConfiguration({ clientToken, site: 'foo.com' as any })
-      expect(displaySpy).toHaveBeenCalledOnceWith(
-        `Site should be a valid Datadog site. ${MORE_DETAILS} ${DOCS_ORIGIN}/getting_started/site/.`
-      )
+    it('should accept IP address with port', () => {
+      const config = validateAndBuildConfiguration({ clientToken, site: '192.168.1.100:8080' })
+      expect(config).toBeDefined()
+      expect(displaySpy).not.toHaveBeenCalled()
+    })
+
+    it('should accept IP address without port', () => {
+      const config = validateAndBuildConfiguration({ clientToken, site: '10.0.0.1' })
+      expect(config).toBeDefined()
+      expect(displaySpy).not.toHaveBeenCalled()
+    })
+
+    it('should accept hostname with port', () => {
+      const config = validateAndBuildConfiguration({ clientToken, site: 'localhost:3000' })
+      expect(config).toBeDefined()
+      expect(displaySpy).not.toHaveBeenCalled()
+    })
+
+    it('should accept hostname without port', () => {
+      const config = validateAndBuildConfiguration({ clientToken, site: 'example.com' })
+      expect(config).toBeDefined()
+      expect(displaySpy).not.toHaveBeenCalled()
+    })
+
+    it('should reject empty string as site', () => {
+      validateAndBuildConfiguration({ clientToken, site: '' as any })
+      expect(displaySpy).toHaveBeenCalledOnceWith('Site cannot be an empty string')
+    })
+
+    it('should reject non-string site', () => {
+      validateAndBuildConfiguration({ clientToken, site: 123 as any })
+      expect(displaySpy).toHaveBeenCalledOnceWith('Site must be defined as a string')
     })
   })
 

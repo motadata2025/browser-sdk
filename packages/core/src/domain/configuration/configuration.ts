@@ -148,10 +148,12 @@ export interface InitConfiguration {
   proxy?: string | ProxyFn | undefined
 
   /**
-   * The Datadog [site](https://docs.datadoghq.com/getting_started/site) parameter of your organization.
+   * The custom endpoint for your data collection. Can be an IP address or hostname with optional port.
+   * If no port is specified, HTTPS will use port 443 by default.
+   * Examples: '192.168.1.100:8080', '10.0.0.1', 'localhost:3000', 'api.example.com'
    *
    * @category Transport
-   * @defaultValue datadoghq.com
+   * @defaultValue 127.0.0.1:3000
    */
   site?: Site | undefined
 
@@ -342,11 +344,17 @@ function isString(tag: unknown, tagName: string): tag is string | undefined | nu
   return true
 }
 
-function isDatadogSite(site: unknown) {
-  if (site && typeof site === 'string' && !/(datadog|ddog|datad0g|dd0g)/.test(site)) {
-    display.error(`Site should be a valid Datadog site. ${MORE_DETAILS} ${DOCS_ORIGIN}/getting_started/site/.`)
+function isValidSite(site: unknown) {
+  if (site !== undefined && site !== null && typeof site !== 'string') {
+    display.error('Site must be defined as a string')
     return false
   }
+  if (site && typeof site === 'string' && site.trim() === '') {
+    display.error('Site cannot be an empty string')
+    return false
+  }
+  // Site must be a non-null string that can be an IP address or hostname with optional port
+  // Examples: '192.168.1.1', '192.168.1.1:8080', 'localhost', 'localhost:3000', 'example.com:443'
   return true
 }
 
@@ -376,7 +384,7 @@ export function validateAndBuildConfiguration(
   }
 
   if (
-    !isDatadogSite(initConfiguration.site) ||
+    !isValidSite(initConfiguration.site) ||
     !isSampleRate(initConfiguration.sessionSampleRate, 'Session') ||
     !isSampleRate(initConfiguration.telemetrySampleRate, 'Telemetry') ||
     !isSampleRate(initConfiguration.telemetryConfigurationSampleRate, 'Telemetry Configuration') ||

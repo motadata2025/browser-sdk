@@ -119,35 +119,66 @@ describe('endpointBuilder', () => {
     })
   })
 
-  describe('PCI compliance intake with option', () => {
-    it('should return PCI compliance intake endpoint if site is us1', () => {
-      const config: InitConfiguration & { usePciIntake?: boolean } = {
+  describe('flexible endpoint configuration', () => {
+    it('should use IP address with port', () => {
+      const config: InitConfiguration = {
         clientToken,
-        usePciIntake: true,
-        site: 'datadoghq.com',
+        site: '192.168.1.100:8080',
       }
-      expect(createEndpointBuilder(config, 'logs').build('fetch', DEFAULT_PAYLOAD)).toContain(
-        'https://pci.browser-intake-datadoghq.com'
+      expect(createEndpointBuilder(config, 'rum').build('fetch', DEFAULT_PAYLOAD)).toContain(
+        'https://192.168.1.100:8080/api/v2/rum'
       )
     })
-    it('should not return PCI compliance intake endpoint if site is not us1', () => {
-      const config: InitConfiguration & { usePciIntake?: boolean } = {
+
+    it('should use IP address without port', () => {
+      const config: InitConfiguration = {
         clientToken,
-        usePciIntake: true,
-        site: 'ap1.datadoghq.com',
+        site: '10.0.0.1',
       }
-      expect(createEndpointBuilder(config, 'logs').build('fetch', DEFAULT_PAYLOAD)).not.toContain(
-        'https://pci.browser-intake-datadoghq.com'
+      expect(createEndpointBuilder(config, 'rum').build('fetch', DEFAULT_PAYLOAD)).toContain(
+        'https://10.0.0.1/api/v2/rum'
       )
     })
-    it('should not return PCI compliance intake endpoint if and site is us1 and track is not logs', () => {
-      const config: InitConfiguration & { usePciIntake?: boolean } = {
+
+    it('should use hostname with port', () => {
+      const config: InitConfiguration = {
         clientToken,
-        usePciIntake: true,
-        site: 'datadoghq.com',
+        site: 'localhost:3000',
       }
-      expect(createEndpointBuilder(config, 'rum').build('fetch', DEFAULT_PAYLOAD)).not.toContain(
-        'https://pci.browser-intake-datadoghq.com'
+      expect(createEndpointBuilder(config, 'rum').build('fetch', DEFAULT_PAYLOAD)).toContain(
+        'https://localhost:3000/api/v2/rum'
+      )
+    })
+
+    it('should use hostname without port', () => {
+      const config: InitConfiguration = {
+        clientToken,
+        site: 'example.com',
+      }
+      expect(createEndpointBuilder(config, 'rum').build('fetch', DEFAULT_PAYLOAD)).toContain(
+        'https://example.com/api/v2/rum'
+      )
+    })
+
+    it('should handle internalAnalyticsSubdomain with IP and port', () => {
+      const config: InitConfiguration = {
+        clientToken,
+        site: '192.168.1.100:3000',
+        internalAnalyticsSubdomain: 'analytics',
+      }
+      expect(createEndpointBuilder(config, 'rum').build('fetch', DEFAULT_PAYLOAD)).toContain(
+        'https://analytics.192.168.1.100:3000/api/v2/rum'
+      )
+    })
+
+    it('should handle internalAnalyticsSubdomain with hostname without port', () => {
+      const config: InitConfiguration = {
+        clientToken,
+        site: 'example.com',
+        internalAnalyticsSubdomain: 'analytics',
+      }
+      expect(createEndpointBuilder(config, 'rum').build('fetch', DEFAULT_PAYLOAD)).toContain(
+        'https://analytics.example.com/api/v2/rum'
       )
     })
   })

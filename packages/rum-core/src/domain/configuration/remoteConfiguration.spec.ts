@@ -1,6 +1,6 @@
 import {
   DefaultPrivacyLevel,
-  INTAKE_SITE_US1,
+  DEFAULT_SITE,
   display,
   setCookie,
   deleteCookie,
@@ -669,8 +669,8 @@ describe('remoteConfiguration', () => {
   describe('buildEndpoint', () => {
     it('should return the remote configuration endpoint', () => {
       const remoteConfigurationId = '0e008b1b-8600-4709-9d1d-f4edcfdf5587'
-      expect(buildEndpoint({ site: INTAKE_SITE_US1, remoteConfigurationId } as RumInitConfiguration)).toEqual(
-        `https://sdk-configuration.browser-intake-datadoghq.com/v1/${remoteConfigurationId}.json`
+      expect(buildEndpoint({ site: DEFAULT_SITE, remoteConfigurationId } as RumInitConfiguration)).toEqual(
+        `https://sdk-configuration.${DEFAULT_SITE}/v1/${remoteConfigurationId}.json`
       )
     })
 
