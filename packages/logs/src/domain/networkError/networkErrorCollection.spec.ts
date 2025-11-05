@@ -1,6 +1,6 @@
-import { ErrorSource } from '@datadog/browser-core'
-import type { MockFetch, MockFetchManager } from '@datadog/browser-core/test'
-import { SPEC_ENDPOINTS, MockResponse, mockFetch, registerCleanupTask } from '@datadog/browser-core/test'
+import { ErrorSource } from '@motadata365/browser-core'
+import type { MockFetch, MockFetchManager } from '@motadata365/browser-core/test'
+import { SPEC_ENDPOINTS, MockResponse, mockFetch, registerCleanupTask } from '@motadata365/browser-core/test'
 import type { RawNetworkLogsEvent } from '../../rawLogsEvent.types'
 import type { LogsConfiguration } from '../configuration'
 import type { RawLogsEventCollectedData } from '../lifeCycle'
@@ -86,7 +86,7 @@ describe('network error collection', () => {
   it('should not track intake error', (done) => {
     startCollection()
     fetch(
-      'https://logs-intake.com/v1/input/send?ddsource=browser&dd-api-key=xxxx&dd-request-id=1234567890'
+      'https://logs-intake.com/v1/input/send?mdsource=browser&md-api-key=xxxx&md-request-id=1234567890'
     ).resolveWith(DEFAULT_REQUEST)
 
     mockFetchManager.whenAllComplete(() => {

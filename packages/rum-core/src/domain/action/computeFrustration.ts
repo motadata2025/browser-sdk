@@ -1,4 +1,4 @@
-import { ONE_SECOND } from '@datadog/browser-core'
+import { ONE_SECOND } from '@motadata365/browser-core'
 import { FrustrationType } from '../../rawRumEvent.types'
 import type { Click } from './trackClickActions'
 

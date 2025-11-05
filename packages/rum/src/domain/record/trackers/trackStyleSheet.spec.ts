@@ -1,4 +1,4 @@
-import { isFirefox, registerCleanupTask } from '@datadog/browser-core/test'
+import { isFirefox, registerCleanupTask } from '@motadata365/browser-core/test'
 import type { SerializationScope } from '../serialization'
 import {
   serializeDocument,

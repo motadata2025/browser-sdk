@@ -1,4 +1,4 @@
-import { toServerDuration, relativeToClocks, generateUUID } from '@datadog/browser-core'
+import { toServerDuration, relativeToClocks, generateUUID } from '@motadata365/browser-core'
 import type { RawRumLongAnimationFrameEvent } from '../../rawRumEvent.types'
 import { RumEventType, RumLongTaskEntryType } from '../../rawRumEvent.types'
 import type { LifeCycle } from '../lifeCycle'
@@ -40,7 +40,7 @@ export function startLongAnimationFrameCollection(lifeCycle: LifeCycle, configur
           })),
         },
         type: RumEventType.LONG_TASK,
-        _dd: {
+        _md: {
           discarded: false,
         },
       }

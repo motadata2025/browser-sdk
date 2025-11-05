@@ -1,5 +1,5 @@
-import type { ServerDuration, Duration, RelativeTime } from '@datadog/browser-core'
-import { HookNames } from '@datadog/browser-core'
+import type { ServerDuration, Duration, RelativeTime } from '@motadata365/browser-core'
+import { HookNames } from '@motadata365/browser-core'
 import type { Clock } from '../../../../core/test'
 import { mockClock, registerCleanupTask } from '../../../../core/test'
 import { createPerformanceEntry, mockPerformanceObserver, mockRumConfiguration } from '../../../test'
@@ -101,7 +101,7 @@ describe('pageStateHistory', () => {
 
         expect(defaultRumEventAttributes).toEqual({
           type: 'view',
-          _dd: {
+          _md: {
             page_states: [
               {
                 state: PageState.PASSIVE,
@@ -128,7 +128,7 @@ describe('pageStateHistory', () => {
         })
         expect(defaultRumEventAttributes).toEqual({
           type: 'view',
-          _dd: { page_states: jasmine.any(Array) },
+          _md: { page_states: jasmine.any(Array) },
         })
       })
 
@@ -141,7 +141,7 @@ describe('pageStateHistory', () => {
 
         expect(defaultRumEventAttributes).toEqual({
           type: 'view',
-          _dd: { page_states: undefined },
+          _md: { page_states: undefined },
         })
       })
 
@@ -163,7 +163,7 @@ describe('pageStateHistory', () => {
 
         expect(defaultRumEventAttributes).toEqual({
           type: 'view',
-          _dd: {
+          _md: {
             page_states: [
               {
                 state: PageState.PASSIVE,

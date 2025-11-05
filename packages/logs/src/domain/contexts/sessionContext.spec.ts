@@ -1,5 +1,5 @@
-import type { RelativeTime } from '@datadog/browser-core'
-import { DISCARDED, HookNames } from '@datadog/browser-core'
+import type { RelativeTime } from '@motadata365/browser-core'
+import { DISCARDED, HookNames } from '@motadata365/browser-core'
 import type { LogsSessionManager } from '../logsSessionManager'
 import type { DefaultLogsEventAttributes, Hooks } from '../hooks'
 import { createHooks } from '../hooks'

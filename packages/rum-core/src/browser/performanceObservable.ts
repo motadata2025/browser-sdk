@@ -1,5 +1,5 @@
-import type { Duration, RelativeTime, TimeoutId } from '@datadog/browser-core'
-import { addEventListener, Observable, setTimeout, clearTimeout, monitor } from '@datadog/browser-core'
+import type { Duration, RelativeTime, TimeoutId } from '@motadata365/browser-core'
+import { addEventListener, Observable, setTimeout, clearTimeout, monitor } from '@motadata365/browser-core'
 import type { RumConfiguration } from '../domain/configuration'
 import { hasValidResourceEntryDuration, isAllowedRequestUrl } from '../domain/resource/resourceUtils'
 import { retrieveFirstInputTiming } from './firstInputPolyfill'

@@ -7,11 +7,11 @@ import { mockModule, mockCommandImplementation, replaceChunkHashes } from './lib
 const FAKE_API_KEY = 'FAKE_API_KEY'
 const ENV_STAGING = {
   DATADOG_API_KEY: FAKE_API_KEY,
-  DATADOG_SITE: 'datad0g.com',
+  MOTADATA_SITE: 'datad0g.com',
 }
 const ENV_PROD = {
   DATADOG_API_KEY: FAKE_API_KEY,
-  DATADOG_SITE: 'datadoghq.com',
+  MOTADATA_SITE: 'datadoghq.com',
 }
 
 interface CommandDetail {
@@ -59,8 +59,8 @@ describe('upload-source-maps', () => {
     await uploadSourceMaps('v6', ['root'])
 
     forEachDatacenter((site) => {
-      const commandsByDatacenter = commands.filter(({ env }) => env?.DATADOG_SITE === site)
-      const env = { DATADOG_API_KEY: FAKE_API_KEY, DATADOG_SITE: site }
+      const commandsByDatacenter = commands.filter(({ env }) => env?.MOTADATA_SITE === site)
+      const env = { DATADOG_API_KEY: FAKE_API_KEY, MOTADATA_SITE: site }
 
       // rename the files with the version suffix
       assert.deepEqual(getFileRenamingCommands(), [
@@ -71,17 +71,17 @@ describe('upload-source-maps', () => {
           command: 'mv packages/logs/bundle/datadog-logs.js.map packages/logs/bundle/datadog-logs-v6.js.map',
         },
         {
-          command: 'mv packages/rum/bundle/datadog-rum.js packages/rum/bundle/datadog-rum-v6.js',
+          command: 'mv packages/rum/bundle/motadata-rum.js packages/rum/bundle/motadata-rum-v6.js',
         },
         {
-          command: 'mv packages/rum/bundle/datadog-rum.js.map packages/rum/bundle/datadog-rum-v6.js.map',
+          command: 'mv packages/rum/bundle/motadata-rum.js.map packages/rum/bundle/motadata-rum-v6.js.map',
         },
         {
-          command: 'mv packages/rum-slim/bundle/datadog-rum-slim.js packages/rum-slim/bundle/datadog-rum-slim-v6.js',
+          command: 'mv packages/rum-slim/bundle/motadata-rum-slim.js packages/rum-slim/bundle/motadata-rum-slim-v6.js',
         },
         {
           command:
-            'mv packages/rum-slim/bundle/datadog-rum-slim.js.map packages/rum-slim/bundle/datadog-rum-slim-v6.js.map',
+            'mv packages/rum-slim/bundle/motadata-rum-slim.js.map packages/rum-slim/bundle/motadata-rum-slim-v6.js.map',
         },
       ])
 
@@ -89,17 +89,17 @@ describe('upload-source-maps', () => {
       assert.deepEqual(commandsByDatacenter, [
         {
           command:
-            'datadog-ci sourcemaps upload packages/logs/bundle --service browser-logs-sdk --release-version dev --minified-path-prefix / --project-path @datadog/browser-logs/ --repository-url https://www.github.com/datadog/browser-sdk',
+            'datadog-ci sourcemaps upload packages/logs/bundle --service browser-logs-sdk --release-version dev --minified-path-prefix / --project-path @motadata365/browser-logs/ --repository-url https://www.github.com/datadog/browser-sdk',
           env,
         },
         {
           command:
-            'datadog-ci sourcemaps upload packages/rum/bundle --service browser-rum-sdk --release-version dev --minified-path-prefix / --project-path @datadog/browser-rum/ --repository-url https://www.github.com/datadog/browser-sdk',
+            'datadog-ci sourcemaps upload packages/rum/bundle --service browser-rum-sdk --release-version dev --minified-path-prefix / --project-path @motadata365/browser-rum/ --repository-url https://www.github.com/datadog/browser-sdk',
           env,
         },
         {
           command:
-            'datadog-ci sourcemaps upload packages/rum-slim/bundle --service browser-rum-sdk --release-version dev --minified-path-prefix / --project-path @datadog/browser-rum-slim/ --repository-url https://www.github.com/datadog/browser-sdk',
+            'datadog-ci sourcemaps upload packages/rum-slim/bundle --service browser-rum-sdk --release-version dev --minified-path-prefix / --project-path @motadata365/browser-rum-slim/ --repository-url https://www.github.com/datadog/browser-sdk',
           env,
         },
       ])
@@ -112,17 +112,17 @@ describe('upload-source-maps', () => {
     assert.deepEqual(commands, [
       {
         command:
-          'datadog-ci sourcemaps upload packages/logs/bundle --service browser-logs-sdk --release-version dev --minified-path-prefix /us1/v6 --project-path @datadog/browser-logs/ --repository-url https://www.github.com/datadog/browser-sdk',
+          'datadog-ci sourcemaps upload packages/logs/bundle --service browser-logs-sdk --release-version dev --minified-path-prefix /us1/v6 --project-path @motadata365/browser-logs/ --repository-url https://www.github.com/datadog/browser-sdk',
         env: ENV_PROD,
       },
       {
         command:
-          'datadog-ci sourcemaps upload packages/rum/bundle --service browser-rum-sdk --release-version dev --minified-path-prefix /us1/v6 --project-path @datadog/browser-rum/ --repository-url https://www.github.com/datadog/browser-sdk',
+          'datadog-ci sourcemaps upload packages/rum/bundle --service browser-rum-sdk --release-version dev --minified-path-prefix /us1/v6 --project-path @motadata365/browser-rum/ --repository-url https://www.github.com/datadog/browser-sdk',
         env: ENV_PROD,
       },
       {
         command:
-          'datadog-ci sourcemaps upload packages/rum-slim/bundle --service browser-rum-sdk --release-version dev --minified-path-prefix /us1/v6 --project-path @datadog/browser-rum-slim/ --repository-url https://www.github.com/datadog/browser-sdk',
+          'datadog-ci sourcemaps upload packages/rum-slim/bundle --service browser-rum-sdk --release-version dev --minified-path-prefix /us1/v6 --project-path @motadata365/browser-rum-slim/ --repository-url https://www.github.com/datadog/browser-sdk',
         env: ENV_PROD,
       },
     ])
@@ -140,17 +140,17 @@ describe('upload-source-maps', () => {
         command: 'mv packages/logs/bundle/datadog-logs.js.map packages/logs/bundle/datadog-logs-staging.js.map',
       },
       {
-        command: 'mv packages/rum/bundle/datadog-rum.js packages/rum/bundle/datadog-rum-staging.js',
+        command: 'mv packages/rum/bundle/motadata-rum.js packages/rum/bundle/motadata-rum-staging.js',
       },
       {
-        command: 'mv packages/rum/bundle/datadog-rum.js.map packages/rum/bundle/datadog-rum-staging.js.map',
+        command: 'mv packages/rum/bundle/motadata-rum.js.map packages/rum/bundle/motadata-rum-staging.js.map',
       },
       {
-        command: 'mv packages/rum-slim/bundle/datadog-rum-slim.js packages/rum-slim/bundle/datadog-rum-slim-staging.js',
+        command: 'mv packages/rum-slim/bundle/motadata-rum-slim.js packages/rum-slim/bundle/motadata-rum-slim-staging.js',
       },
       {
         command:
-          'mv packages/rum-slim/bundle/datadog-rum-slim.js.map packages/rum-slim/bundle/datadog-rum-slim-staging.js.map',
+          'mv packages/rum-slim/bundle/motadata-rum-slim.js.map packages/rum-slim/bundle/motadata-rum-slim-staging.js.map',
       },
     ])
 
@@ -158,32 +158,32 @@ describe('upload-source-maps', () => {
     assert.deepEqual(getSourceMapCommands(), [
       {
         command:
-          'datadog-ci sourcemaps upload packages/logs/bundle --service browser-logs-sdk --release-version dev --minified-path-prefix / --project-path @datadog/browser-logs/ --repository-url https://www.github.com/datadog/browser-sdk',
+          'datadog-ci sourcemaps upload packages/logs/bundle --service browser-logs-sdk --release-version dev --minified-path-prefix / --project-path @motadata365/browser-logs/ --repository-url https://www.github.com/datadog/browser-sdk',
         env: ENV_STAGING,
       },
       {
         command:
-          'datadog-ci sourcemaps upload packages/logs/bundle --service browser-logs-sdk --release-version dev --minified-path-prefix / --project-path @datadog/browser-logs/ --repository-url https://www.github.com/datadog/browser-sdk',
+          'datadog-ci sourcemaps upload packages/logs/bundle --service browser-logs-sdk --release-version dev --minified-path-prefix / --project-path @motadata365/browser-logs/ --repository-url https://www.github.com/datadog/browser-sdk',
         env: ENV_PROD,
       },
       {
         command:
-          'datadog-ci sourcemaps upload packages/rum/bundle --service browser-rum-sdk --release-version dev --minified-path-prefix / --project-path @datadog/browser-rum/ --repository-url https://www.github.com/datadog/browser-sdk',
+          'datadog-ci sourcemaps upload packages/rum/bundle --service browser-rum-sdk --release-version dev --minified-path-prefix / --project-path @motadata365/browser-rum/ --repository-url https://www.github.com/datadog/browser-sdk',
         env: ENV_STAGING,
       },
       {
         command:
-          'datadog-ci sourcemaps upload packages/rum/bundle --service browser-rum-sdk --release-version dev --minified-path-prefix / --project-path @datadog/browser-rum/ --repository-url https://www.github.com/datadog/browser-sdk',
+          'datadog-ci sourcemaps upload packages/rum/bundle --service browser-rum-sdk --release-version dev --minified-path-prefix / --project-path @motadata365/browser-rum/ --repository-url https://www.github.com/datadog/browser-sdk',
         env: ENV_PROD,
       },
       {
         command:
-          'datadog-ci sourcemaps upload packages/rum-slim/bundle --service browser-rum-sdk --release-version dev --minified-path-prefix / --project-path @datadog/browser-rum-slim/ --repository-url https://www.github.com/datadog/browser-sdk',
+          'datadog-ci sourcemaps upload packages/rum-slim/bundle --service browser-rum-sdk --release-version dev --minified-path-prefix / --project-path @motadata365/browser-rum-slim/ --repository-url https://www.github.com/datadog/browser-sdk',
         env: ENV_STAGING,
       },
       {
         command:
-          'datadog-ci sourcemaps upload packages/rum-slim/bundle --service browser-rum-sdk --release-version dev --minified-path-prefix / --project-path @datadog/browser-rum-slim/ --repository-url https://www.github.com/datadog/browser-sdk',
+          'datadog-ci sourcemaps upload packages/rum-slim/bundle --service browser-rum-sdk --release-version dev --minified-path-prefix / --project-path @motadata365/browser-rum-slim/ --repository-url https://www.github.com/datadog/browser-sdk',
         env: ENV_PROD,
       },
     ])
@@ -201,17 +201,17 @@ describe('upload-source-maps', () => {
         command: 'mv packages/logs/bundle/datadog-logs.js.map packages/logs/bundle/datadog-logs-canary.js.map',
       },
       {
-        command: 'mv packages/rum/bundle/datadog-rum.js packages/rum/bundle/datadog-rum-canary.js',
+        command: 'mv packages/rum/bundle/motadata-rum.js packages/rum/bundle/motadata-rum-canary.js',
       },
       {
-        command: 'mv packages/rum/bundle/datadog-rum.js.map packages/rum/bundle/datadog-rum-canary.js.map',
+        command: 'mv packages/rum/bundle/motadata-rum.js.map packages/rum/bundle/motadata-rum-canary.js.map',
       },
       {
-        command: 'mv packages/rum-slim/bundle/datadog-rum-slim.js packages/rum-slim/bundle/datadog-rum-slim-canary.js',
+        command: 'mv packages/rum-slim/bundle/motadata-rum-slim.js packages/rum-slim/bundle/motadata-rum-slim-canary.js',
       },
       {
         command:
-          'mv packages/rum-slim/bundle/datadog-rum-slim.js.map packages/rum-slim/bundle/datadog-rum-slim-canary.js.map',
+          'mv packages/rum-slim/bundle/motadata-rum-slim.js.map packages/rum-slim/bundle/motadata-rum-slim-canary.js.map',
       },
     ])
 
@@ -219,17 +219,17 @@ describe('upload-source-maps', () => {
     assert.deepEqual(getSourceMapCommands(), [
       {
         command:
-          'datadog-ci sourcemaps upload packages/logs/bundle --service browser-logs-sdk --release-version dev --minified-path-prefix / --project-path @datadog/browser-logs/ --repository-url https://www.github.com/datadog/browser-sdk',
+          'datadog-ci sourcemaps upload packages/logs/bundle --service browser-logs-sdk --release-version dev --minified-path-prefix / --project-path @motadata365/browser-logs/ --repository-url https://www.github.com/datadog/browser-sdk',
         env: ENV_PROD,
       },
       {
         command:
-          'datadog-ci sourcemaps upload packages/rum/bundle --service browser-rum-sdk --release-version dev --minified-path-prefix / --project-path @datadog/browser-rum/ --repository-url https://www.github.com/datadog/browser-sdk',
+          'datadog-ci sourcemaps upload packages/rum/bundle --service browser-rum-sdk --release-version dev --minified-path-prefix / --project-path @motadata365/browser-rum/ --repository-url https://www.github.com/datadog/browser-sdk',
         env: ENV_PROD,
       },
       {
         command:
-          'datadog-ci sourcemaps upload packages/rum-slim/bundle --service browser-rum-sdk --release-version dev --minified-path-prefix / --project-path @datadog/browser-rum-slim/ --repository-url https://www.github.com/datadog/browser-sdk',
+          'datadog-ci sourcemaps upload packages/rum-slim/bundle --service browser-rum-sdk --release-version dev --minified-path-prefix / --project-path @motadata365/browser-rum-slim/ --repository-url https://www.github.com/datadog/browser-sdk',
         env: ENV_PROD,
       },
     ])

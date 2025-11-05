@@ -1,7 +1,7 @@
-import { DefaultPrivacyLevel, findLast } from '@datadog/browser-core'
-import type { RumConfiguration, ViewCreatedEvent } from '@datadog/browser-rum-core'
-import { LifeCycle, LifeCycleEventType } from '@datadog/browser-rum-core'
-import { createNewEvent, collectAsyncCalls, registerCleanupTask } from '@datadog/browser-core/test'
+import { DefaultPrivacyLevel, findLast } from '@motadata365/browser-core'
+import type { RumConfiguration, ViewCreatedEvent } from '@motadata365/browser-rum-core'
+import { LifeCycle, LifeCycleEventType } from '@motadata365/browser-rum-core'
+import { createNewEvent, collectAsyncCalls, registerCleanupTask } from '@motadata365/browser-core/test'
 import {
   findElement,
   findFullSnapshot,

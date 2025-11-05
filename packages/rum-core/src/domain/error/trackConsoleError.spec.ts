@@ -1,6 +1,6 @@
-import type { RawError, Subscription } from '@datadog/browser-core'
-import { ErrorHandling, ErrorSource, Observable, clocksNow, resetConsoleObservable } from '@datadog/browser-core'
-import { ignoreConsoleLogs, mockClock } from '@datadog/browser-core/test'
+import type { RawError, Subscription } from '@motadata365/browser-core'
+import { ErrorHandling, ErrorSource, Observable, clocksNow, resetConsoleObservable } from '@motadata365/browser-core'
+import { ignoreConsoleLogs, mockClock } from '@motadata365/browser-core/test'
 import { trackConsoleError } from './trackConsoleError'
 
 describe('trackConsoleError', () => {

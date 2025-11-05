@@ -5,15 +5,15 @@
  * @example
  * ```ts
  * import { RouterProvider } from 'react-router'
- * import { datadogRum } from '@datadog/browser-rum'
- * import { reactPlugin } from '@datadog/browser-rum-react'
+ * import { motadataRum } from '@motadata365/browser-rum'
+ * import { reactPlugin } from '@motadata365/browser-rum-react'
  *
- * // ⚠️ Use "createBrowserRouter" from `@datadog/browser-rum-react/react-router-v7` instead of `react-router`
- * import { createBrowserRouter } from '@datadog/browser-rum-react/react-router-v7'
+ * // ⚠️ Use "createBrowserRouter" from `@motadata365/browser-rum-react/react-router-v7` instead of `react-router`
+ * import { createBrowserRouter } from '@motadata365/browser-rum-react/react-router-v7'
  *
- * datadogRum.init({
- *   applicationId: '<DATADOG_APPLICATION_ID>',
- *   clientToken: '<DATADOG_CLIENT_TOKEN>',
+ * motadataRum.init({
+ *   applicationId: '<MOTADATA_APPLICATION_ID>',
+ *   clientToken: '<MOTADATA_CLIENT_TOKEN>',
  *   plugins: [reactPlugin({ router: true })],
  *   // ...
  * })

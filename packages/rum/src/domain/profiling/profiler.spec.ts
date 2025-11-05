@@ -4,9 +4,9 @@ import {
   RumEventType,
   RumPerformanceEntryType,
   createHooks,
-} from '@datadog/browser-rum-core'
-import type { RelativeTime } from '@datadog/browser-core'
-import { clocksOrigin, createIdentityEncoder, deepClone, relativeNow, timeStampNow } from '@datadog/browser-core'
+} from '@motadata365/browser-rum-core'
+import type { RelativeTime } from '@motadata365/browser-core'
+import { clocksOrigin, createIdentityEncoder, deepClone, relativeNow, timeStampNow } from '@motadata365/browser-core'
 import {
   setPageVisibility,
   restorePageVisibility,
@@ -14,7 +14,7 @@ import {
   interceptRequests,
   DEFAULT_FETCH_MOCK,
   readFormDataRequest,
-} from '@datadog/browser-core/test'
+} from '@motadata365/browser-core/test'
 import type { RumPerformanceEntry } from 'packages/rum-core/src/browser/performanceObservable'
 import {
   createPerformanceEntry,

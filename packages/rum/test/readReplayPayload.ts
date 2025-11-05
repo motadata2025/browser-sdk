@@ -1,4 +1,4 @@
-import type { Payload } from '@datadog/browser-core'
+import type { Payload } from '@motadata365/browser-core'
 import type { BrowserSegment } from '../src/types'
 import type { BrowserSegmentMetadataAndSegmentSizes } from '../src/domain/segmentCollection'
 import { readFormData } from '../../core/test'

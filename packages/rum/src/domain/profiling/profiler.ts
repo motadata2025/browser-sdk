@@ -1,4 +1,4 @@
-import type { Duration, Encoder, RelativeTime } from '@datadog/browser-core'
+import type { Duration, Encoder, RelativeTime } from '@motadata365/browser-core'
 import {
   addEventListener,
   clearTimeout,
@@ -12,7 +12,7 @@ import {
   clocksNow,
   elapsed,
   DeflateEncoderStreamId,
-} from '@datadog/browser-core'
+} from '@motadata365/browser-core'
 
 import type {
   LifeCycle,
@@ -20,13 +20,13 @@ import type {
   RumSessionManager,
   TransportPayload,
   ViewHistoryEntry,
-} from '@datadog/browser-rum-core'
+} from '@motadata365/browser-rum-core'
 import {
   createFormDataTransport,
   LifeCycleEventType,
   RumPerformanceEntryType,
   supportPerformanceTimingEvent,
-} from '@datadog/browser-rum-core'
+} from '@motadata365/browser-rum-core'
 import type {
   RumProfilerTrace,
   RumProfilerInstance,
@@ -191,7 +191,7 @@ export function createRumProfiler(
         // Missing Response Header (`js-profiling`) that is required to enable the profiler.
         // We should suggest the user to enable the Response Header in their server configuration.
         display.warn(
-          '[DD_RUM] Profiler startup failed. Ensure your server includes the `Document-Policy: js-profiling` response header when serving HTML pages.',
+          '[MD_RUM] Profiler startup failed. Ensure your server includes the `Document-Policy: js-profiling` response header when serving HTML pages.',
           e
         )
         profilingContextManager.set({ status: 'error', error_reason: 'missing-document-policy-header' })

@@ -57,6 +57,7 @@ export function abstractHooks<T extends { [K in HookNames]: (...args: any[]) => 
       for (const callback of hookCallbacks) {
         const result = callback(param)
         if (result === DISCARDED) {
+          console.log(`🚫 [DD_RUM_DEBUG] HOOKS: Callback function:`, callback.toString()+ '...')
           return DISCARDED
         }
         if (result === SKIPPED) {

@@ -1,6 +1,6 @@
-import type { RawRumEvent } from '@datadog/browser-rum-core'
-import { RumEventType } from '@datadog/browser-rum-core'
-import type { RelativeTime } from '@datadog/browser-core'
+import type { RawRumEvent } from '@motadata365/browser-rum-core'
+import { RumEventType } from '@motadata365/browser-rum-core'
+import type { RelativeTime } from '@motadata365/browser-core'
 import { setLongTaskId } from './utils/longTaskRegistry'
 
 /**

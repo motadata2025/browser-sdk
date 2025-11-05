@@ -342,9 +342,9 @@ function isString(tag: unknown, tagName: string): tag is string | undefined | nu
   return true
 }
 
-function isDatadogSite(site: unknown) {
-  if (site && typeof site === 'string' && !/(datadog|ddog|datad0g|dd0g)/.test(site)) {
-    display.error(`Site should be a valid Datadog site. ${MORE_DETAILS} ${DOCS_ORIGIN}/getting_started/site/.`)
+function isValidSite(site: unknown) {
+  if (site !== undefined && site !== null && typeof site !== 'string') {
+    display.error('Site must be a non-null string')
     return false
   }
   return true
@@ -376,7 +376,7 @@ export function validateAndBuildConfiguration(
   }
 
   if (
-    !isDatadogSite(initConfiguration.site) ||
+    !isValidSite(initConfiguration.site) ||
     !isSampleRate(initConfiguration.sessionSampleRate, 'Session') ||
     !isSampleRate(initConfiguration.telemetrySampleRate, 'Telemetry') ||
     !isSampleRate(initConfiguration.telemetryConfigurationSampleRate, 'Telemetry Configuration') ||

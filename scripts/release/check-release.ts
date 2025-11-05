@@ -56,7 +56,7 @@ function checkPackageJsonVersion(packageJsonFile: PackageJsonFile): void {
     // The developer extension is a private package, but it should still have a version
     if (
       packageJsonFile.content.version &&
-      packageJsonFile.content.name !== '@datadog/browser-sdk-developer-extension'
+      packageJsonFile.content.name !== '@motadata365/browser-sdk-developer-extension'
     ) {
       throw new Error(`Private package ${packageJsonFile.relativePath} should not have a version`)
     }
@@ -92,5 +92,5 @@ function checkPackageDependencyVersions(packageJsonFile: PackageJsonFile): void 
 }
 
 function isBrowserSdkPackageName(name: string): boolean {
-  return name?.startsWith('@datadog/')
+  return name?.startsWith('@motadata365/')
 }

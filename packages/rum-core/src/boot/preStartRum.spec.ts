@@ -1,4 +1,4 @@
-import type { DeflateWorker, Duration, TimeStamp, TrackingConsentState } from '@datadog/browser-core'
+import type { DeflateWorker, Duration, TimeStamp, TrackingConsentState } from '@motadata365/browser-core'
 import {
   display,
   getTimeStamp,
@@ -10,15 +10,15 @@ import {
   DefaultPrivacyLevel,
   resetExperimentalFeatures,
   resetFetchObservable,
-} from '@datadog/browser-core'
-import type { Clock } from '@datadog/browser-core/test'
+} from '@motadata365/browser-core'
+import type { Clock } from '@motadata365/browser-core/test'
 import {
   callbackAddsInstrumentation,
   interceptRequests,
   mockClock,
   mockEventBridge,
   mockSyntheticsWorkerValues,
-} from '@datadog/browser-core/test'
+} from '@motadata365/browser-core/test'
 import type { HybridInitConfiguration, RumConfiguration, RumInitConfiguration } from '../domain/configuration'
 import type { ViewOptions } from '../domain/view/trackViews'
 import { ActionType, VitalType } from '../rawRumEvent.types'

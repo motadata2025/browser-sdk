@@ -1,5 +1,5 @@
-import type { BufferedData, RawError } from '@datadog/browser-core'
-import { ErrorSource, ErrorHandling, Observable, BufferedDataType, clocksNow } from '@datadog/browser-core'
+import type { BufferedData, RawError } from '@motadata365/browser-core'
+import { ErrorSource, ErrorHandling, Observable, BufferedDataType, clocksNow } from '@motadata365/browser-core'
 import { registerCleanupTask } from '../../../../core/test'
 import type { RawRuntimeLogsEvent } from '../../rawLogsEvent.types'
 import type { LogsConfiguration } from '../configuration'

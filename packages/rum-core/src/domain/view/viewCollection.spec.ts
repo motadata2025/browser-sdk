@@ -1,6 +1,6 @@
-import { DISCARDED, HookNames, Observable } from '@datadog/browser-core'
-import type { Duration, RelativeTime, ServerDuration, TimeStamp } from '@datadog/browser-core'
-import { mockClock, registerCleanupTask } from '@datadog/browser-core/test'
+import { DISCARDED, HookNames, Observable } from '@motadata365/browser-core'
+import type { Duration, RelativeTime, ServerDuration, TimeStamp } from '@motadata365/browser-core'
+import { mockClock, registerCleanupTask } from '@motadata365/browser-core/test'
 import type { RecorderApi } from '../../boot/rumPublicApi'
 import { collectAndValidateRawRumEvents, mockRumConfiguration, mockViewHistory, noopRecorderApi } from '../../../test'
 import type { RawRumEvent, RawRumViewEvent } from '../../rawRumEvent.types'
@@ -112,7 +112,7 @@ describe('viewCollection', () => {
 
     expect(rawRumEvents[rawRumEvents.length - 1].startTime).toBe(1234 as RelativeTime)
     expect(rawRumEvents[rawRumEvents.length - 1].rawRumEvent).toEqual({
-      _dd: {
+      _md: {
         document_version: 3,
         replay_stats: undefined,
         configuration: {
@@ -233,7 +233,7 @@ describe('viewCollection', () => {
       lifeCycle.notify(LifeCycleEventType.VIEW_UPDATED, VIEW)
 
       expect(
-        (rawRumEvents[rawRumEvents.length - 1].rawRumEvent as RawRumViewEvent)._dd.configuration
+        (rawRumEvents[rawRumEvents.length - 1].rawRumEvent as RawRumViewEvent)._md.configuration
           .start_session_replay_recording_manually
       ).toBe(false)
     })
@@ -244,7 +244,7 @@ describe('viewCollection', () => {
       lifeCycle.notify(LifeCycleEventType.VIEW_UPDATED, VIEW)
 
       expect(
-        (rawRumEvents[rawRumEvents.length - 1].rawRumEvent as RawRumViewEvent)._dd.configuration
+        (rawRumEvents[rawRumEvents.length - 1].rawRumEvent as RawRumViewEvent)._md.configuration
           .start_session_replay_recording_manually
       ).toBe(true)
     })

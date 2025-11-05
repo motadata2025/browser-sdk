@@ -4,12 +4,12 @@ import type {
   DeflateWorkerAction,
   RawTelemetryEvent,
   Telemetry,
-} from '@datadog/browser-core'
-import { BridgeCapability, display } from '@datadog/browser-core'
-import type { RecorderApi, RumSessionManager } from '@datadog/browser-rum-core'
-import { LifeCycle, LifeCycleEventType } from '@datadog/browser-rum-core'
-import type { MockTelemetry } from '@datadog/browser-core/test'
-import { collectAsyncCalls, mockEventBridge, registerCleanupTask, startMockTelemetry } from '@datadog/browser-core/test'
+} from '@motadata365/browser-core'
+import { BridgeCapability, display } from '@motadata365/browser-core'
+import type { RecorderApi, RumSessionManager } from '@motadata365/browser-rum-core'
+import { LifeCycle, LifeCycleEventType } from '@motadata365/browser-rum-core'
+import type { MockTelemetry } from '@motadata365/browser-core/test'
+import { collectAsyncCalls, mockEventBridge, registerCleanupTask, startMockTelemetry } from '@motadata365/browser-core/test'
 import type { RumSessionManagerMock } from '../../../rum-core/test'
 import {
   createRumSessionManagerMock,

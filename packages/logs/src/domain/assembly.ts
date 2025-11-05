@@ -1,4 +1,4 @@
-import type { Context, EventRateLimiter, RawError } from '@datadog/browser-core'
+import type { Context, EventRateLimiter, RawError } from '@motadata365/browser-core'
 import {
   DISCARDED,
   ErrorSource,
@@ -7,7 +7,7 @@ import {
   combine,
   createEventRateLimiter,
   getRelativeTime,
-} from '@datadog/browser-core'
+} from '@motadata365/browser-core'
 import type { CommonContext } from '../rawLogsEvent.types'
 import type { LogsEvent } from '../logsEvent.types'
 import type { LogsConfiguration } from './configuration'

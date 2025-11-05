@@ -1,8 +1,8 @@
 import { test, expect } from '@playwright/test'
-import type { RumPlugin, AllowedRawRumEvent } from '@datadog/browser-rum-core'
-import { ActionType, RumEventType } from '@datadog/browser-rum-core'
-import type { ServerDuration, TimeStamp } from '@datadog/browser-core'
-import { clocksNow, generateUUID } from '@datadog/browser-core'
+import type { RumPlugin, AllowedRawRumEvent } from '@motadata365/browser-rum-core'
+import { ActionType, RumEventType } from '@motadata365/browser-rum-core'
+import type { ServerDuration, TimeStamp } from '@motadata365/browser-core'
+import { clocksNow, generateUUID } from '@motadata365/browser-core'
 import { createTest } from '../lib/framework'
 
 declare global {
@@ -50,7 +50,7 @@ const mockPartialEvents: AllowedRawRumEvent[] = [
       entry_type: 'long-task',
       duration: 100 as ServerDuration,
     },
-    _dd: {
+    _md: {
       discarded: false,
     },
   },
@@ -66,7 +66,7 @@ const mockPartialEvents: AllowedRawRumEvent[] = [
       duration: 100 as ServerDuration,
       size: 100,
     },
-    _dd: {
+    _md: {
       discarded: false,
     },
   },

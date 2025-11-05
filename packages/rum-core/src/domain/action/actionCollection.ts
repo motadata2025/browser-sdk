@@ -1,5 +1,5 @@
-import type { ClocksState, Context, Observable } from '@datadog/browser-core'
-import { noop, combine, toServerDuration, generateUUID, SKIPPED, HookNames } from '@datadog/browser-core'
+import type { ClocksState, Context, Observable } from '@motadata365/browser-core'
+import { noop, combine, toServerDuration, generateUUID, SKIPPED, HookNames } from '@motadata365/browser-core'
 import { discardNegativeDuration } from '../discardNegativeDuration'
 import type { RawRumActionEvent } from '../../rawRumEvent.types'
 import { ActionType, RumEventType } from '../../rawRumEvent.types'
@@ -108,7 +108,7 @@ function processAction(action: AutoAction | CustomAction): RawRumEventCollectedD
             count: action.counts.resourceCount,
           },
         },
-        _dd: {
+        _md: {
           action: {
             target: action.target,
             position: action.position,

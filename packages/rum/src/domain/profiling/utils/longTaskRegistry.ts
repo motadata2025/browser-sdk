@@ -1,4 +1,4 @@
-import type { RelativeTime } from '@datadog/browser-core'
+import type { RelativeTime } from '@motadata365/browser-core'
 
 type PerformanceEntryStartTime = RelativeTime
 

@@ -1,4 +1,4 @@
-import { registerCleanupTask } from '@datadog/browser-core/test'
+import { registerCleanupTask } from '@motadata365/browser-core/test'
 import { createWindowOpenObservable } from './windowOpenObservable'
 
 describe('windowOpenObservable', () => {

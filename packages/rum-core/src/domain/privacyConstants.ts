@@ -1,4 +1,4 @@
-import { DefaultPrivacyLevel } from '@datadog/browser-core'
+import { DefaultPrivacyLevel } from '@motadata365/browser-core'
 
 export const NodePrivacyLevel = {
   IGNORE: 'ignore',

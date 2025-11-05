@@ -8,8 +8,8 @@ import {
   ErrorSource,
   generateUUID,
   NonErrorPrefix,
-} from '@datadog/browser-core'
-import { RumEventType } from '@datadog/browser-rum-core'
+} from '@motadata365/browser-core'
+import { RumEventType } from '@motadata365/browser-rum-core'
 import { onRumStart } from '../reactPlugin'
 
 /**
@@ -19,8 +19,8 @@ import { onRumStart } from '../reactPlugin'
  * @example
  * ```ts
  * import { createRoot } from 'react-dom/client'
- * import { datadogRum } from '@datadog/browser-rum'
- * import { addReactError } from '@datadog/browser-rum-react'
+ * import { motadataRum } from '@motadata365/browser-rum'
+ * import { addReactError } from '@motadata365/browser-rum-react'
  *
  * const container = document.getElementById('root')
  * const root = createRoot(container, {

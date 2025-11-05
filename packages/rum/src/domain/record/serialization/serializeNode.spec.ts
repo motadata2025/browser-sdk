@@ -1,6 +1,6 @@
-import { noop } from '@datadog/browser-core'
-import type { RumConfiguration, BrowserWindow } from '@datadog/browser-rum-core'
-import { isAdoptedStyleSheetsSupported, registerCleanupTask } from '@datadog/browser-core/test'
+import { noop } from '@motadata365/browser-core'
+import type { RumConfiguration, BrowserWindow } from '@motadata365/browser-rum-core'
+import { isAdoptedStyleSheetsSupported, registerCleanupTask } from '@motadata365/browser-core/test'
 import {
   NodePrivacyLevel,
   PRIVACY_ATTR_NAME,
@@ -10,7 +10,7 @@ import {
   PRIVACY_ATTR_VALUE_MASK_USER_INPUT,
   PRIVACY_ATTR_VALUE_MASK_UNLESS_ALLOWLISTED,
   isAllowlisted,
-} from '@datadog/browser-rum-core'
+} from '@motadata365/browser-rum-core'
 import type { ElementNode, SerializedNodeWithId } from '../../../types'
 import { NodeType } from '../../../types'
 import { appendElement } from '../../../../../rum-core/test'

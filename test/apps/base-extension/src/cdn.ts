@@ -1,6 +1,6 @@
-import type { RumInitConfiguration, RumPublicApi } from '@datadog/browser-rum-core'
-import type { LogsInitConfiguration, LogsGlobal } from '@datadog/browser-logs'
-import type { Context } from '@datadog/browser-core'
+import type { RumInitConfiguration, RumPublicApi } from '@motadata365/browser-rum-core'
+import type { LogsInitConfiguration, LogsGlobal } from '@motadata365/browser-logs'
+import type { Context } from '@motadata365/browser-core'
 
 declare global {
   interface Window {
@@ -10,15 +10,15 @@ declare global {
     RUM_CONTEXT?: Context
     EXT_LOGS_CONFIGURATION?: LogsInitConfiguration
     LOGS_CONTEXT?: Context
-    DD_RUM?: RumPublicApi
-    DD_LOGS?: LogsGlobal
+    MD_RUM?: RumPublicApi
+    MD_LOGS?: LogsGlobal
   }
 }
 
-function load<T extends 'DD_RUM' | 'DD_LOGS'>(
+function load<T extends 'MD_RUM' | 'MD_LOGS'>(
   sdk: T,
   url: string,
-  initConfig: T extends 'DD_RUM' ? RumInitConfiguration : LogsInitConfiguration,
+  initConfig: T extends 'MD_RUM' ? RumInitConfiguration : LogsInitConfiguration,
   globalContext?: Context
 ) {
   const script = document.createElement('script')
@@ -39,9 +39,9 @@ function load<T extends 'DD_RUM' | 'DD_LOGS'>(
 }
 
 if (window.RUM_BUNDLE_URL && window.EXT_RUM_CONFIGURATION) {
-  load('DD_RUM', window.RUM_BUNDLE_URL, window.EXT_RUM_CONFIGURATION, window.RUM_CONTEXT)
+  load('MD_RUM', window.RUM_BUNDLE_URL, window.EXT_RUM_CONFIGURATION, window.RUM_CONTEXT)
 }
 
 if (window.LOGS_BUNDLE_URL && window.EXT_LOGS_CONFIGURATION) {
-  load('DD_LOGS', window.LOGS_BUNDLE_URL, window.EXT_LOGS_CONFIGURATION, window.LOGS_CONTEXT)
+  load('MD_LOGS', window.LOGS_BUNDLE_URL, window.EXT_LOGS_CONFIGURATION, window.LOGS_CONTEXT)
 }

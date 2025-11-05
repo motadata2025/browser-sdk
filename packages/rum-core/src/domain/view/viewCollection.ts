@@ -1,5 +1,5 @@
-import type { Duration, ServerDuration, Observable } from '@datadog/browser-core'
-import { getTimeZone, DISCARDED, HookNames, isEmptyObject, mapValues, toServerDuration } from '@datadog/browser-core'
+import type { Duration, ServerDuration, Observable } from '@motadata365/browser-core'
+import { getTimeZone, DISCARDED, HookNames, isEmptyObject, mapValues, toServerDuration } from '@motadata365/browser-core'
 import { discardNegativeDuration } from '../discardNegativeDuration'
 import type { RecorderApi } from '../../boot/rumPublicApi'
 import type { RawRumViewEvent, ViewPerformanceData } from '../../rawRumEvent.types'
@@ -80,7 +80,7 @@ function processViewUpdate(
   const replayStats = recorderApi.getReplayStats(view.id)
   const clsDevicePixelRatio = view.commonViewMetrics?.cumulativeLayoutShift?.devicePixelRatio
   const viewEvent: RawRumViewEvent = {
-    _dd: {
+    _md: {
       document_version: view.documentVersion,
       replay_stats: replayStats,
       cls: clsDevicePixelRatio

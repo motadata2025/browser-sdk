@@ -1,3 +1,3 @@
 # `rum-core`
 
-Datadog browser RUM core utilities.
+Motadata browser RUM core utilities.

@@ -99,12 +99,12 @@ function uploadToDatadog(
         --service ${service}
         --release-version ${getBuildEnvValue('SDK_VERSION')}
         --minified-path-prefix ${prefix}
-        --project-path @datadog/browser-${packageName}/
+        --project-path @motadata365/browser-${packageName}/
         --repository-url https://www.github.com/datadog/browser-sdk
     `
       .withEnvironment({
         DATADOG_API_KEY: getTelemetryOrgApiKey(site),
-        DATADOG_SITE: site,
+        MOTADATA_SITE: site,
       })
       .run()
   }

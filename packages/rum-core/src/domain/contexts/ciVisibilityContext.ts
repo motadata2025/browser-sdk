@@ -1,5 +1,5 @@
-import { getInitCookie, HookNames, SKIPPED } from '@datadog/browser-core'
-import type { Configuration } from '@datadog/browser-core'
+import { getInitCookie, HookNames, SKIPPED } from '@motadata365/browser-core'
+import type { Configuration } from '@motadata365/browser-core'
 import { createCookieObservable } from '../../browser/cookieObservable'
 import { SessionType } from '../rumSessionManager'
 import type { DefaultRumEventAttributes, Hooks } from '../hooks'

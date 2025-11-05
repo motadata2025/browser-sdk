@@ -1,4 +1,4 @@
-import type { TrackingConsentState } from '@datadog/browser-core'
+import type { TrackingConsentState } from '@motadata365/browser-core'
 import {
   createBoundedBuffer,
   canUseEventBridge,
@@ -14,7 +14,7 @@ import {
   addTelemetryConfiguration,
   buildGlobalContextManager,
   buildUserContextManager,
-} from '@datadog/browser-core'
+} from '@motadata365/browser-core'
 import type { LogsConfiguration, LogsInitConfiguration } from '../domain/configuration'
 import { serializeLogsConfiguration, validateAndBuildLogsConfiguration } from '../domain/configuration'
 import type { CommonContext } from '../rawLogsEvent.types'
@@ -71,7 +71,7 @@ export function createPreStartStrategy(
       addTelemetryConfiguration(serializeLogsConfiguration(initConfiguration))
 
       if (cachedConfiguration) {
-        displayAlreadyInitializedError('DD_LOGS', initConfiguration)
+        displayAlreadyInitializedError('MD_LOGS', initConfiguration)
         return
       }
 

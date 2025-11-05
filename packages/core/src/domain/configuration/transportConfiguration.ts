@@ -1,5 +1,5 @@
 import type { Site } from '../intakeSites'
-import { INTAKE_SITE_US1, INTAKE_URL_PARAMETERS } from '../intakeSites'
+import { INTAKE_URL_PARAMETERS } from '../intakeSites'
 import type { InitConfiguration } from './configuration'
 import type { EndpointBuilder } from './endpointBuilder'
 import { createEndpointBuilder } from './endpointBuilder'
@@ -22,7 +22,7 @@ export interface ReplicaConfiguration {
 }
 
 export function computeTransportConfiguration(initConfiguration: InitConfiguration): TransportConfiguration {
-  const site = initConfiguration.site || INTAKE_SITE_US1
+  const site = initConfiguration.site || 'localhost'
   const source = validateSource(initConfiguration.source)
 
   const endpointBuilders = computeEndpointBuilders({ ...initConfiguration, site, source })
@@ -54,22 +54,10 @@ function computeEndpointBuilders(initConfiguration: InitConfiguration) {
 }
 
 function computeReplicaConfiguration(initConfiguration: InitConfiguration): ReplicaConfiguration | undefined {
-  if (!initConfiguration.replica) {
-    return
-  }
-
-  const replicaConfiguration: InitConfiguration = {
-    ...initConfiguration,
-    site: INTAKE_SITE_US1,
-    clientToken: initConfiguration.replica.clientToken,
-  }
-
-  return {
-    logsEndpointBuilder: createEndpointBuilder(replicaConfiguration, 'logs'),
-    rumEndpointBuilder: createEndpointBuilder(replicaConfiguration, 'rum', [
-      `application.id=${initConfiguration.replica.applicationId}`,
-    ]),
-  }
+  // Disable replica configuration for custom endpoints to avoid duplicate requests
+  // The replica feature was designed for Datadog's internal use and causes unwanted duplicates
+  // when using custom endpoints
+  return undefined
 }
 
 export function isIntakeUrl(url: string): boolean {

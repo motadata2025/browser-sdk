@@ -17,12 +17,12 @@
     "lib": ["ES2020", "DOM", "WebWorker"],
 
     "paths": {
-      "@datadog/browser-core": ["./packages/core/src"],
-      "@datadog/browser-rum-core": ["./packages/rum-core/src"],
-      "@datadog/browser-rum-react": ["./packages/rum-react/src/entries/main"],
-      "@datadog/browser-rum-react/react-router-v6": ["./packages/rum-react/src/entries/reactRouterV6"],
-      "@datadog/browser-rum-react/react-router-v7": ["./packages/rum-react/src/entries/reactRouterV7"],
-      "@datadog/browser-flagging": ["./packages/flagging/src/entries/main"]
+      "@motadata365/browser-core": ["./packages/core/src"],
+      "@motadata365/browser-rum-core": ["./packages/rum-core/src"],
+      "@motadata365/browser-rum-react": ["./packages/rum-react/src/entries/main"],
+      "@motadata365/browser-rum-react/react-router-v6": ["./packages/rum-react/src/entries/reactRouterV6"],
+      "@motadata365/browser-rum-react/react-router-v7": ["./packages/rum-react/src/entries/reactRouterV7"],
+      "@motadata365/browser-flagging": ["./packages/flagging/src/entries/main"]
     }
   }
 }

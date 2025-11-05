@@ -14,7 +14,7 @@ export async function reportToDatadog(
     body: JSON.stringify([
       {
         service: 'browser-sdk',
-        ddsource: 'browser-sdk',
+        mdsource: 'browser-sdk',
         env: 'ci',
         version: browserSdkVersion,
         commit: process.env.CI_COMMIT_SHORT_SHA,

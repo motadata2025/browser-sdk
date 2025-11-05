@@ -1,4 +1,4 @@
-import type { TrackingConsentState, BufferedObservable, BufferedData, PageMayExitEvent } from '@datadog/browser-core'
+import type { TrackingConsentState, BufferedObservable, BufferedData, PageMayExitEvent } from '@motadata365/browser-core'
 import {
   Observable,
   sendToExtension,
@@ -12,7 +12,7 @@ import {
   createIdentityEncoder,
   startUserContext,
   isWorkerEnvironment,
-} from '@datadog/browser-core'
+} from '@motadata365/browser-core'
 import { startLogsSessionManager, startLogsSessionManagerStub } from '../domain/logsSessionManager'
 import type { LogsConfiguration } from '../domain/configuration'
 import { startLogsAssembly } from '../domain/assembly'

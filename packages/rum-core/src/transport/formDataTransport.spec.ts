@@ -1,5 +1,5 @@
-import { createIdentityEncoder, DeflateEncoderStreamId as CoreDeflateEncoderStreamId } from '@datadog/browser-core'
-import { interceptRequests, readFormDataRequest } from '@datadog/browser-core/test'
+import { createIdentityEncoder, DeflateEncoderStreamId as CoreDeflateEncoderStreamId } from '@motadata365/browser-core'
+import { interceptRequests, readFormDataRequest } from '@motadata365/browser-core/test'
 import { LifeCycle } from '../domain/lifeCycle'
 import { mockRumConfiguration } from '../../test'
 import { createFormDataTransport } from './formDataTransport'

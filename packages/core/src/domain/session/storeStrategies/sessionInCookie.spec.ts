@@ -134,7 +134,7 @@ describe('session in cookie strategy', () => {
 
       const calls = cookieSetSpy.calls.all()
       const lastCall = calls[calls.length - 1]
-      expect(lastCall.args[0]).toMatch(/^_dd_s=id=123&c=1/)
+      expect(lastCall.args[0]).toMatch(/^_md_s=id=123&c=1/)
     })
 
     it('should not encode cookie options in the cookie value if the session is empty (deleting the cookie)', () => {
@@ -145,14 +145,14 @@ describe('session in cookie strategy', () => {
     })
 
     it('should return the correct session state from the cookies', () => {
-      spyOnProperty(document, 'cookie', 'get').and.returnValue('_dd_s=id=123&c=0;_dd_s=id=456&c=1;_dd_s=id=789&c=2')
+      spyOnProperty(document, 'cookie', 'get').and.returnValue('_md_s=id=123&c=0;_md_s=id=456&c=1;_md_s=id=789&c=2')
       const cookieStorageStrategy = setupCookieStrategy({ usePartitionedCrossSiteSessionCookie: true })
 
       expect(cookieStorageStrategy.retrieveSession()).toEqual({ id: '456' })
     })
 
     it('should return the session state from the first cookie if there is no match', () => {
-      spyOnProperty(document, 'cookie', 'get').and.returnValue('_dd_s=id=123&c=0;_dd_s=id=789&c=2')
+      spyOnProperty(document, 'cookie', 'get').and.returnValue('_md_s=id=123&c=0;_md_s=id=789&c=2')
       const cookieStorageStrategy = setupCookieStrategy({ usePartitionedCrossSiteSessionCookie: true })
 
       expect(cookieStorageStrategy.retrieveSession()).toEqual({ id: '123' })

@@ -1,6 +1,6 @@
-import { buildUrl } from '@datadog/browser-core'
-import { CENSORED_STRING_MARK, shouldMaskNode } from '@datadog/browser-rum-core'
-import type { NodePrivacyLevel } from '@datadog/browser-rum-core'
+import { buildUrl } from '@motadata365/browser-core'
+import { CENSORED_STRING_MARK, shouldMaskNode } from '@motadata365/browser-rum-core'
+import type { NodePrivacyLevel } from '@motadata365/browser-rum-core'
 
 /**
  * Get the element "value" to be serialized as an attribute or an input update record. It respects

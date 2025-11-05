@@ -26,7 +26,7 @@ runMain(async () => {
 function updateJsonPeerDependencies(content: string): string {
   const json = JSON.parse(content)
   Object.keys(json.peerDependencies || [])
-    .filter((key) => key.startsWith('@datadog'))
+    .filter((key) => key.startsWith('@motadata365'))
     .forEach((key) => {
       json.peerDependencies[key] = browserSdkVersion
     })

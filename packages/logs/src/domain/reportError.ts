@@ -1,5 +1,5 @@
-import type { RawError } from '@datadog/browser-core'
-import { ErrorSource, addTelemetryDebug } from '@datadog/browser-core'
+import type { RawError } from '@motadata365/browser-core'
+import { ErrorSource, addTelemetryDebug } from '@motadata365/browser-core'
 import type { LifeCycle } from './lifeCycle'
 import { LifeCycleEventType } from './lifeCycle'
 import { StatusType } from './logger/isAuthorized'

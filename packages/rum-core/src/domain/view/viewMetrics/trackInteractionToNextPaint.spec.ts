@@ -1,6 +1,6 @@
-import type { Duration, RelativeTime } from '@datadog/browser-core'
-import { elapsed, relativeNow, resetExperimentalFeatures } from '@datadog/browser-core'
-import { registerCleanupTask } from '@datadog/browser-core/test'
+import type { Duration, RelativeTime } from '@motadata365/browser-core'
+import { elapsed, relativeNow, resetExperimentalFeatures } from '@motadata365/browser-core'
+import { registerCleanupTask } from '@motadata365/browser-core/test'
 import {
   appendElement,
   appendText,

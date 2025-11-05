@@ -1,6 +1,6 @@
-import { mockClock, mockEventBridge } from '@datadog/browser-core/test'
-import { HookNames, timeStampNow } from '@datadog/browser-core'
-import type { RelativeTime } from '@datadog/browser-core'
+import { mockClock, mockEventBridge } from '@motadata365/browser-core/test'
+import { HookNames, timeStampNow } from '@motadata365/browser-core'
+import type { RelativeTime } from '@motadata365/browser-core'
 import { mockRumConfiguration } from '../../../test'
 import type { DefaultRumEventAttributes, DefaultTelemetryEventAttributes, Hooks } from '../hooks'
 import { createHooks } from '../hooks'
@@ -29,7 +29,7 @@ describe('startDefaultContext', () => {
         },
         date: timeStampNow(),
         source: 'browser',
-        _dd: jasmine.objectContaining({
+        _md: jasmine.objectContaining({
           format_version: 2,
           drift: jasmine.any(Number),
         }),
@@ -50,8 +50,8 @@ describe('startDefaultContext', () => {
         startTime: 0 as RelativeTime,
       }) as DefaultRumEventAttributes
 
-      expect(eventWithEventBridge._dd!.browser_sdk_version).toBeDefined()
-      expect(eventWithoutEventBridge._dd!.browser_sdk_version).toBeUndefined()
+      expect(eventWithEventBridge._md!.browser_sdk_version).toBeDefined()
+      expect(eventWithoutEventBridge._md!.browser_sdk_version).toBeUndefined()
     })
 
     it('should set the configured sample rates', () => {
@@ -62,10 +62,10 @@ describe('startDefaultContext', () => {
         startTime: 0 as RelativeTime,
       }) as DefaultRumEventAttributes
 
-      expect(event._dd!.configuration!.session_sample_rate).toBe(10)
-      expect(event._dd!.configuration!.session_replay_sample_rate).toBe(20)
-      expect(event._dd!.configuration!.profiling_sample_rate).toBe(0)
-      expect(event._dd!.sdk_name).toBe('rum')
+      expect(event._md!.configuration!.session_sample_rate).toBe(10)
+      expect(event._md!.configuration!.session_replay_sample_rate).toBe(20)
+      expect(event._md!.configuration!.profiling_sample_rate).toBe(0)
+      expect(event._md!.sdk_name).toBe('rum')
     })
   })
 

@@ -1,7 +1,7 @@
-import type { ClocksState, RelativeTime, TimeStamp } from '@datadog/browser-core'
-import { ErrorSource, HookNames, ONE_MINUTE, display, startGlobalContext } from '@datadog/browser-core'
-import type { Clock } from '@datadog/browser-core/test'
-import { registerCleanupTask, mockClock } from '@datadog/browser-core/test'
+import type { ClocksState, RelativeTime, TimeStamp } from '@motadata365/browser-core'
+import { ErrorSource, HookNames, ONE_MINUTE, display, startGlobalContext } from '@motadata365/browser-core'
+import type { Clock } from '@motadata365/browser-core/test'
+import { registerCleanupTask, mockClock } from '@motadata365/browser-core/test'
 import {
   createRumSessionManagerMock,
   createRawRumEvent,

@@ -1,7 +1,7 @@
-import type { Subscription } from '@datadog/browser-core'
-import { Observable, ONE_SECOND } from '@datadog/browser-core'
-import type { Clock } from '@datadog/browser-core/test'
-import { mockClock } from '@datadog/browser-core/test'
+import type { Subscription } from '@motadata365/browser-core'
+import { Observable, ONE_SECOND } from '@motadata365/browser-core'
+import type { Clock } from '@motadata365/browser-core/test'
+import { mockClock } from '@motadata365/browser-core/test'
 import {
   appendElement,
   createMutationRecord,

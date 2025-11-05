@@ -6,7 +6,7 @@ import type {
   TrackingConsentState,
   BufferedData,
   BufferedObservable,
-} from '@datadog/browser-core'
+} from '@motadata365/browser-core'
 import {
   sendToExtension,
   createPageMayExitObservable,
@@ -17,7 +17,7 @@ import {
   startAccountContext,
   startGlobalContext,
   startUserContext,
-} from '@datadog/browser-core'
+} from '@motadata365/browser-core'
 import type { RumMutationRecord } from '../browser/domMutationObservable'
 import { createDOMMutationObservable } from '../browser/domMutationObservable'
 import { createWindowOpenObservable } from '../browser/windowOpenObservable'

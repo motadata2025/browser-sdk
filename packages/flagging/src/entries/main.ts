@@ -1,9 +1,9 @@
-import { defineGlobal, getGlobalObject } from '@datadog/browser-core'
+import { defineGlobal, getGlobalObject } from '@motadata365/browser-core'
 import { flagging as importedFlagging } from '../hello'
 
-export const datadogFlagging = importedFlagging
+export const motadataFlagging = importedFlagging
 
 interface BrowserWindow extends Window {
-  DD_FLAGGING?: typeof datadogFlagging
+  MD_FLAGGING?: typeof motadataFlagging
 }
-defineGlobal(getGlobalObject<BrowserWindow>(), 'DD_FLAGGING', datadogFlagging)
+defineGlobal(getGlobalObject<BrowserWindow>(), 'MD_FLAGGING', motadataFlagging)

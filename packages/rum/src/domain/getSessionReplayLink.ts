@@ -1,5 +1,5 @@
-import type { RumConfiguration, RumSessionManager, ViewHistory, RumSession } from '@datadog/browser-rum-core'
-import { getSessionReplayUrl, SessionReplayState } from '@datadog/browser-rum-core'
+import type { RumConfiguration, RumSessionManager, ViewHistory, RumSession } from '@motadata365/browser-rum-core'
+import { getSessionReplayUrl, SessionReplayState } from '@motadata365/browser-rum-core'
 import { isBrowserSupported } from '../boot/isBrowserSupported'
 
 export function getSessionReplayLink(

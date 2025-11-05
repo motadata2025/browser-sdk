@@ -3,7 +3,7 @@ import { callMonitored } from '../../tools/monitor'
 import type { ExperimentalFeature } from '../../tools/experimentalFeatures'
 import { resetExperimentalFeatures, addExperimentalFeatures } from '../../tools/experimentalFeatures'
 import type { Configuration } from '../configuration'
-import { INTAKE_SITE_US1_FED, INTAKE_SITE_US1 } from '../intakeSites'
+
 import { setNavigatorOnLine, setNavigatorConnection, createHooks, waitNextMicrotask } from '../../../test'
 import type { Context } from '../../tools/serialisation/context'
 import { Observable } from '../../tools/observable'
@@ -413,8 +413,7 @@ describe('telemetry', () => {
 
   describe('excluded sites', () => {
     ;[
-      { site: INTAKE_SITE_US1_FED, enabled: false },
-      { site: INTAKE_SITE_US1, enabled: true },
+      { site: 'custom-site.com', enabled: true },
     ].forEach(({ site, enabled }) => {
       it(`should be ${enabled ? 'enabled' : 'disabled'} on ${site}`, async () => {
         const { getTelemetryEvents } = startAndSpyTelemetry({ site })
@@ -467,10 +466,10 @@ describe('formatError', () => {
 describe('scrubCustomerFrames', () => {
   it('should remove stack trace frames that are related to customer files', () => {
     ;[
-      { scrub: false, url: 'https://www.datadoghq-browser-agent.com/datadog-rum-v4.js' },
-      { scrub: false, url: 'https://www.datad0g-browser-agent.com/datadog-rum-v5.js' },
+      { scrub: false, url: 'https://www.datadoghq-browser-agent.com/motadata-rum-v4.js' },
+      { scrub: false, url: 'https://www.datad0g-browser-agent.com/motadata-rum-v5.js' },
       { scrub: false, url: 'https://d3uc069fcn7uxw.cloudfront.net/datadog-logs-staging.js' },
-      { scrub: false, url: 'https://d20xtzwzcl0ceb.cloudfront.net/datadog-rum-canary.js' },
+      { scrub: false, url: 'https://d20xtzwzcl0ceb.cloudfront.net/motadata-rum-canary.js' },
       { scrub: false, url: 'http://localhost/index.html' },
       { scrub: false, url: undefined },
       { scrub: false, url: '<anonymous>' },

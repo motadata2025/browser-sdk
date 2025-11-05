@@ -6,5 +6,5 @@ export default (_env: unknown, argv: { mode?: webpack.Configuration['mode'] }) =
   webpackBase({
     mode: argv.mode,
     entry: path.resolve(import.meta.dirname, 'src/entries/main.ts'),
-    filename: 'datadog-rum-slim.js',
+    filename: 'motadata-rum-slim.js',
   })

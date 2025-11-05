@@ -1,6 +1,6 @@
-import type { RawError, Subscription } from '@datadog/browser-core'
-import { ErrorHandling, ErrorSource, Observable, clocksNow } from '@datadog/browser-core'
-import type { MockCspEventListener, MockReportingObserver } from '@datadog/browser-core/test'
+import type { RawError, Subscription } from '@motadata365/browser-core'
+import { ErrorHandling, ErrorSource, Observable, clocksNow } from '@motadata365/browser-core'
+import type { MockCspEventListener, MockReportingObserver } from '@motadata365/browser-core/test'
 import {
   FAKE_CSP_VIOLATION_EVENT,
   FAKE_REPORT,
@@ -8,7 +8,7 @@ import {
   mockCspEventListener,
   mockReportingObserver,
   registerCleanupTask,
-} from '@datadog/browser-core/test'
+} from '@motadata365/browser-core/test'
 import { mockRumConfiguration } from '../../../test'
 import type { RumConfiguration } from '../configuration'
 import { trackReportError } from './trackReportError'

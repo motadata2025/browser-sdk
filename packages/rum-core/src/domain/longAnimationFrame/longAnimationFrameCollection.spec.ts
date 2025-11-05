@@ -1,5 +1,5 @@
-import { type RelativeTime, type ServerDuration } from '@datadog/browser-core'
-import { registerCleanupTask } from '@datadog/browser-core/test'
+import { type RelativeTime, type ServerDuration } from '@motadata365/browser-core'
+import { registerCleanupTask } from '@motadata365/browser-core/test'
 import {
   collectAndValidateRawRumEvents,
   createPerformanceEntry,
@@ -47,7 +47,7 @@ describe('long animation frames collection', () => {
         ],
       },
       type: RumEventType.LONG_TASK,
-      _dd: {
+      _md: {
         discarded: false,
       },
     })

@@ -1,4 +1,4 @@
-import { display } from '@datadog/browser-core'
+import { display } from '@motadata365/browser-core'
 import { onRumInit } from '../reactPlugin'
 import type { AnyRouteMatch } from './types'
 

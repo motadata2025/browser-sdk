@@ -1,4 +1,4 @@
-import type { RumPlugin, RumPublicApi, StartRumResult } from '@datadog/browser-rum-core'
+import type { RumPlugin, RumPublicApi, StartRumResult } from '@motadata365/browser-rum-core'
 
 let globalPublicApi: RumPublicApi | undefined
 let globalConfiguration: ReactPluginConfiguration | undefined
@@ -17,8 +17,8 @@ const onRumStartSubscribers: StartSubscriber[] = []
 export interface ReactPluginConfiguration {
   /**
    * Enable react-router integration. Make sure to use functions from
-   * {@link @datadog/browser-rum-react/react-router-v6! | @datadog/browser-rum-react/react-router-v6} or
-   * {@link @datadog/browser-rum-react/react-router-v7! | @datadog/browser-rum-react/react-router-v7}
+   * {@link @motadata365/browser-rum-react/react-router-v6! | @motadata365/browser-rum-react/react-router-v6} or
+   * {@link @motadata365/browser-rum-react/react-router-v7! | @motadata365/browser-rum-react/react-router-v7}
    * to create the router.
    * ```
    */
@@ -40,13 +40,13 @@ export type ReactPlugin = Required<RumPlugin>
  * @category Main
  * @example
  * ```ts
- * import { datadogRum } from '@datadog/browser-rum'
- * import { reactPlugin } from '@datadog/browser-rum-react'
+ * import { motadataRum } from '@motadata365/browser-rum'
+ * import { reactPlugin } from '@motadata365/browser-rum-react'
  *
- * datadogRum.init({
- *   applicationId: '<DATADOG_APPLICATION_ID>',
- *   clientToken: '<DATADOG_CLIENT_TOKEN>',
- *   site: '<DATADOG_SITE>',
+ * motadataRum.init({
+ *   applicationId: '<MOTADATA_APPLICATION_ID>',
+ *   clientToken: '<MOTADATA_CLIENT_TOKEN>',
+ *   site: '<MOTADATA_SITE>',
  *   plugins: [reactPlugin()],
  *   // ...
  * })

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Tabs, Text, Anchor } from '@mantine/core'
-import { datadogRum } from '@datadog/browser-rum'
+import { motadataRum } from '@motadata365/browser-rum'
 
 import { useEvents } from '../hooks/useEvents'
 import { useAutoFlushEvents } from '../hooks/useAutoFlushEvents'
@@ -30,7 +30,7 @@ export function Panel() {
   const [activeTab, setActiveTab] = useState<string | null>(DEFAULT_PANEL_TAB)
   function updateActiveTab(activeTab: string | null) {
     setActiveTab(activeTab)
-    datadogRum.startView(activeTab!)
+    motadataRum.startView(activeTab!)
   }
 
   return (

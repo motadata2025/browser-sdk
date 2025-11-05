@@ -1,4 +1,4 @@
-import type { ContextManager } from '@datadog/browser-core'
+import type { ContextManager } from '@motadata365/browser-core'
 import {
   objectEntries,
   shallowClone,
@@ -6,7 +6,7 @@ import {
   isMatchOption,
   matchList,
   TraceContextInjection,
-} from '@datadog/browser-core'
+} from '@motadata365/browser-core'
 import type { RumConfiguration } from '../configuration'
 import type {
   RumFetchResolveContext,

@@ -1,4 +1,4 @@
-import { isWorkerEnvironment } from '@datadog/browser-core'
+import { isWorkerEnvironment } from '@motadata365/browser-core'
 import type { CommonContext } from '../../rawLogsEvent.types'
 
 export function buildCommonContext(): CommonContext {

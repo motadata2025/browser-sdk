@@ -540,7 +540,7 @@ export interface CommonTelemetryProperties {
   /**
    * Internal properties
    */
-  _dd: {
+  _md: {
     /**
      * Version of the RUM event format
      */

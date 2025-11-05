@@ -1,14 +1,14 @@
 import { getInitCookie } from '../../browser/cookie'
 import { globalObject, isWorkerEnvironment } from '../../tools/globalObject'
 
-export const SYNTHETICS_TEST_ID_COOKIE_NAME = 'datadog-synthetics-public-id'
-export const SYNTHETICS_RESULT_ID_COOKIE_NAME = 'datadog-synthetics-result-id'
-export const SYNTHETICS_INJECTS_RUM_COOKIE_NAME = 'datadog-synthetics-injects-rum'
+export const SYNTHETICS_TEST_ID_COOKIE_NAME = 'motadata-synthetics-public-id'
+export const SYNTHETICS_RESULT_ID_COOKIE_NAME = 'motadata-synthetics-result-id'
+export const SYNTHETICS_INJECTS_RUM_COOKIE_NAME = 'motadata-synthetics-injects-rum'
 
 export interface BrowserWindow extends Window {
-  _DATADOG_SYNTHETICS_PUBLIC_ID?: unknown
-  _DATADOG_SYNTHETICS_RESULT_ID?: unknown
-  _DATADOG_SYNTHETICS_INJECTS_RUM?: unknown
+  _MOTADATA_SYNTHETICS_PUBLIC_ID?: unknown
+  _MOTADATA_SYNTHETICS_RESULT_ID?: unknown
+  _MOTADATA_SYNTHETICS_INJECTS_RUM?: unknown
 }
 
 export function willSyntheticsInjectRum(): boolean {
@@ -18,18 +18,18 @@ export function willSyntheticsInjectRum(): boolean {
   }
 
   return Boolean(
-    (globalObject as BrowserWindow)._DATADOG_SYNTHETICS_INJECTS_RUM || getInitCookie(SYNTHETICS_INJECTS_RUM_COOKIE_NAME)
+    (globalObject as BrowserWindow)._MOTADATA_SYNTHETICS_INJECTS_RUM || getInitCookie(SYNTHETICS_INJECTS_RUM_COOKIE_NAME)
   )
 }
 
 export function getSyntheticsTestId(): string | undefined {
-  const value = (window as BrowserWindow)._DATADOG_SYNTHETICS_PUBLIC_ID || getInitCookie(SYNTHETICS_TEST_ID_COOKIE_NAME)
+  const value = (window as BrowserWindow)._MOTADATA_SYNTHETICS_PUBLIC_ID || getInitCookie(SYNTHETICS_TEST_ID_COOKIE_NAME)
   return typeof value === 'string' ? value : undefined
 }
 
 export function getSyntheticsResultId(): string | undefined {
   const value =
-    (window as BrowserWindow)._DATADOG_SYNTHETICS_RESULT_ID || getInitCookie(SYNTHETICS_RESULT_ID_COOKIE_NAME)
+    (window as BrowserWindow)._MOTADATA_SYNTHETICS_RESULT_ID || getInitCookie(SYNTHETICS_RESULT_ID_COOKIE_NAME)
   return typeof value === 'string' ? value : undefined
 }
 

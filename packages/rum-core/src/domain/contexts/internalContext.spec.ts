@@ -1,5 +1,5 @@
-import { noop, type RelativeTime } from '@datadog/browser-core'
-import { buildLocation } from '@datadog/browser-core/test'
+import { noop, type RelativeTime } from '@motadata365/browser-core'
+import { buildLocation } from '@motadata365/browser-core/test'
 import { createRumSessionManagerMock } from '../../../test'
 import type { ActionContexts } from '../action/actionCollection'
 import type { RumSessionManager } from '../rumSessionManager'
@@ -33,6 +33,7 @@ describe('internal context', () => {
       findUrl: () => ({
         url: fakeLocation.href,
         referrer: document.referrer,
+        name: '/foo', // '/foo' doesn't contain numbers so it stays as is
       }),
       stop: noop,
     }

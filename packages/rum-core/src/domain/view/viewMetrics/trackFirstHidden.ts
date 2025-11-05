@@ -1,5 +1,5 @@
-import type { ClocksState, RelativeTime } from '@datadog/browser-core'
-import { addEventListeners, DOM_EVENT, noop } from '@datadog/browser-core'
+import type { ClocksState, RelativeTime } from '@motadata365/browser-core'
+import { addEventListeners, DOM_EVENT, noop } from '@motadata365/browser-core'
 import type { RumConfiguration } from '../../configuration'
 import { supportPerformanceTimingEvent, RumPerformanceEntryType } from '../../../browser/performanceObservable'
 

@@ -1,7 +1,7 @@
-import { ExperimentalFeature, SESSION_STORE_KEY } from '@datadog/browser-core'
+import { ExperimentalFeature, SESSION_STORE_KEY } from '@motadata365/browser-core'
 import type { BrowserContext, Page } from '@playwright/test'
 import { test, expect } from '@playwright/test'
-import type { RumPublicApi } from '@datadog/browser-rum-core'
+import type { RumPublicApi } from '@motadata365/browser-rum-core'
 import { bundleSetup, createTest } from '../lib/framework'
 
 const DISABLE_LOCAL_STORAGE = '<script>Object.defineProperty(Storage.prototype, "getItem", { get: () => 42});</script>'
@@ -22,8 +22,8 @@ test.describe('Session Stores', () => {
       .withRum()
       .run(async ({ browserContext, page }) => {
         const cookieSessionId = await getSessionIdFromCookie(browserContext)
-        const logsContext = await page.evaluate(() => window.DD_LOGS?.getInternalContext())
-        const rumContext = await page.evaluate(() => window.DD_RUM?.getInternalContext())
+        const logsContext = await page.evaluate(() => window.MD_LOGS?.getInternalContext())
+        const rumContext = await page.evaluate(() => window.MD_RUM?.getInternalContext())
 
         expect(logsContext?.session_id).toBe(cookieSessionId)
         expect(rumContext?.session_id).toBe(cookieSessionId)
@@ -34,8 +34,8 @@ test.describe('Session Stores', () => {
       .withRum()
       .withHead(DISABLE_COOKIES)
       .run(async ({ page }) => {
-        const logsContext = await page.evaluate(() => window.DD_LOGS?.getInternalContext())
-        const rumContext = await page.evaluate(() => window.DD_RUM?.getInternalContext())
+        const logsContext = await page.evaluate(() => window.MD_LOGS?.getInternalContext())
+        const rumContext = await page.evaluate(() => window.MD_RUM?.getInternalContext())
 
         expect(logsContext).not.toBeUndefined()
         expect(rumContext).toBeUndefined()
@@ -59,7 +59,7 @@ test.describe('Session Stores', () => {
         .withHostName(FULL_HOSTNAME)
         .withSetup(bundleSetup)
         .run(async ({ page, baseUrl, browserContext, flushEvents, intakeRegistry, servers }) => {
-          await injectSdkInAnIframe(page, `${servers.crossOrigin.origin}/datadog-rum.js`)
+          await injectSdkInAnIframe(page, `${servers.crossOrigin.origin}/motadata-rum.js`)
           await flushEvents()
 
           const cookies = await browserContext.cookies()
@@ -92,7 +92,7 @@ test.describe('Session Stores', () => {
         .withHostName(FULL_HOSTNAME)
         .withSetup(bundleSetup)
         .run(async ({ page, baseUrl, browserContext, flushEvents, intakeRegistry, servers }) => {
-          await injectSdkInAnIframe(page, `${servers.crossOrigin.origin}/datadog-rum.js`)
+          await injectSdkInAnIframe(page, `${servers.crossOrigin.origin}/motadata-rum.js`)
           await flushEvents()
 
           const cookies = await browserContext.cookies()
@@ -127,8 +127,8 @@ test.describe('Session Stores', () => {
           }
 
           const [rumInternalContext, logsInternalContext] = await page.evaluate(() => [
-            window.DD_RUM?.getInternalContext(),
-            window.DD_LOGS?.getInternalContext(),
+            window.MD_RUM?.getInternalContext(),
+            window.MD_LOGS?.getInternalContext(),
           ])
 
           expect(rumInternalContext).toBeDefined()
@@ -152,8 +152,8 @@ test.describe('Session Stores', () => {
           }
 
           const [rumInternalContext, logsInternalContext] = await page.evaluate(() => [
-            window.DD_RUM?.getInternalContext(),
-            window.DD_LOGS?.getInternalContext(),
+            window.MD_RUM?.getInternalContext(),
+            window.MD_LOGS?.getInternalContext(),
           ])
 
           expect(rumInternalContext).toBeDefined()
@@ -170,12 +170,12 @@ test.describe('Session Stores', () => {
             const iframeWindow = iframe.contentWindow!
 
             function onReady() {
-              ;(iframeWindow as { DD_RUM: RumPublicApi }).DD_RUM.init(window.DD_RUM!.getInitConfiguration()!)
+              ;(iframeWindow as { MD_RUM: RumPublicApi }).MD_RUM.init(window.MD_RUM!.getInitConfiguration()!)
               resolve()
             }
 
             // This is similar to async setup, but simpler
-            ;(iframeWindow as any).DD_RUM = { q: [onReady] }
+            ;(iframeWindow as any).MD_RUM = { q: [onReady] }
             const script = iframeWindow.document.createElement('script')
             script.async = true
             script.src = browserSdkUrl
@@ -193,8 +193,8 @@ test.describe('Session Stores', () => {
       .run(async ({ page }) => {
         const sessionId = await getSessionIdFromLocalStorage(page)
 
-        const logsContext = await page.evaluate(() => window.DD_LOGS?.getInternalContext())
-        const rumContext = await page.evaluate(() => window.DD_RUM?.getInternalContext())
+        const logsContext = await page.evaluate(() => window.MD_LOGS?.getInternalContext())
+        const rumContext = await page.evaluate(() => window.MD_RUM?.getInternalContext())
 
         expect(logsContext?.session_id).toBe(sessionId)
         expect(rumContext?.session_id).toBe(sessionId)
@@ -205,8 +205,8 @@ test.describe('Session Stores', () => {
       .withRum({ sessionPersistence: 'local-storage' })
       .withHead(DISABLE_LOCAL_STORAGE)
       .run(async ({ page }) => {
-        const logsContext = await page.evaluate(() => window.DD_LOGS?.getInternalContext())
-        const rumContext = await page.evaluate(() => window.DD_RUM?.getInternalContext())
+        const logsContext = await page.evaluate(() => window.MD_LOGS?.getInternalContext())
+        const rumContext = await page.evaluate(() => window.MD_RUM?.getInternalContext())
 
         expect(logsContext).not.toBeUndefined()
         expect(rumContext).toBeUndefined()
@@ -220,8 +220,8 @@ test.describe('Session Stores', () => {
     .run(async ({ page }) => {
       const sessionId = await getSessionIdFromLocalStorage(page)
 
-      const logsContext = await page.evaluate(() => window.DD_LOGS?.getInternalContext())
-      const rumContext = await page.evaluate(() => window.DD_RUM?.getInternalContext())
+      const logsContext = await page.evaluate(() => window.MD_LOGS?.getInternalContext())
+      const rumContext = await page.evaluate(() => window.MD_RUM?.getInternalContext())
 
       expect(logsContext?.session_id).toBe(sessionId)
       expect(rumContext?.session_id).toBe(sessionId)

@@ -1,5 +1,5 @@
-import { registerCleanupTask } from '@datadog/browser-core/test'
-import { objectValues } from '@datadog/browser-core'
+import { registerCleanupTask } from '@motadata365/browser-core/test'
+import { objectValues } from '@motadata365/browser-core'
 import { RumPerformanceEntryType, type RumPerformanceEntry } from '../../src/browser/performanceObservable'
 import { mockGlobalPerformanceBuffer } from './mockGlobalPerformanceBuffer'
 

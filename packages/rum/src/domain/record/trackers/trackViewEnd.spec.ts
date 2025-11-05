@@ -1,4 +1,4 @@
-import { LifeCycle, LifeCycleEventType } from '@datadog/browser-rum-core'
+import { LifeCycle, LifeCycleEventType } from '@motadata365/browser-rum-core'
 import { RecordType } from '../../../types'
 import type { ViewEndCallback } from './trackViewEnd'
 import { trackViewEnd } from './trackViewEnd'

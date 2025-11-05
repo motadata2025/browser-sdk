@@ -1,10 +1,10 @@
-import type { ViewportResizeData, ScrollData } from '@datadog/browser-rum/cjs/types'
-import { IncrementalSource } from '@datadog/browser-rum/cjs/types'
+import type { ViewportResizeData, ScrollData } from '@motadata365/browser-rum/cjs/types'
+import { IncrementalSource } from '@motadata365/browser-rum/cjs/types'
 
-import { findAllIncrementalSnapshots, findAllVisualViewports } from '@datadog/browser-rum/test/segments'
+import { findAllIncrementalSnapshots, findAllVisualViewports } from '@motadata365/browser-rum/test/segments'
 import type { Page } from '@playwright/test'
 import { test, expect } from '@playwright/test'
-import { wait } from '@datadog/browser-core/test/wait'
+import { wait } from '@motadata365/browser-core/test/wait'
 import type { IntakeRegistry } from '../../lib/framework'
 import { createTest, html } from '../../lib/framework'
 

@@ -1,13 +1,13 @@
-import type { Duration, Subscription } from '@datadog/browser-core'
-import type { Clock } from '@datadog/browser-core/test'
-import { mockClock } from '@datadog/browser-core/test'
+import type { Duration, Subscription } from '@motadata365/browser-core'
+import type { Clock } from '@motadata365/browser-core/test'
+import { mockClock } from '@motadata365/browser-core/test'
 import { createPerformanceEntry, mockPerformanceObserver, mockRumConfiguration } from '../../test'
 import { RumPerformanceEntryType, createPerformanceObservable } from './performanceObservable'
 
 describe('performanceObservable', () => {
   let performanceSubscription: Subscription | undefined
   const configuration = mockRumConfiguration()
-  const forbiddenUrl = 'https://forbidden.url/abce?ddsource=browser&dd-api-key=xxxx&dd-request-id=1234567890'
+  const forbiddenUrl = 'https://forbidden.url/abce?mdsource=browser&md-api-key=xxxx&md-request-id=1234567890'
   const allowedUrl = 'https://allowed.url'
   let observableCallback: jasmine.Spy
   let clock: Clock

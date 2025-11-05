@@ -78,8 +78,8 @@ test.describe('tracing', () => {
     })
     .run(async ({ intakeRegistry, flushEvents, page }) => {
       await page.evaluate(() => {
-        window.DD_RUM!.setUser({ id: 'p1745' })
-        window.DD_RUM!.setAccount({ id: 'c9wpq8xrvd9t' })
+        window.MD_RUM!.setUser({ id: 'p1745' })
+        window.MD_RUM!.setAccount({ id: 'c9wpq8xrvd9t' })
       })
       const rawHeaders = await page.evaluate(() =>
         window
@@ -127,8 +127,8 @@ test.describe('tracing', () => {
       (event) => event.resource.type === 'xhr' || event.resource.type === 'fetch'
     )
     expect(requests).toHaveLength(1)
-    expect(requests[0]._dd.trace_id).toMatch(/\d+/)
-    expect(requests[0]._dd.span_id).toMatch(/\d+/)
+    expect(requests[0]._md.trace_id).toMatch(/\d+/)
+    expect(requests[0]._md.span_id).toMatch(/\d+/)
     expect(requests[0].resource.id).toBeDefined()
   }
 })

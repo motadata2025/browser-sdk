@@ -1,5 +1,5 @@
-import type { RelativeTime } from '@datadog/browser-core'
-import { DOM_EVENT, ONE_MINUTE, addEventListeners, findLast } from '@datadog/browser-core'
+import type { RelativeTime } from '@motadata365/browser-core'
+import { DOM_EVENT, ONE_MINUTE, addEventListeners, findLast } from '@motadata365/browser-core'
 import type { RumConfiguration } from '../../configuration'
 import { createPerformanceObservable, RumPerformanceEntryType } from '../../../browser/performanceObservable'
 import type { RumLargestContentfulPaintTiming } from '../../../browser/performanceObservable'

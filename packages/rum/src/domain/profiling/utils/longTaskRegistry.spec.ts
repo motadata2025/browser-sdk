@@ -1,4 +1,4 @@
-import { clocksNow, type RelativeTime } from '@datadog/browser-core'
+import { clocksNow, type RelativeTime } from '@motadata365/browser-core'
 import { cleanupLongTaskRegistryAfterCollection, getLongTaskId, setLongTaskId } from './longTaskRegistry'
 
 describe('longTaskRegistry', () => {

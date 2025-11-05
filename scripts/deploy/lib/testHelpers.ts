@@ -90,6 +90,6 @@ function rebuildStringTemplate(template: TemplateStringsArray, ...values: any[])
 export function replaceChunkHashes(commandDetail: CommandDetail): CommandDetail {
   return {
     ...commandDetail,
-    command: commandDetail.command.replace(/-[a-f0-9]+-datadog-rum/g, `-${FAKE_CHUNK_HASH}-datadog-rum`),
+    command: commandDetail.command.replace(/-[a-f0-9]+-motadata-rum/g, `-${FAKE_CHUNK_HASH}-motadata-rum`),
   }
 }

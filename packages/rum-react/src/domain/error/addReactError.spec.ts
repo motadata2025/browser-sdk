@@ -1,5 +1,5 @@
-import { RumEventType } from '@datadog/browser-rum-core'
-import { computeStackTrace, toStackTraceString } from '@datadog/browser-core'
+import { RumEventType } from '@motadata365/browser-rum-core'
+import { computeStackTrace, toStackTraceString } from '@motadata365/browser-core'
 import { initializeReactPlugin } from '../../../test/initializeReactPlugin'
 import { addReactError } from './addReactError'
 

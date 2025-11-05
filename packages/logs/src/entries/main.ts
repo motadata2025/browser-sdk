@@ -7,7 +7,7 @@
  * @see [Browser Log Collection](https://docs.datadoghq.com/logs/log_collection/javascript/)
  */
 
-import { defineGlobal, getGlobalObject } from '@datadog/browser-core'
+import { defineGlobal, getGlobalObject } from '@motadata365/browser-core'
 import type { LogsPublicApi } from '../boot/logsPublicApi'
 import { makeLogsPublicApi } from '../boot/logsPublicApi'
 import { startLogs } from '../boot/startLogs'
@@ -16,7 +16,7 @@ export type { InternalContext } from '../domain/contexts/internalContext'
 export type { LogsMessage } from '../domain/logger'
 export { Logger, HandlerType } from '../domain/logger'
 export { StatusType } from '../domain/logger/isAuthorized'
-export type { LoggerConfiguration, LogsPublicApi as DatadogLogs } from '../boot/logsPublicApi'
+export type { LoggerConfiguration, LogsPublicApi as DotadataLogs } from '../boot/logsPublicApi'
 export type { LogsInitConfiguration } from '../domain/configuration'
 export type { LogsEvent } from '../logsEvent.types'
 export type {
@@ -27,7 +27,7 @@ export type {
 } from '../domainContext.types'
 
 /**
- * @deprecated Use {@link DatadogLogs} instead
+ * @deprecated Use {@link motadataLogs} instead
  */
 export type LogsGlobal = LogsPublicApi
 
@@ -48,18 +48,18 @@ export type {
   ConsoleApiName,
   RawReportType,
   ErrorSource,
-} from '@datadog/browser-core'
+} from '@motadata365/browser-core'
 
 /**
  * The global Logs instance. Use this to call Logs methods.
  *
  * @category Main
- * @see {@link DatadogLogs}
+ * @see {@link MotadataLogs}
  * @see [Browser Log Collection](https://docs.datadoghq.com/logs/log_collection/javascript/)
  */
-export const datadogLogs = makeLogsPublicApi(startLogs)
+export const motadataLogs = makeLogsPublicApi(startLogs)
 
 interface BrowserWindow extends Window {
-  DD_LOGS?: LogsPublicApi
+  MD_LOGS?: LogsPublicApi
 }
-defineGlobal(getGlobalObject<BrowserWindow>(), 'DD_LOGS', datadogLogs)
+defineGlobal(getGlobalObject<BrowserWindow>(), 'MD_LOGS', motadataLogs)

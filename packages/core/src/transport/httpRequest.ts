@@ -3,6 +3,7 @@ import type { Context } from '../tools/serialisation/context'
 import { monitor, monitorError } from '../tools/monitor'
 import type { RawError } from '../domain/error/error.types'
 import { Observable } from '../tools/observable'
+import { getDetailedBrowserName } from '../tools/utils/browserDetection'
 import { newRetryState, sendWithRetryStrategy } from './sendWithRetryStrategy'
 
 /**
@@ -60,6 +61,12 @@ export interface Payload {
 export interface RetryInfo {
   count: number
   lastFailureStatus: number
+}
+
+let currentSite: string | undefined
+
+export function setCurrentSite(site: string | undefined) {
+  currentSite = site
 }
 
 export function createHttpRequest<Body extends Payload = Payload>(
@@ -133,10 +140,18 @@ export function fetchKeepAliveStrategy(
 
   if (canUseKeepAlive) {
     const fetchUrl = endpointBuilder.build('fetch-keepalive', payload)
+    const headers = buildRequestHeaders(fetchUrl)
 
-    fetch(fetchUrl, { method: 'POST', body: payload.data, keepalive: true, mode: 'cors' })
-      .then(monitor((response: Response) => onResponse?.({ status: response.status, type: response.type })))
-      .catch(monitor(() => fetchStrategy(endpointBuilder, payload, onResponse)))
+    fetch(fetchUrl, { method: 'POST', body: payload.data, keepalive: true, mode: 'cors', headers })
+      .then(monitor((response: Response) => {
+        console.log('[DD_DEBUG] fetch-keepalive succeeded:', response.status);
+        onResponse?.({ status: response.status, type: response.type })
+      }))
+      .catch(monitor((error) => {
+        console.log('[DD_DEBUG] fetch-keepalive failed, falling back to fetch:', error);
+        fetchStrategy(endpointBuilder, payload, onResponse)
+        onResponse?.({ status: 0 })
+      }))
   } else {
     fetchStrategy(endpointBuilder, payload, onResponse)
   }
@@ -148,8 +163,9 @@ export function fetchStrategy(
   onResponse?: (r: HttpResponse) => void
 ) {
   const fetchUrl = endpointBuilder.build('fetch', payload)
+  const headers = buildRequestHeaders(fetchUrl)
 
-  fetch(fetchUrl, { method: 'POST', body: payload.data, mode: 'cors' })
+  fetch(fetchUrl, { method: 'POST', body: payload.data, mode: 'cors', headers })
     .then(monitor((response: Response) => onResponse?.({ status: response.status, type: response.type })))
     .catch(monitor(() => onResponse?.({ status: 0 })))
 }
@@ -161,4 +177,16 @@ function isKeepAliveSupported() {
   } catch {
     return false
   }
+}
+
+function buildRequestHeaders(url?: string): HeadersInit {
+  const headers: HeadersInit = {}
+
+  // dynamically match your RUM SDK endpoint host
+  // "site" comes from init() call, so this automatically adjusts
+  if (currentSite && url ) {
+    headers['X-Browser-Name'] = getDetailedBrowserName()
+  }
+
+  return headers
 }

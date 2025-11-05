@@ -1,5 +1,5 @@
-import type { Duration, RelativeTime } from '@datadog/browser-core'
-import { elapsed } from '@datadog/browser-core'
+import type { Duration, RelativeTime } from '@motadata365/browser-core'
+import { elapsed } from '@motadata365/browser-core'
 import { isElementNode } from '../../../browser/htmlDomUtils'
 import type { RumConfiguration } from '../../configuration'
 import { createPerformanceObservable, RumPerformanceEntryType } from '../../../browser/performanceObservable'

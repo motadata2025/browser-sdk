@@ -1,5 +1,5 @@
-import type { RelativeTime, ClocksState, Context } from '@datadog/browser-core'
-import { SESSION_TIME_OUT_DELAY, createValueHistory } from '@datadog/browser-core'
+import type { RelativeTime, ClocksState, Context } from '@motadata365/browser-core'
+import { SESSION_TIME_OUT_DELAY, createValueHistory } from '@motadata365/browser-core'
 import type { LifeCycle } from '../lifeCycle'
 import { LifeCycleEventType } from '../lifeCycle'
 import type { BeforeViewUpdateEvent, ViewCreatedEvent } from '../view/trackViews'

@@ -4,8 +4,8 @@ import connectBusboy from 'connect-busboy'
 import express from 'express'
 
 import cors from 'cors'
-import type { BrowserSegmentMetadataAndSegmentSizes } from '@datadog/browser-rum/src/domain/segmentCollection'
-import type { BrowserSegment } from '@datadog/browser-rum/src/types'
+import type { BrowserSegmentMetadataAndSegmentSizes } from '@motadata365/browser-rum/src/domain/segmentCollection'
+import type { BrowserSegment } from '@motadata365/browser-rum/src/types'
 import type {
   IntakeRegistry,
   IntakeRequest,
@@ -45,13 +45,13 @@ export function createIntakeServerApp(intakeRegistry: IntakeRegistry) {
 }
 
 function computeIntakeRequestInfos(req: express.Request): IntakeRequestInfos {
-  const ddforward = req.query.ddforward as string | undefined
-  if (!ddforward) {
-    throw new Error('ddforward is missing')
+  const mdforward = req.query.mdforward as string | undefined
+  if (!mdforward) {
+    throw new Error('mdforward is missing')
   }
-  const { pathname, searchParams } = new URL(ddforward, 'https://example.org')
+  const { pathname, searchParams } = new URL(mdforward, 'https://example.org')
 
-  const encoding = req.headers['content-encoding'] || searchParams.get('dd-evp-encoding')
+  const encoding = req.headers['content-encoding'] || searchParams.get('md-evp-encoding')
 
   if (req.query.bridge === 'true') {
     const eventType = req.query.event_type
@@ -160,9 +160,9 @@ function readReplayIntakeRequest(
 
 function forwardIntakeRequestToDatadog(req: express.Request): Promise<any> {
   return new Promise((resolve, reject) => {
-    const ddforward = req.query.ddforward! as string
-    if (!/^\/api\/v2\//.test(ddforward)) {
-      throw new Error(`Unsupported ddforward: ${ddforward}`)
+    const mdforward = req.query.mdforward! as string
+    if (!/^\/api\/v2\//.test(mdforward)) {
+      throw new Error(`Unsupported mdforward: ${mdforward}`)
     }
     const options = {
       method: 'POST',
@@ -172,7 +172,7 @@ function forwardIntakeRequestToDatadog(req: express.Request): Promise<any> {
         'User-Agent': req.headers['user-agent'],
       },
     }
-    const datadogIntakeRequest = https.request(new URL(ddforward, 'https://browser-intake-datadoghq.com'), options)
+    const datadogIntakeRequest = https.request(new URL(mdforward, 'https://browser-intake-datadoghq.com'), options)
     req.pipe(datadogIntakeRequest)
     datadogIntakeRequest.on('response', resolve)
     datadogIntakeRequest.on('error', reject)

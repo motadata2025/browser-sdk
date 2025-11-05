@@ -1,18 +1,18 @@
 import { Link, Outlet, RouterProvider, useParams } from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom/client'
-import { datadogRum } from '@datadog/browser-rum'
-import { createBrowserRouter } from '@datadog/browser-rum-react/react-router-v7'
-import { reactPlugin, ErrorBoundary, UNSTABLE_ReactComponentTracker } from '@datadog/browser-rum-react'
-import { datadogFlagging } from '@datadog/browser-flagging'
+import { motadataRum } from '@motadata365/browser-rum'
+import { createBrowserRouter } from '@motadata365/browser-rum-react/react-router-v7'
+import { reactPlugin, ErrorBoundary, UNSTABLE_ReactComponentTracker } from '@motadata365/browser-rum-react'
+import { motadataFlagging } from '@motadata365/browser-flagging'
 
-datadogRum.init({
+motadataRum.init({
   applicationId: 'xxx',
   clientToken: 'xxx',
   plugins: [reactPlugin({ router: true })],
 })
 
-datadogFlagging.init({})
+motadataFlagging.init({})
 
 const router = createBrowserRouter(
   [

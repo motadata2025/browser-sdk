@@ -1,5 +1,5 @@
-import type { Context, ClocksState, Observable, BufferedData } from '@datadog/browser-core'
-import { noop, ErrorSource, BufferedDataType } from '@datadog/browser-core'
+import type { Context, ClocksState, Observable, BufferedData } from '@motadata365/browser-core'
+import { noop, ErrorSource, BufferedDataType } from '@motadata365/browser-core'
 import type { LogsConfiguration } from '../configuration'
 import type { LifeCycle } from '../lifeCycle'
 import { LifeCycleEventType } from '../lifeCycle'

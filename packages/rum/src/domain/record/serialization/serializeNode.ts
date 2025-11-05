@@ -8,7 +8,7 @@ import {
   NodePrivacyLevel,
   PRIVACY_ATTR_NAME,
   PRIVACY_ATTR_VALUE_HIDDEN,
-} from '@datadog/browser-rum-core'
+} from '@motadata365/browser-rum-core'
 import type {
   DocumentFragmentNode,
   DocumentNode,

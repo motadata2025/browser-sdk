@@ -5,8 +5,8 @@ import {
   CENSORED_IMG_MARK,
   STABLE_ATTRIBUTES,
   sanitizeIfLongDataUrl,
-} from '@datadog/browser-rum-core'
-import type { RumConfiguration } from '@datadog/browser-rum-core'
+} from '@motadata365/browser-rum-core'
+import type { RumConfiguration } from '@motadata365/browser-rum-core'
 import { censoredImageForSize } from './serializationUtils'
 
 // TODO: temporarily bump the Session Replay limit to 1Mb for dataUrls

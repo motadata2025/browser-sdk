@@ -1,6 +1,6 @@
-import { HookNames, SKIPPED } from '@datadog/browser-core'
-import type { Hooks, ProfilingInternalContextSchema } from '@datadog/browser-rum-core'
-import { RumEventType } from '@datadog/browser-rum-core'
+import { HookNames, SKIPPED } from '@motadata365/browser-core'
+import type { Hooks, ProfilingInternalContextSchema } from '@motadata365/browser-rum-core'
+import { RumEventType } from '@motadata365/browser-rum-core'
 
 export interface ProfilingContextManager {
   set: (next: ProfilingInternalContextSchema) => void
@@ -21,7 +21,7 @@ export const startProfilingContext = (hooks: Hooks): ProfilingContextManager => 
 
     return {
       type: eventType,
-      _dd: {
+      _md: {
         profiling: currentContext,
       },
     }

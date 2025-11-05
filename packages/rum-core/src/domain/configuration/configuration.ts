@@ -1,4 +1,4 @@
-import type { Configuration, InitConfiguration, MatchOption, RawTelemetryConfiguration } from '@datadog/browser-core'
+import type { Configuration, InitConfiguration, MatchOption, RawTelemetryConfiguration } from '@motadata365/browser-core'
 import {
   getType,
   isMatchOption,
@@ -11,7 +11,8 @@ import {
   isSampleRate,
   isNumber,
   isNonEmptyArray,
-} from '@datadog/browser-core'
+  setCurrentSite,
+} from '@motadata365/browser-core'
 import type { RumEventDomainContext } from '../../domainContext.types'
 import type { RumEvent } from '../../rumEvent.types'
 import type { RumPlugin } from '../plugins'
@@ -26,21 +27,21 @@ export const DEFAULT_PROPAGATOR_TYPES: PropagatorType[] = ['tracecontext', 'data
  * @category Main
  * @example NPM
  * ```ts
- * import { datadogRum } from '@datadog/browser-rum'
+ * import { motadataRum } from '@motadata365/browser-rum'
  *
- * datadogRum.init({
- *   applicationId: '<DATADOG_APPLICATION_ID>',
- *   clientToken: '<DATADOG_CLIENT_TOKEN>',
- *   site: '<DATADOG_SITE>',
+ * motadataRum.init({
+ *   applicationId: '<MOTADATA_APPLICATION_ID>',
+ *   clientToken: '<MOTADATA_CLIENT_TOKEN>',
+ *   site: '<MOTADATA_SITE>',
  *   // ...
  * })
  * ```
  * @example CDN
  * ```ts
- * DD_RUM.init({
- *   applicationId: '<DATADOG_APPLICATION_ID>',
- *   clientToken: '<DATADOG_CLIENT_TOKEN>',
- *   site: '<DATADOG_SITE>',
+ * MD_RUM.init({
+ *   applicationId: '<MOTADATA_APPLICATION_ID>',
+ *   clientToken: '<MOTADATA_CLIENT_TOKEN>',
+ *   site: '<MOTADATA_SITE>',
  *   ...
  * })
  * ```
@@ -85,7 +86,7 @@ export interface RumInitConfiguration extends InitConfiguration {
   excludedActivityUrls?: MatchOption[] | undefined
 
   /**
-   * URL pointing to the Datadog Browser SDK Worker JavaScript file. The URL can be relative or absolute, but is required to have the same origin as the web application.
+   * URL pointing to the Motadata Browser SDK Worker JavaScript file. The URL can be relative or absolute, but is required to have the same origin as the web application.
    * See [Content Security Policy guidelines](https://docs.datadoghq.com/integrations/content_security_policy_logs/?tab=firefox#use-csp-with-real-user-monitoring-and-session-replay) for further information.
    *
    * @category Transport
@@ -166,7 +167,7 @@ export interface RumInitConfiguration extends InitConfiguration {
    *
    * @category Session Replay
    */
-  sessionReplaySampleRate?: number | undefined
+  sessionReplaySampleRate?: 0 // | undefined
 
   /**
    * If the session is sampled for Session Replay, only start the recording when `startSessionReplayRecording()` is called, instead of at the beginning of the session. Default: if startSessionReplayRecording is 0, true; otherwise, false.
@@ -352,8 +353,8 @@ export function validateAndBuildRumConfiguration(
     return
   }
 
-  const sessionReplaySampleRate = initConfiguration.sessionReplaySampleRate ?? 0
-
+  const sessionReplaySampleRate = 0 // initConfiguration.sessionReplaySampleRate ?? 0
+  setCurrentSite(initConfiguration.site)
   return {
     applicationId: initConfiguration.applicationId,
     actionNameAttribute: initConfiguration.actionNameAttribute,

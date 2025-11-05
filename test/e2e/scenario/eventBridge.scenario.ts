@@ -70,7 +70,7 @@ test.describe('bridge present', () => {
             throw new window.Error('bar')
           },
         }
-        window.DD_LOGS!.logger.log('hop', context as any)
+        window.MD_LOGS!.logger.log('hop', context as any)
       })
 
       await flushEvents()
@@ -84,7 +84,7 @@ test.describe('bridge present', () => {
     .withEventBridge()
     .run(async ({ flushEvents, intakeRegistry, page }) => {
       await page.evaluate(() => {
-        window.DD_LOGS!.logger.log('hello')
+        window.MD_LOGS!.logger.log('hello')
       })
       await flushEvents()
 
@@ -111,7 +111,7 @@ test.describe('bridge present', () => {
 
       const preStopRecordsCount = intakeRegistry.replayRecords.length
       await page.evaluate(() => {
-        window.DD_RUM!.stopSessionReplayRecording()
+        window.MD_RUM!.stopSessionReplayRecording()
 
         // trigger a new record
         document.body.appendChild(document.createElement('li'))

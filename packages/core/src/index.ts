@@ -68,6 +68,7 @@ export {
   BridgeCapability,
   createBatch,
   createFlushController,
+  setCurrentSite
 } from './transport'
 export * from './tools/display'
 export type { Encoder, EncoderResult } from './tools/encoder'

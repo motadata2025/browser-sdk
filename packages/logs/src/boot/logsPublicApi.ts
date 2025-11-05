@@ -1,4 +1,4 @@
-import type { TrackingConsent, PublicApi, ContextManager, Account, Context, User } from '@datadog/browser-core'
+import type { TrackingConsent, PublicApi, ContextManager, Account, Context, User } from '@motadata365/browser-core'
 import {
   ContextManagerMethod,
   CustomerContextKey,
@@ -12,7 +12,7 @@ import {
   defineContextMethod,
   startBufferingData,
   callMonitored,
-} from '@datadog/browser-core'
+} from '@motadata365/browser-core'
 import type { LogsInitConfiguration } from '../domain/configuration'
 import type { HandlerType } from '../domain/logger'
 import type { StatusType } from '../domain/logger/isAuthorized'
@@ -217,7 +217,7 @@ export interface LogsPublicApi extends PublicApi {
   clearAccount: () => void
 
   /**
-   * The Datadog browser logs SDK contains a default logger `DD_LOGS.logger`, but this API allows to create different ones.
+   * The Datadog browser logs SDK contains a default logger `MD_LOGS.logger`, but this API allows to create different ones.
    *
    * See [Define multiple loggers](https://docs.datadoghq.com/logs/log_collection/javascript/#define-multiple-loggers) for further information.
    *
@@ -396,7 +396,7 @@ export function makeLogsPublicApi(startLogsImpl: StartLogs): LogsPublicApi {
 function createPostStartStrategy(initConfiguration: LogsInitConfiguration, startLogsResult: StartLogsResult): Strategy {
   return {
     init: (initConfiguration: LogsInitConfiguration) => {
-      displayAlreadyInitializedError('DD_LOGS', initConfiguration)
+      displayAlreadyInitializedError('MD_LOGS', initConfiguration)
     },
     initConfiguration,
     ...startLogsResult,

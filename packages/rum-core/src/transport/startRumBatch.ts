@@ -1,5 +1,5 @@
-import type { Observable, RawError, PageMayExitEvent, Encoder } from '@datadog/browser-core'
-import { createBatch, createFlushController, createHttpRequest, DeflateEncoderStreamId } from '@datadog/browser-core'
+import type { Observable, RawError, PageMayExitEvent, Encoder } from '@motadata365/browser-core'
+import { createBatch, createFlushController, createHttpRequest, DeflateEncoderStreamId } from '@motadata365/browser-core'
 import type { RumConfiguration } from '../domain/configuration'
 import type { LifeCycle } from '../domain/lifeCycle'
 import { LifeCycleEventType } from '../domain/lifeCycle'

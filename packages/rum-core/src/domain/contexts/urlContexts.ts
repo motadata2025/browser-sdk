@@ -1,5 +1,5 @@
-import type { RelativeTime, Observable } from '@datadog/browser-core'
-import { SESSION_TIME_OUT_DELAY, relativeNow, createValueHistory, HookNames, DISCARDED } from '@datadog/browser-core'
+import type { RelativeTime, Observable } from '@motadata365/browser-core'
+import { SESSION_TIME_OUT_DELAY, relativeNow, createValueHistory, HookNames, DISCARDED, getPathName } from '@motadata365/browser-core'
 import type { LocationChange } from '../../browser/locationChangeObservable'
 import type { LifeCycle } from '../lifeCycle'
 import { LifeCycleEventType } from '../lifeCycle'
@@ -13,9 +13,34 @@ import type { DefaultRumEventAttributes, Hooks } from '../hooks'
 
 export const URL_CONTEXT_TIME_OUT_DELAY = SESSION_TIME_OUT_DELAY
 
+// Regex to match path segments that contain numbers (mixed alphanumerics)
+// This is the same regex used in SimpleUrlGroupingProcessor.java
+const PATH_MIXED_ALPHANUMERICS = /\/(?![vV]\d{1,2}\/)([^/\d?]*\d+[^/?]*)/g
+
+/**
+ * Transforms a URL pathname by replacing numeric path segments with '?' symbols.
+ * This helps group similar URLs together in analytics.
+ *
+ * @param pathname - The pathname to transform
+ * @returns The transformed pathname with numeric segments replaced by '?'
+ *
+ * @example
+ * transformPathName('/layer1/layer2') // => '/?/?'
+ * transformPathName('/layer/layer2/dashboard') // => '/layer/?/dashboard'
+ */
+function transformPathName(pathname: string): string {
+  if (!pathname) {
+    return '/'
+  }
+
+  // Replace all the mixed alphanumerics with a ?
+  return pathname.replace(PATH_MIXED_ALPHANUMERICS, '/?')
+}
+
 export interface UrlContext {
   url: string
   referrer: string
+  name: string
 }
 
 export interface UrlContexts {
@@ -68,6 +93,7 @@ export function startUrlContexts(
     return {
       url,
       referrer,
+      name: transformPathName(getPathName(url)),
     }
   }
 
@@ -83,6 +109,7 @@ export function startUrlContexts(
       view: {
         url: urlContext.url,
         referrer: urlContext.referrer,
+        name: urlContext.name,
       },
     }
   })

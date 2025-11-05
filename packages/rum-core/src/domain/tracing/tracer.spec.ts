@@ -1,5 +1,5 @@
-import type { ContextManager, ContextValue } from '@datadog/browser-core'
-import { display, objectEntries, TraceContextInjection } from '@datadog/browser-core'
+import type { ContextManager, ContextValue } from '@motadata365/browser-core'
+import { display, objectEntries, TraceContextInjection } from '@motadata365/browser-core'
 import type { RumSessionManagerMock } from '../../../test'
 import { createRumSessionManagerMock } from '../../../test'
 import type { RumFetchResolveContext, RumFetchStartContext, RumXhrStartContext } from '../requestCollection'

@@ -1,5 +1,5 @@
-import type { Context, Duration, PageMayExitEvent, RawError, RelativeTime } from '@datadog/browser-core'
-import { AbstractLifeCycle } from '@datadog/browser-core'
+import type { Context, Duration, PageMayExitEvent, RawError, RelativeTime } from '@motadata365/browser-core'
+import { AbstractLifeCycle } from '@motadata365/browser-core'
 import type { RumEventDomainContext } from '../domainContext.types'
 import type { RawRumEvent, AssembledRumEvent } from '../rawRumEvent.types'
 import type { RequestCompleteEvent, RequestStartEvent } from './requestCollection'

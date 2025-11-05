@@ -1,4 +1,4 @@
-import type { RawError, Duration, RelativeTime, BufferedData } from '@datadog/browser-core'
+import type { RawError, Duration, RelativeTime, BufferedData } from '@motadata365/browser-core'
 import {
   Observable,
   stopSessionManager,
@@ -11,15 +11,15 @@ import {
   createTrackingConsentState,
   TrackingConsent,
   BufferedObservable,
-} from '@datadog/browser-core'
-import type { Clock } from '@datadog/browser-core/test'
+} from '@motadata365/browser-core'
+import type { Clock } from '@motadata365/browser-core/test'
 import {
   createNewEvent,
   interceptRequests,
   mockClock,
   mockEventBridge,
   registerCleanupTask,
-} from '@datadog/browser-core/test'
+} from '@motadata365/browser-core/test'
 import type { RumSessionManagerMock } from '../../test'
 import {
   createPerformanceEntry,
@@ -405,6 +405,6 @@ describe('view events', () => {
       lastRumEvents,
       (serverRumEvent): serverRumEvent is RumViewEvent => serverRumEvent.type === RumEventType.VIEW
     )!
-    expect(lastRumViewEvent._dd.sdk_name).toBe('rum')
+    expect(lastRumViewEvent._md.sdk_name).toBe('rum')
   })
 })

@@ -1,4 +1,4 @@
-import type { Duration, ClocksState, RelativeTime, TimeStamp, ValueHistory } from '@datadog/browser-core'
+import type { Duration, ClocksState, RelativeTime, TimeStamp, ValueHistory } from '@motadata365/browser-core'
 import {
   timeStampNow,
   Observable,
@@ -9,7 +9,7 @@ import {
   elapsed,
   createValueHistory,
   PageExitReason,
-} from '@datadog/browser-core'
+} from '@motadata365/browser-core'
 import type { FrustrationType } from '../../rawRumEvent.types'
 import { ActionType } from '../../rawRumEvent.types'
 import type { LifeCycle } from '../lifeCycle'

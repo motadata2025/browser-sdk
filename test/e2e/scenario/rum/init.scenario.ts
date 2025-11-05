@@ -1,4 +1,4 @@
-import type { Context } from '@datadog/browser-core'
+import type { Context } from '@motadata365/browser-core'
 import { test, expect } from '@playwright/test'
 import type { IntakeRegistry } from '../../lib/framework'
 import { createTest } from '../../lib/framework'
@@ -7,12 +7,12 @@ test.describe('API calls and events around init', () => {
   createTest('should display a console log when calling init without configuration')
     .withRum()
     .withRumInit(() => {
-      ;(window.DD_RUM! as unknown as { init(): void }).init()
+      ;(window.MD_RUM! as unknown as { init(): void }).init()
     })
     .run(({ withBrowserLogs }) => {
       withBrowserLogs((logs) => {
         expect(logs).toHaveLength(1)
-        expect(logs[0].message).toEqual(expect.stringContaining('Datadog Browser SDK'))
+        expect(logs[0].message).toEqual(expect.stringContaining('Motadata Browser SDK'))
         expect(logs[0].message).toEqual(expect.stringContaining('Missing configuration'))
       })
     })
@@ -21,19 +21,19 @@ test.describe('API calls and events around init', () => {
     .withRum()
     .withRumSlim()
     .withRumInit((configuration) => {
-      window.DD_RUM!.addError('before manual view')
-      window.DD_RUM!.addAction('before manual view')
-      window.DD_RUM!.addTiming('before manual view')
+      window.MD_RUM!.addError('before manual view')
+      window.MD_RUM!.addAction('before manual view')
+      window.MD_RUM!.addTiming('before manual view')
 
-      setTimeout(() => window.DD_RUM!.startView('manual view'), 10)
+      setTimeout(() => window.MD_RUM!.startView('manual view'), 10)
 
       setTimeout(() => {
-        window.DD_RUM!.addError('after manual view')
-        window.DD_RUM!.addAction('after manual view')
-        window.DD_RUM!.addTiming('after manual view')
+        window.MD_RUM!.addError('after manual view')
+        window.MD_RUM!.addAction('after manual view')
+        window.MD_RUM!.addTiming('after manual view')
       }, 20)
 
-      setTimeout(() => window.DD_RUM!.init(configuration), 30)
+      setTimeout(() => window.MD_RUM!.init(configuration), 30)
     })
     .run(async ({ intakeRegistry, flushEvents }) => {
       await flushEvents()
@@ -70,24 +70,24 @@ test.describe('API calls and events around init', () => {
     .withRum({ trackViewsManually: true })
     .withRumSlim()
     .withRumInit((configuration) => {
-      window.DD_RUM!.addError('before init')
-      window.DD_RUM!.addAction('before init')
-      window.DD_RUM!.addTiming('before init')
+      window.MD_RUM!.addError('before init')
+      window.MD_RUM!.addAction('before init')
+      window.MD_RUM!.addTiming('before init')
 
-      setTimeout(() => window.DD_RUM!.init(configuration), 10)
+      setTimeout(() => window.MD_RUM!.init(configuration), 10)
       setTimeout(() => {
-        window.DD_RUM!.addError('before manual view')
-        window.DD_RUM!.addAction('before manual view')
-        window.DD_RUM!.addTiming('before manual view')
+        window.MD_RUM!.addError('before manual view')
+        window.MD_RUM!.addAction('before manual view')
+        window.MD_RUM!.addTiming('before manual view')
       }, 20)
 
-      setTimeout(() => window.DD_RUM!.startView('manual view'), 30)
+      setTimeout(() => window.MD_RUM!.startView('manual view'), 30)
 
       setTimeout(() => {
-        window.DD_RUM!.addError('after manual view')
-        window.DD_RUM!.addAction('after manual view')
-        window.DD_RUM!.addTiming('after manual view')
-        window.DD_RUM!.setViewName('after manual view')
+        window.MD_RUM!.addError('after manual view')
+        window.MD_RUM!.addAction('after manual view')
+        window.MD_RUM!.addTiming('after manual view')
+        window.MD_RUM!.setViewName('after manual view')
       }, 40)
     })
     .run(async ({ intakeRegistry, flushEvents }) => {
@@ -123,19 +123,19 @@ test.describe('API calls and events around init', () => {
     .withRum()
     .withRumSlim()
     .withRumInit((configuration) => {
-      window.DD_RUM!.init(configuration)
-      window.DD_RUM!.setViewContext({ foo: 'bar' })
-      window.DD_RUM!.setViewContextProperty('bar', 'foo')
+      window.MD_RUM!.init(configuration)
+      window.MD_RUM!.setViewContext({ foo: 'bar' })
+      window.MD_RUM!.setViewContextProperty('bar', 'foo')
 
       // context should populate the context of the children events
-      window.DD_RUM!.addAction('custom action')
-      window.DD_RUM!.addError('custom error')
+      window.MD_RUM!.addAction('custom action')
+      window.MD_RUM!.addError('custom error')
 
       // context should not populate the context of the next view
-      setTimeout(() => window.DD_RUM!.startView('manual view'), 10)
+      setTimeout(() => window.MD_RUM!.startView('manual view'), 10)
       setTimeout(() => {
-        window.DD_RUM!.addAction('after manual view')
-        window.DD_RUM!.addError('after manual view')
+        window.MD_RUM!.addAction('after manual view')
+        window.MD_RUM!.addError('after manual view')
       }, 20)
     })
     .run(async ({ intakeRegistry, flushEvents }) => {
@@ -176,11 +176,11 @@ test.describe('API calls and events around init', () => {
   createTest('get the view context')
     .withRum()
     .withRumInit((configuration) => {
-      window.DD_RUM!.init(configuration)
-      window.DD_RUM!.setViewContext({ foo: 'bar' })
+      window.MD_RUM!.init(configuration)
+      window.MD_RUM!.setViewContext({ foo: 'bar' })
     })
     .run(async ({ page }) => {
-      const viewContext = await page.evaluate(() => window.DD_RUM?.getViewContext())
+      const viewContext = await page.evaluate(() => window.MD_RUM?.getViewContext())
       expect(viewContext).toEqual({ foo: 'bar' })
     })
 })
@@ -212,9 +212,9 @@ test.describe('beforeSend', () => {
     })
     .withRumSlim()
     .withRumInit((configuration) => {
-      window.DD_RUM!.init(configuration)
-      window.DD_RUM!.setGlobalContextProperty('foo', 'baz')
-      window.DD_RUM!.setGlobalContextProperty('zig', 'zag')
+      window.MD_RUM!.init(configuration)
+      window.MD_RUM!.setGlobalContextProperty('foo', 'baz')
+      window.MD_RUM!.setGlobalContextProperty('zig', 'zag')
     })
     .run(async ({ intakeRegistry, flushEvents }) => {
       await flushEvents()
@@ -231,7 +231,7 @@ test.describe('allowedTrackingOrigins', () => {
     .withRum()
     .withRumInit((configuration) => {
       const currentOrigin = window.location.origin
-      window.DD_RUM!.init({
+      window.MD_RUM!.init({
         ...configuration,
         allowedTrackingOrigins: [currentOrigin],
       })
@@ -247,7 +247,7 @@ test.describe('allowedTrackingOrigins', () => {
     .withRumInit((configuration) => {
       const currentOrigin = window.location.origin
       const escapedOrigin = currentOrigin.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-      window.DD_RUM!.init({
+      window.MD_RUM!.init({
         ...configuration,
         allowedTrackingOrigins: [new RegExp(`^${escapedOrigin}$`)],
       })
@@ -262,7 +262,7 @@ test.describe('allowedTrackingOrigins', () => {
     .withRum()
     .withRumInit((configuration) => {
       const currentOrigin = window.location.origin
-      window.DD_RUM!.init({
+      window.MD_RUM!.init({
         ...configuration,
         allowedTrackingOrigins: [(origin: string) => origin === currentOrigin],
       })
@@ -284,7 +284,7 @@ test.describe('allowedTrackingOrigins', () => {
   createTest('should warn when allowedTrackingOrigins does not match current domain')
     .withRum()
     .withRumInit((configuration) => {
-      window.DD_RUM!.init({
+      window.MD_RUM!.init({
         ...configuration,
         allowedTrackingOrigins: ['https://different-domain.com'],
       })
@@ -307,8 +307,8 @@ test.describe('Synthetics Browser Test', () => {
   createTest('ignores init() call if Synthetics will inject its own instance of RUM')
     .withRum()
     .withRumInit((configuration) => {
-      ;(window as any)._DATADOG_SYNTHETICS_INJECTS_RUM = true
-      window.DD_RUM!.init(configuration)
+      ;(window as any)._MOTADATA_SYNTHETICS_INJECTS_RUM = true
+      window.MD_RUM!.init(configuration)
     })
     .run(async ({ intakeRegistry, flushEvents }) => {
       await flushEvents()

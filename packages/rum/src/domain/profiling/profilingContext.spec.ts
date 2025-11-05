@@ -1,6 +1,6 @@
-import { RumEventType, createHooks } from '@datadog/browser-rum-core'
-import type { RelativeTime } from '@datadog/browser-core'
-import { HookNames } from '@datadog/browser-core'
+import { RumEventType, createHooks } from '@motadata365/browser-rum-core'
+import type { RelativeTime } from '@motadata365/browser-core'
+import { HookNames } from '@motadata365/browser-core'
 import { startProfilingContext } from './profilingContext'
 
 const relativeTime: RelativeTime = 1000 as RelativeTime
@@ -20,7 +20,7 @@ describe('Profiling Context', () => {
 
       expect(eventAttributes).toEqual(
         jasmine.objectContaining({
-          _dd: {
+          _md: {
             profiling: { status: 'running' },
           },
         })

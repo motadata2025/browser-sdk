@@ -1,4 +1,4 @@
-import type { EndpointBuilder, InitConfiguration } from '@datadog/browser-core'
+import type { EndpointBuilder, InitConfiguration } from '@motadata365/browser-core'
 import { computeTransportConfiguration } from '../../../../../../packages/core/src/domain/configuration'
 import { copy } from '../../../copy'
 import type { SdkInfos } from '../../../hooks/useSdkInfos'
@@ -90,5 +90,5 @@ export function getIntakeUrlForEvent(sdkInfos: SdkInfos, event: SdkEvent) {
 
   return builder
     .build('manual', { data: 'a', bytesCount: 1 })
-    .replace(/dd-evp-origin-version=[^&]+/g, `dd-evp-origin-version=${encodeURIComponent(version)}`)
+    .replace(/md-evp-origin-version=[^&]+/g, `md-evp-origin-version=${encodeURIComponent(version)}`)
 }

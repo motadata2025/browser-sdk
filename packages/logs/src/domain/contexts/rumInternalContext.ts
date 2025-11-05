@@ -1,5 +1,5 @@
-import type { RelativeTime, RumInternalContext } from '@datadog/browser-core'
-import { globalObject, willSyntheticsInjectRum, HookNames, SKIPPED } from '@datadog/browser-core'
+import type { RelativeTime, RumInternalContext } from '@motadata365/browser-core'
+import { globalObject, willSyntheticsInjectRum, HookNames, SKIPPED } from '@motadata365/browser-core'
 import type { Hooks } from '../hooks'
 
 interface Rum {
@@ -7,7 +7,7 @@ interface Rum {
 }
 
 interface BrowserWindow {
-  DD_RUM?: Rum
+  MD_RUM?: Rum
   DD_RUM_SYNTHETICS?: Rum
 }
 
@@ -39,7 +39,7 @@ export function startRUMInternalContext(hooks: Hooks) {
 
   function getRUMInternalContext(startTime?: RelativeTime) {
     const willSyntheticsInjectRumResult = willSyntheticsInjectRum()
-    const rumSource = willSyntheticsInjectRumResult ? browserWindow.DD_RUM_SYNTHETICS : browserWindow.DD_RUM
+    const rumSource = willSyntheticsInjectRumResult ? browserWindow.DD_RUM_SYNTHETICS : browserWindow.MD_RUM
     const rumContext = getInternalContextFromRumGlobal(startTime, rumSource)
 
     if (rumContext) {

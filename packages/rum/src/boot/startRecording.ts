@@ -1,7 +1,7 @@
-import type { RawError, HttpRequest, DeflateEncoder, Telemetry } from '@datadog/browser-core'
-import { createHttpRequest, addTelemetryDebug, canUseEventBridge } from '@datadog/browser-core'
-import type { LifeCycle, ViewHistory, RumConfiguration, RumSessionManager } from '@datadog/browser-rum-core'
-import { LifeCycleEventType } from '@datadog/browser-rum-core'
+import type { RawError, HttpRequest, DeflateEncoder, Telemetry } from '@motadata365/browser-core'
+import { createHttpRequest, addTelemetryDebug, canUseEventBridge } from '@motadata365/browser-core'
+import type { LifeCycle, ViewHistory, RumConfiguration, RumSessionManager } from '@motadata365/browser-rum-core'
+import { LifeCycleEventType } from '@motadata365/browser-rum-core'
 
 import type { SerializationStats } from '../domain/record'
 import { record } from '../domain/record'

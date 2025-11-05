@@ -44,7 +44,7 @@ function retrievePackageDependencies(packageJsonFile: { content: any }): string[
       }
       return dependency
     })
-    .filter((dependency) => !dependency.includes('@datadog'))
+    .filter((dependency) => !dependency.includes('@motadata365'))
 }
 
 function withoutDuplicates<T>(a: T[]): T[] {

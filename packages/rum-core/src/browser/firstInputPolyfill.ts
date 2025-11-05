@@ -1,5 +1,5 @@
-import type { Duration, RelativeTime } from '@datadog/browser-core'
-import { addEventListeners, dateNow, DOM_EVENT, relativeNow } from '@datadog/browser-core'
+import type { Duration, RelativeTime } from '@motadata365/browser-core'
+import { addEventListeners, dateNow, DOM_EVENT, relativeNow } from '@motadata365/browser-core'
 import type { RumConfiguration } from '../domain/configuration'
 
 /**

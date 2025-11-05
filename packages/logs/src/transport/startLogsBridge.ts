@@ -1,5 +1,5 @@
-import type { Context } from '@datadog/browser-core'
-import { getEventBridge } from '@datadog/browser-core'
+import type { Context } from '@motadata365/browser-core'
+import { getEventBridge } from '@motadata365/browser-core'
 import type { LifeCycle } from '../domain/lifeCycle'
 import { LifeCycleEventType } from '../domain/lifeCycle'
 import type { LogsEvent } from '../logsEvent.types'

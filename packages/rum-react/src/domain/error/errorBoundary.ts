@@ -29,7 +29,7 @@ const INITIAL_STATE: State = { didCatch: false, error: null }
  * @category Error
  * @example
  * ```ts
- * import { ErrorBoundary } from '@datadog/browser-rum-react'
+ * import { ErrorBoundary } from '@motadata365/browser-rum-react'
  *
  * <ErrorBoundary fallback={() => null}>
  *   <Component />

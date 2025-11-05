@@ -5,13 +5,13 @@ test.describe('user, account and global context', () => {
   createTest('should be included in all rum events')
     .withRum()
     .withRumInit((configuration) => {
-      window.DD_RUM!.setUser({ id: '123', name: 'user' })
-      window.DD_RUM!.setAccount({ id: '123', name: 'account' })
-      window.DD_RUM!.setGlobalContext({ foo: 'bar' })
+      window.MD_RUM!.setUser({ id: '123', name: 'user' })
+      window.MD_RUM!.setAccount({ id: '123', name: 'account' })
+      window.MD_RUM!.setGlobalContext({ foo: 'bar' })
 
-      window.DD_RUM!.init(configuration)
-      window.DD_RUM!.addAction('foo')
-      window.DD_RUM!.addDurationVital('foo', {
+      window.MD_RUM!.init(configuration)
+      window.MD_RUM!.addAction('foo')
+      window.MD_RUM!.addDurationVital('foo', {
         startTime: Date.now(),
         duration: 100,
       })
@@ -31,12 +31,12 @@ test.describe('user, account and global context', () => {
   createTest('should be included in all logs')
     .withLogs()
     .withLogsInit((configuration) => {
-      window.DD_LOGS!.setUser({ id: '123', name: 'user' })
-      window.DD_LOGS!.setAccount({ id: '123', name: 'account' })
-      window.DD_LOGS!.setGlobalContext({ foo: 'bar' })
+      window.MD_LOGS!.setUser({ id: '123', name: 'user' })
+      window.MD_LOGS!.setAccount({ id: '123', name: 'account' })
+      window.MD_LOGS!.setGlobalContext({ foo: 'bar' })
 
-      window.DD_LOGS!.init(configuration)
-      window.DD_LOGS!.logger.log('hello')
+      window.MD_LOGS!.init(configuration)
+      window.MD_LOGS!.logger.log('hello')
       console.log('hello')
     })
     .run(async ({ intakeRegistry, flushEvents }) => {

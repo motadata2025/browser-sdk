@@ -87,11 +87,11 @@ function AddFieldColumn({
     () =>
       Array.from(facetRegistry.getAllFieldPaths()).sort((a, b) => {
         // Sort private fields last
-        if (a.startsWith('_dd') !== b.startsWith('_dd')) {
-          if (a.startsWith('_dd')) {
+        if (a.startsWith('_md') !== b.startsWith('_md')) {
+          if (a.startsWith('_md')) {
             return 1
           }
-          if (b.startsWith('_dd')) {
+          if (b.startsWith('_md')) {
             return -1
           }
         }

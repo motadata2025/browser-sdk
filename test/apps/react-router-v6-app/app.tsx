@@ -1,13 +1,13 @@
-import { createBrowserRouter } from '@datadog/browser-rum-react/react-router-v6'
+import { createBrowserRouter } from '@motadata365/browser-rum-react/react-router-v6'
 import { RouterProvider, Link, useParams, Outlet } from 'react-router-dom'
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom/client'
-import { datadogRum } from '@datadog/browser-rum'
+import { motadataRum } from '@motadata365/browser-rum'
 import {
   reactPlugin,
   UNSTABLE_ReactComponentTracker as ReactComponentTracker,
   ErrorBoundary,
-} from '@datadog/browser-rum-react'
+} from '@motadata365/browser-rum-react'
 
 declare global {
   interface Window {
@@ -16,9 +16,9 @@ declare global {
   }
 }
 
-datadogRum.init({ ...window.RUM_CONFIGURATION, plugins: [reactPlugin({ router: true })] })
+motadataRum.init({ ...window.RUM_CONFIGURATION, plugins: [reactPlugin({ router: true })] })
 if (window.RUM_CONTEXT) {
-  datadogRum.setGlobalContext(window.RUM_CONTEXT)
+  motadataRum.setGlobalContext(window.RUM_CONTEXT)
 }
 
 function HomePage() {

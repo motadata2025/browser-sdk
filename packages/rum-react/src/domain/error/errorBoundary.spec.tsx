@@ -1,7 +1,7 @@
 import React, { act } from 'react'
 
-import { toStackTraceString, computeStackTrace } from '@datadog/browser-core'
-import { RumEventType } from '@datadog/browser-rum-core'
+import { toStackTraceString, computeStackTrace } from '@motadata365/browser-core'
+import { RumEventType } from '@motadata365/browser-rum-core'
 import { disableJasmineUncaughtExceptionTracking, ignoreConsoleLogs } from '../../../../core/test'
 import { appendComponent } from '../../../test/appendComponent'
 import { initializeReactPlugin } from '../../../test/initializeReactPlugin'

@@ -1,6 +1,6 @@
 {
-  "name": "@datadog/browser-sdk-developer-extension",
-  "version": "6.22.0",
+  "name": "@motadata365/browser-sdk-developer-extension",
+  "version": "6.21.7",
   "private": true,
   "scripts": {
     "build": "rm -rf dist && webpack --disable-interpret --mode production",
@@ -25,11 +25,11 @@
     "webpack-dev-server": "^5.0.4"
   },
   "dependencies": {
-    "@datadog/browser-core": "workspace:*",
-    "@datadog/browser-logs": "workspace:*",
-    "@datadog/browser-rum": "workspace:*",
     "@mantine/core": "8.3.2",
     "@mantine/hooks": "8.3.2",
+    "@motadata365/browser-core": "workspace:*",
+    "@motadata365/browser-logs": "workspace:*",
+    "@motadata365/browser-rum": "workspace:*",
     "@tabler/icons-react": "3.35.0",
     "clsx": "2.1.1",
     "react": "19.1.1",

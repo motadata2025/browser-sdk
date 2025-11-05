@@ -1,18 +1,16 @@
-import type { ClocksState } from '@datadog/browser-core'
-import type { RumConfiguration, RumSession } from '@datadog/browser-rum-core'
+import type { ClocksState } from '@motadata365/browser-core'
+import type { RumConfiguration, RumSession } from '@motadata365/browser-rum-core'
 
 import { getSessionReplayUrl, getDatadogSiteUrl } from './getSessionReplayUrl'
 
 describe('getDatadogSiteUrl', () => {
   const parameters: Array<[string, string | undefined, string]> = [
-    ['datadoghq.com', undefined, 'app.datadoghq.com'],
-    ['datadoghq.com', 'toto', 'toto.datadoghq.com'],
-    ['datad0g.com', undefined, 'dd.datad0g.com'],
-    ['datad0g.com', 'toto', 'toto.datad0g.com'],
-    ['us3.datadoghq.com', undefined, 'us3.datadoghq.com'],
-    ['us3.datadoghq.com', 'toto', 'toto.us3.datadoghq.com'],
-    ['us5.datadoghq.com', undefined, 'us5.datadoghq.com'],
-    ['us5.datadoghq.com', 'toto', 'toto.us5.datadoghq.com'],
+    ['datadoghq.com', undefined, 'https://datadoghq.com'],
+    ['datadoghq.com', 'toto', 'https://toto.datadoghq.com'],
+    ['custom-domain.com', undefined, 'https://custom-domain.com'],
+    ['custom-domain.com', 'api', 'https://api.custom-domain.com'],
+    ['localhost:3000', undefined, 'https://localhost:3000'],
+    ['localhost:3000', 'api', 'https://api.localhost:3000'],
   ]
 
   parameters.forEach(([site, subdomain, host]) => {

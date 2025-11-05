@@ -1,5 +1,5 @@
-import type { TimeoutId, ClocksState, Duration } from '@datadog/browser-core'
-import type { ViewHistoryEntry } from '@datadog/browser-rum-core'
+import type { TimeoutId, ClocksState, Duration } from '@motadata365/browser-core'
+import type { ViewHistoryEntry } from '@motadata365/browser-rum-core'
 import type { ProfilerTrace, Profiler } from './profilerApi.types'
 
 export interface RumViewEntry {

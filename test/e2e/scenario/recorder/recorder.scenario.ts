@@ -1,16 +1,16 @@
-import type { InputData, StyleSheetRuleData, ScrollData } from '@datadog/browser-rum/src/types'
-import { NodeType, IncrementalSource, MouseInteractionType } from '@datadog/browser-rum/src/types'
+import type { InputData, StyleSheetRuleData, ScrollData } from '@motadata365/browser-rum/src/types'
+import { NodeType, IncrementalSource, MouseInteractionType } from '@motadata365/browser-rum/src/types'
 
 // Import from src to have properties of const enums
-import { FrustrationType } from '@datadog/browser-rum-core/src/rawRumEvent.types'
-import { DefaultPrivacyLevel } from '@datadog/browser-rum'
+import { FrustrationType } from '@motadata365/browser-rum-core/src/rawRumEvent.types'
+import { DefaultPrivacyLevel } from '@motadata365/browser-rum'
 
 import {
   findElement,
   findElementWithIdAttribute,
   findTextContent,
   findElementWithTagName,
-} from '@datadog/browser-rum/test/nodes'
+} from '@motadata365/browser-rum/test/nodes'
 import {
   findFullSnapshot,
   findIncrementalSnapshot,
@@ -18,10 +18,10 @@ import {
   findMeta,
   findAllFrustrationRecords,
   findMouseInteractionRecords,
-} from '@datadog/browser-rum/test/segments'
-import { createMutationPayloadValidatorFromSegment } from '@datadog/browser-rum/test/mutationPayloadValidator'
+} from '@motadata365/browser-rum/test/segments'
+import { createMutationPayloadValidatorFromSegment } from '@motadata365/browser-rum/test/mutationPayloadValidator'
 import { test, expect } from '@playwright/test'
-import { wait } from '@datadog/browser-core/test/wait'
+import { wait } from '@motadata365/browser-core/test/wait'
 import { createTest, html } from '../../lib/framework'
 
 const UUID_RE = /^[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}$/
@@ -778,7 +778,7 @@ test.describe('recorder', () => {
         await scroll({ windowY: 100, containerX: 10 })
 
         await page.evaluate(() => {
-          window.DD_RUM!.startSessionReplayRecording()
+          window.MD_RUM!.startSessionReplayRecording()
         })
 
         // wait for recorder to be properly started
@@ -789,7 +789,7 @@ test.describe('recorder', () => {
 
         // trigger new full snapshot
         await page.evaluate(() => {
-          window.DD_RUM!.startView()
+          window.MD_RUM!.startView()
         })
 
         await flushEvents()
@@ -822,7 +822,7 @@ test.describe('recorder', () => {
       .withRum({ sessionReplaySampleRate: 0 })
       .run(async ({ intakeRegistry, page, flushEvents }) => {
         await page.evaluate(() => {
-          window.DD_RUM!.startSessionReplayRecording()
+          window.MD_RUM!.startSessionReplayRecording()
         })
 
         await flushEvents()
@@ -834,7 +834,7 @@ test.describe('recorder', () => {
       .withRum({ sessionReplaySampleRate: 0 })
       .run(async ({ intakeRegistry, page, flushEvents, browserContext }) => {
         await page.evaluate(() => {
-          window.DD_RUM!.startSessionReplayRecording({ force: true })
+          window.MD_RUM!.startSessionReplayRecording({ force: true })
         })
         const [cookie] = await browserContext.cookies()
         expect(cookie.value).toContain('forcedReplay=1')
@@ -849,8 +849,8 @@ test.describe('recorder', () => {
     .withRum()
     .run(async ({ intakeRegistry, page, flushEvents }) => {
       await page.evaluate(() => {
-        window.DD_RUM!.stopSessionReplayRecording()
-        window.DD_RUM!.startSessionReplayRecording()
+        window.MD_RUM!.stopSessionReplayRecording()
+        window.MD_RUM!.startSessionReplayRecording()
       })
 
       await flushEvents()

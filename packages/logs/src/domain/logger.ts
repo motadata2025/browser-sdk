@@ -1,4 +1,4 @@
-import type { Context, ContextManager } from '@datadog/browser-core'
+import type { Context, ContextManager } from '@motadata365/browser-core'
 import {
   clocksNow,
   computeRawError,
@@ -12,7 +12,7 @@ import {
   createHandlingStack,
   buildTag,
   sanitizeTag,
-} from '@datadog/browser-core'
+} from '@motadata365/browser-core'
 
 import { isAuthorized, StatusType } from './logger/isAuthorized'
 import { createErrorFieldFromRawError } from './createErrorFieldFromRawError'

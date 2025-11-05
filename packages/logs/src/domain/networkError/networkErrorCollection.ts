@@ -1,4 +1,4 @@
-import type { FetchResolveContext, XhrCompleteContext } from '@datadog/browser-core'
+import type { FetchResolveContext, XhrCompleteContext } from '@motadata365/browser-core'
 import {
   isWorkerEnvironment,
   Observable,
@@ -14,7 +14,7 @@ import {
   tryToClone,
   isServerError,
   isIntakeUrl,
-} from '@datadog/browser-core'
+} from '@motadata365/browser-core'
 import type { LogsConfiguration } from '../configuration'
 import type { LifeCycle } from '../lifeCycle'
 import type { LogsEventDomainContext } from '../../domainContext.types'

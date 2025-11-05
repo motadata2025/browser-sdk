@@ -1,4 +1,4 @@
-import { addTelemetryDebug } from '@datadog/browser-core'
+import { addTelemetryDebug } from '@motadata365/browser-core'
 import type { RumPerformanceResourceTiming } from '../../browser/performanceObservable'
 import type { LifeCycle } from '../lifeCycle'
 import { LifeCycleEventType } from '../lifeCycle'

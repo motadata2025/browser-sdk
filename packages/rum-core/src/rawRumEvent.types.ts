@@ -9,7 +9,7 @@ import type {
   DefaultPrivacyLevel,
   Csp,
   Context,
-} from '@datadog/browser-core'
+} from '@motadata365/browser-core'
 import type { GraphQlMetadata } from './domain/resource/graphql'
 import type { PageState } from './domain/contexts/pageStateHistory'
 import type {
@@ -75,7 +75,7 @@ export interface RawRumResourceEvent {
     delivery_type?: DeliveryType
     graphql?: GraphQlMetadata
   }
-  _dd: {
+  _md: {
     trace_id?: string
     span_id?: string // not available for initial document tracing
     rule_psr?: number
@@ -152,7 +152,7 @@ export interface RawRumViewEvent {
   privacy?: {
     replay_level: DefaultPrivacyLevel
   }
-  _dd: {
+  _md: {
     document_version: number
     replay_stats?: ReplayStats
     page_states?: PageStateServerEntry[]
@@ -250,7 +250,7 @@ export interface RawRumLongTaskEvent {
     entry_type: typeof RumLongTaskEntryType.LONG_TASK
     duration: ServerDuration
   }
-  _dd: {
+  _md: {
     discarded: boolean
   }
 }
@@ -291,7 +291,7 @@ export interface RawRumLongAnimationFrameEvent {
       window_attribution: string
     }>
   }
-  _dd: {
+  _md: {
     discarded: boolean
   }
 }
@@ -316,7 +316,7 @@ export interface RawRumActionEvent {
   view?: {
     in_foreground: boolean
   }
-  _dd?: {
+  _md?: {
     action?: {
       target?: {
         selector?: string
@@ -362,7 +362,7 @@ export interface RawRumVitalEvent {
     description?: string
     duration?: number
   }
-  _dd?: {
+  _md?: {
     vital: {
       computed_value: true
     }

@@ -1,4 +1,4 @@
-import { elapsed, monitor, noop, timeStampNow } from '@datadog/browser-core'
+import { elapsed, monitor, noop, timeStampNow } from '@motadata365/browser-core'
 import type {
   RumConfiguration,
   NodePrivacyLevelCache,
@@ -6,7 +6,7 @@ import type {
   RumChildListMutationRecord,
   RumCharacterDataMutationRecord,
   RumAttributesMutationRecord,
-} from '@datadog/browser-rum-core'
+} from '@motadata365/browser-rum-core'
 import {
   isNodeShadowHost,
   getMutationObserverConstructor,
@@ -15,7 +15,7 @@ import {
   getNodePrivacyLevel,
   getTextContent,
   NodePrivacyLevel,
-} from '@datadog/browser-rum-core'
+} from '@motadata365/browser-rum-core'
 import { IncrementalSource } from '../../../types'
 import type {
   BrowserMutationData,

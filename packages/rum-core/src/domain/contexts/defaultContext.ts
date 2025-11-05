@@ -1,4 +1,4 @@
-import { canUseEventBridge, currentDrift, HookNames, round, timeStampNow } from '@datadog/browser-core'
+import { canUseEventBridge, currentDrift, HookNames, round, timeStampNow } from '@motadata365/browser-core'
 import type { RumConfiguration } from '../configuration'
 import type { DefaultRumEventAttributes, DefaultTelemetryEventAttributes, Hooks } from '../hooks'
 
@@ -15,7 +15,7 @@ export function startDefaultContext(
 
     return {
       type: eventType,
-      _dd: {
+      _md: {
         format_version: 2,
         drift: currentDrift(),
         configuration: {

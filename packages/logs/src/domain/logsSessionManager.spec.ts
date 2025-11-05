@@ -1,4 +1,4 @@
-import type { RelativeTime } from '@datadog/browser-core'
+import type { RelativeTime } from '@motadata365/browser-core'
 import {
   STORAGE_POLL_DELAY,
   SESSION_STORE_KEY,
@@ -10,9 +10,9 @@ import {
   createTrackingConsentState,
   TrackingConsent,
   SessionPersistence,
-} from '@datadog/browser-core'
-import type { Clock } from '@datadog/browser-core/test'
-import { createNewEvent, expireCookie, getSessionState, mockClock } from '@datadog/browser-core/test'
+} from '@motadata365/browser-core'
+import type { Clock } from '@motadata365/browser-core/test'
+import { createNewEvent, expireCookie, getSessionState, mockClock } from '@motadata365/browser-core/test'
 
 import type { LogsConfiguration } from './configuration'
 import {
