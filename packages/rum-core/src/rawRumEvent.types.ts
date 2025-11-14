@@ -140,6 +140,7 @@ export interface RawRumViewEvent {
     loading_time?: ServerDuration
     time_spent: ServerDuration
     is_active: boolean
+    is_view_completed: boolean
     name?: string
     error: Count
     action: Count

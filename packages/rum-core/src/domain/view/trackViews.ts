@@ -58,6 +58,7 @@ export interface ViewEvent {
   startClocks: ClocksState
   duration: Duration
   isActive: boolean
+  isViewCompleted: boolean
   sessionIsActive: boolean
   loadingType: ViewLoadingType
 }
@@ -328,6 +329,34 @@ function newView(
       initialViewMetrics,
       duration: elapsed(startClocks.timeStamp, currentEnd),
       isActive: endClocks === undefined,
+      isViewCompleted: false,
+      sessionIsActive,
+      eventCounts,
+    })
+  }
+
+  function triggerFinalViewUpdate() {
+    cancelScheduleViewUpdate()
+    triggerBeforeViewUpdate()
+  
+    documentVersion += 1
+    const currentEnd = endClocks === undefined ? timeStampNow() : endClocks.timeStamp
+    lifeCycle.notify(LifeCycleEventType.VIEW_UPDATED, {
+      customTimings,
+      documentVersion,
+      id,
+      name,
+      service,
+      version,
+      context: contextManager.getContext(),
+      loadingType,
+      location,
+      startClocks,
+      commonViewMetrics: getCommonViewMetrics(),
+      initialViewMetrics,
+      duration: elapsed(startClocks.timeStamp, currentEnd),
+      isActive: endClocks === undefined,
+      isViewCompleted: true,  // NEW: Mark as final
       sessionIsActive,
       eventCounts,
     })
@@ -357,6 +386,7 @@ function newView(
       pageMayExitSubscription.unsubscribe()
       triggerViewUpdate()
       setTimeout(() => {
+        triggerFinalViewUpdate()
         this.stop()
       }, KEEP_TRACKING_AFTER_VIEW_DELAY)
     },
