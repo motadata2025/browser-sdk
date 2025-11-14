@@ -360,7 +360,7 @@ describe('rum assembly', () => {
       })
     })
 
-    it('should be added to the event as ddtags', () => {
+    it('should be added to the event as mdtags', () => {
       const { lifeCycle, serverRumEvents } = setupAssemblyTestWithDefaults({
         partialConfiguration: extraConfigurationOptions,
       })
@@ -368,7 +368,7 @@ describe('rum assembly', () => {
         rawRumEvent: createRawRumEvent(RumEventType.VIEW),
       })
 
-      expect(serverRumEvents[0].ddtags).toEqual('sdk_version:test,service:default-service,version:default-version')
+      expect(serverRumEvents[0].mdtags).toEqual('sdk_version:test,service:default-service,version:default-version')
     })
   })
 

@@ -49,7 +49,7 @@
 **Public Changes:**
 
 - 🐛 [RUM-11596] fix cookie domain within pages with empty location ([#3866](https://github.com/DataDog/browser-sdk/pull/3866)) [FLAGGING] [LOGS] [RUM] [RUM-REACT] [RUM-SLIM] [WORKER]
-- 🐛 add missing ddtags to telemetry events ([#3873](https://github.com/DataDog/browser-sdk/pull/3873)) [FLAGGING] [LOGS] [RUM] [RUM-REACT] [RUM-SLIM] [WORKER]
+- 🐛 add missing mdtags to telemetry events ([#3873](https://github.com/DataDog/browser-sdk/pull/3873)) [FLAGGING] [LOGS] [RUM] [RUM-REACT] [RUM-SLIM] [WORKER]
 - 🐛[RUM-11247] Pass down error stack to isAllowedTrackingOrigins ([#3824](https://github.com/DataDog/browser-sdk/pull/3824)) [FLAGGING] [LOGS] [RUM] [RUM-REACT] [RUM-SLIM] [WORKER]
 - 🐛 improve condition to worker flag ([#3870](https://github.com/DataDog/browser-sdk/pull/3870)) [FLAGGING] [LOGS] [RUM] [RUM-REACT] [RUM-SLIM] [WORKER]
 

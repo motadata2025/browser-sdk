@@ -127,7 +127,7 @@ function loadSdkScriptFromURL(url: string) {
     xhr.send()
   } catch (error) {
     // eslint-disable-next-line no-console
-    console.error(`[DD Browser SDK extension] Error while loading ${url}:`, error)
+    console.error(`[MD Browser SDK extension] Error while loading ${url}:`, error)
     return
   }
   if (xhr.status === 200) {
