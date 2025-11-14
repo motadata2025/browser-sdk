@@ -16,14 +16,6 @@ export function startSessionContext(
     const session = sessionManager.findTrackedSession(startTime)
     const view = viewHistory.findView(startTime)
 
-    console.log('[DD_RUM_DEBUG] Assemble Hook:', {
-      session,
-      view,
-      startTime,
-      eventType,
-      hasSessionManager: !!sessionManager,
-      currentSession: sessionManager.findTrackedSession() // without startTime
-    });
     if (!session || !view) {
       return DISCARDED
     }

@@ -1433,7 +1433,7 @@ export interface CommonProperties {
   /**
    * Tags of the event in key:value format, separated by commas (e.g. 'env:prod,version:1.2.3')
    */
-  readonly ddtags?: string
+  readonly mdtags?: string
   /**
    * Session properties
    */

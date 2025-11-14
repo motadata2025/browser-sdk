@@ -54,7 +54,8 @@ function createEndpointUrlWithParametersBuilder(
     return (parameters) => proxy({ path, parameters })
   }
   const host = buildEndpointHost(trackType, initConfiguration)
-  return (parameters) => `https://${host}${path}?${parameters}`
+  // return (parameters) => `https://${host}${path}?${parameters}`
+  return (parameters) => `${host}${path}?${parameters}`
 }
 
 export function buildEndpointHost(

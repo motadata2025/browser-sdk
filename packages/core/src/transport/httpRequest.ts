@@ -144,11 +144,9 @@ export function fetchKeepAliveStrategy(
 
     fetch(fetchUrl, { method: 'POST', body: payload.data, keepalive: true, mode: 'cors', headers })
       .then(monitor((response: Response) => {
-        console.log('[DD_DEBUG] fetch-keepalive succeeded:', response.status);
         onResponse?.({ status: response.status, type: response.type })
       }))
       .catch(monitor((error) => {
-        console.log('[DD_DEBUG] fetch-keepalive failed, falling back to fetch:', error);
         fetchStrategy(endpointBuilder, payload, onResponse)
         onResponse?.({ status: 0 })
       }))

@@ -196,7 +196,7 @@ export function startTelemetryCollection(
         connectivity: getConnectivity(),
         sdk_setup: __BUILD_ENV__SDK_SETUP__,
       }) as TelemetryEvent['telemetry'],
-      ddtags: buildTags(configuration).join(','),
+      mdtags: buildTags(configuration).join(','),
       experimental_features: Array.from(getExperimentalFeatures()),
     }
 

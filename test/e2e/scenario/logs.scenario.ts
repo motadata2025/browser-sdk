@@ -273,7 +273,7 @@ test.describe('logs', () => {
       })
       await flushEvents()
       expect(intakeRegistry.logsEvents).toHaveLength(1)
-      expect(intakeRegistry.logsEvents[0].ddtags).toMatch(/sdk_version:(.*),env:dev,service:foo,version:1.0.0$/)
+      expect(intakeRegistry.logsEvents[0].mdtags).toMatch(/sdk_version:(.*),env:dev,service:foo,version:1.0.0$/)
     })
 
   createTest('add tags to the logger')
@@ -286,20 +286,20 @@ test.describe('logs', () => {
 
       await flushEvents()
       expect(intakeRegistry.logsEvents).toHaveLength(1)
-      expect(intakeRegistry.logsEvents[0].ddtags).toMatch(/sdk_version:(.*),planet:mars$/)
+      expect(intakeRegistry.logsEvents[0].mdtags).toMatch(/sdk_version:(.*),planet:mars$/)
     })
 
   createTest('ignore tags from message context and logger context')
     .withLogs()
     .run(async ({ intakeRegistry, flushEvents, page }) => {
       await page.evaluate(() => {
-        window.MD_LOGS!.logger.setContextProperty('ddtags', 'planet:mars')
-        window.MD_LOGS!.logger.log('hello world!', { ddtags: 'planet:earth' })
+        window.MD_LOGS!.logger.setContextProperty('mdtags', 'planet:mars')
+        window.MD_LOGS!.logger.log('hello world!', { mdtags: 'planet:earth' })
       })
 
       await flushEvents()
       expect(intakeRegistry.logsEvents).toHaveLength(1)
-      expect(intakeRegistry.logsEvents[0].ddtags).toMatch(/sdk_version:(.*)$/)
+      expect(intakeRegistry.logsEvents[0].mdtags).toMatch(/sdk_version:(.*)$/)
     })
 
   createTest('allow to modify events')
