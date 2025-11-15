@@ -6,19 +6,19 @@ __metadata:
   cacheKey: 10c0
 
 "@motadata365/browser-core@file:../../../packages/core/package.tgz::locator=app%40workspace%3A.":
-  version: 6.21.7
+  version: 6.21.10
   resolution: "@motadata365/browser-core@file:../../../packages/core/package.tgz#../../../packages/core/package.tgz::hash=950c15&locator=app%40workspace%3A."
   checksum: 10c0/db45d87fcedf84d8edd007d1ddc326f50401fad8717858c970b673c8efe9bbaf8ba40d750c4246269c1be0a0903e56528459f8dbd0e46b97391de216a25fa924
   languageName: node
   linkType: hard
 
 "@motadata365/browser-logs@file:../../../packages/logs/package.tgz::locator=app%40workspace%3A.":
-  version: 6.21.7
+  version: 6.21.10
   resolution: "@motadata365/browser-logs@file:../../../packages/logs/package.tgz#../../../packages/logs/package.tgz::hash=d3fc8a&locator=app%40workspace%3A."
   dependencies:
-    "@motadata365/browser-core": "npm:6.21.7"
+    "@motadata365/browser-core": "npm:6.21.10"
   peerDependencies:
-    "@motadata365/browser-rum": 6.21.7
+    "@motadata365/browser-rum": 6.21.10
   peerDependenciesMeta:
     "@motadata365/browser-rum":
       optional: true
@@ -27,22 +27,22 @@ __metadata:
   linkType: hard
 
 "@motadata365/browser-rum-core@file:../../../packages/rum-core/package.tgz::locator=app%40workspace%3A.":
-  version: 6.21.7
+  version: 6.21.10
   resolution: "@motadata365/browser-rum-core@file:../../../packages/rum-core/package.tgz#../../../packages/rum-core/package.tgz::hash=e15394&locator=app%40workspace%3A."
   dependencies:
-    "@motadata365/browser-core": "npm:6.21.7"
+    "@motadata365/browser-core": "npm:6.21.10"
   checksum: 10c0/55aa0c60006b1695b47320c8bfad5cf11ec676927ba8412fc5e8bea5b536bd5a68d875017eaafcc71645a3ab1d4e3d02f297f54a72ed737095856fea9bff29ee
   languageName: node
   linkType: hard
 
 "@motadata365/browser-rum@file:../../../packages/rum/package.tgz::locator=app%40workspace%3A.":
-  version: 6.21.7
+  version: 6.21.10
   resolution: "@motadata365/browser-rum@file:../../../packages/rum/package.tgz#../../../packages/rum/package.tgz::hash=653c7e&locator=app%40workspace%3A."
   dependencies:
-    "@motadata365/browser-core": "npm:6.21.7"
-    "@motadata365/browser-rum-core": "npm:6.21.7"
+    "@motadata365/browser-core": "npm:6.21.10"
+    "@motadata365/browser-rum-core": "npm:6.21.10"
   peerDependencies:
-    "@motadata365/browser-logs": 6.21.7
+    "@motadata365/browser-logs": 6.21.10
   peerDependenciesMeta:
     "@motadata365/browser-logs":
       optional: true

@@ -58,6 +58,7 @@ export interface ViewEvent {
   startClocks: ClocksState
   duration: Duration
   isActive: boolean
+  isViewCompleted: string
   sessionIsActive: boolean
   loadingType: ViewLoadingType
 }
@@ -92,7 +93,7 @@ export const SESSION_KEEP_ALIVE_INTERVAL = 5 * ONE_MINUTE
 // Ideally, we would not stop and keep tracking events or metrics until the end of the session.
 // But this might have a small performance impact if there are many many views.
 // So let's have a fairly short delay improving the situation in most cases and avoid impacting performances too much.
-export const KEEP_TRACKING_AFTER_VIEW_DELAY = 5 * ONE_MINUTE
+export const KEEP_TRACKING_AFTER_VIEW_DELAY = 1 * ONE_MINUTE
 
 export interface ViewOptions {
   name?: string
@@ -328,6 +329,34 @@ function newView(
       initialViewMetrics,
       duration: elapsed(startClocks.timeStamp, currentEnd),
       isActive: endClocks === undefined,
+      isViewCompleted: 'no',
+      sessionIsActive,
+      eventCounts,
+    })
+  }
+
+  function triggerFinalViewUpdate() {
+    cancelScheduleViewUpdate()
+    triggerBeforeViewUpdate()
+
+    documentVersion += 1
+    const currentEnd = endClocks === undefined ? timeStampNow() : endClocks.timeStamp
+    lifeCycle.notify(LifeCycleEventType.VIEW_UPDATED, {
+      customTimings,
+      documentVersion,
+      id,
+      name,
+      service,
+      version,
+      context: contextManager.getContext(),
+      loadingType,
+      location,
+      startClocks,
+      commonViewMetrics: getCommonViewMetrics(),
+      initialViewMetrics,
+      duration: elapsed(startClocks.timeStamp, currentEnd),
+      isActive: endClocks === undefined,
+      isViewCompleted: 'yes',  // NEW: Mark as final
       sessionIsActive,
       eventCounts,
     })
@@ -357,6 +386,7 @@ function newView(
       pageMayExitSubscription.unsubscribe()
       triggerViewUpdate()
       setTimeout(() => {
+        triggerFinalViewUpdate()
         this.stop()
       }, KEEP_TRACKING_AFTER_VIEW_DELAY)
     },
