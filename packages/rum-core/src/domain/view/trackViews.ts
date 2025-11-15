@@ -384,7 +384,7 @@ function newView(
       setViewEnd(endClocks.relative)
       stopCommonViewMetricsTracking()
       pageMayExitSubscription.unsubscribe()
-      triggerViewUpdate()
+
       setTimeout(() => {
         triggerFinalViewUpdate()
         this.stop()
