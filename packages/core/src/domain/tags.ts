@@ -36,15 +36,15 @@ export function buildTag(key: string, rawValue?: string) {
   // warning.
   const tag = rawValue ? `${key}:${rawValue}` : key
 
-  if (tag.length > TAG_SIZE_LIMIT || hasForbiddenCharacters(tag)) {
-    display.warn(
-      `Tag ${tag} doesn't meet tag requirements and will be sanitized. ${MORE_DETAILS} ${DOCS_ORIGIN}/getting_started/tagging/#defining-tags`
-    )
-  }
+  // if (tag.length > TAG_SIZE_LIMIT || hasForbiddenCharacters(tag)) {
+  //   display.warn(
+  //     `Tag ${tag} doesn't meet tag requirements and will be sanitized. ${MORE_DETAILS} ${DOCS_ORIGIN}/getting_started/tagging/#defining-tags`
+  //   )
+  // }
 
   // Let the backend do most of the sanitization, but still make sure multiple tags can't be crafted
   // by forging a value containing commas.
-  return sanitizeTag(tag)
+  return tag
 }
 
 export function sanitizeTag(tag: string) {

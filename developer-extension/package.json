@@ -1,6 +1,6 @@
 {
   "name": "@motadata365/browser-sdk-developer-extension",
-  "version": "6.21.7",
+  "version": "6.21.10",
   "private": true,
   "scripts": {
     "build": "rm -rf dist && webpack --disable-interpret --mode production",
