@@ -197,6 +197,52 @@ describe('rum assembly', () => {
 
           expect(serverRumEvents[0].context!.foo).toBe('bar')
         })
+
+        it('should automatically add _timing context with relativeTime and navigationStart', () => {
+          const { lifeCycle, serverRumEvents } = setupAssemblyTestWithDefaults()
+
+          notifyRawRumEvent(lifeCycle, {
+            rawRumEvent: createRawRumEvent(RumEventType.ACTION, { date: 1700000000000 as TimeStamp }),
+          })
+
+          expect(serverRumEvents[0].context!._timing).toBeDefined()
+          expect(serverRumEvents[0].context!._timing.navigationStart).toBeGreaterThan(0)
+          expect(serverRumEvents[0].context!._timing.relativeTime).toBe(
+            serverRumEvents[0].date - serverRumEvents[0].context!._timing.navigationStart
+          )
+        })
+
+        it('should add _timing context to all event types', () => {
+          const { lifeCycle, serverRumEvents } = setupAssemblyTestWithDefaults()
+
+          const eventTypes = [RumEventType.VIEW, RumEventType.ACTION, RumEventType.ERROR, RumEventType.RESOURCE]
+
+          eventTypes.forEach((eventType) => {
+            notifyRawRumEvent(lifeCycle, {
+              rawRumEvent: createRawRumEvent(eventType, { date: 1700000000000 as TimeStamp }),
+            })
+          })
+
+          serverRumEvents.forEach((event) => {
+            expect(event.context!._timing).toBeDefined()
+            expect(event.context!._timing.navigationStart).toBeGreaterThan(0)
+            expect(event.context!._timing.relativeTime).toBeDefined()
+          })
+        })
+
+        it('should preserve existing context when adding _timing', () => {
+          const { lifeCycle, serverRumEvents } = setupAssemblyTestWithDefaults()
+
+          notifyRawRumEvent(lifeCycle, {
+            rawRumEvent: createRawRumEvent(RumEventType.ACTION, {
+              date: 1700000000000 as TimeStamp,
+              context: { customField: 'customValue' },
+            }),
+          })
+
+          expect(serverRumEvents[0].context!.customField).toBe('customValue')
+          expect(serverRumEvents[0].context!._timing).toBeDefined()
+        })
       })
 
       describe('allowed customer provided field', () => {

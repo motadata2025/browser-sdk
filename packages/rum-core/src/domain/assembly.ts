@@ -7,6 +7,8 @@ import {
   HookNames,
   DISCARDED,
   buildTags,
+  clocksOrigin,
+  getRelativeTime,
 } from '@motadata365/browser-core'
 import type { RumEventDomainContext } from '../domainContext.types'
 import type { AssembledRumEvent } from '../rawRumEvent.types'
@@ -116,6 +118,16 @@ export function startRumAssembly(
       const serverRumEvent = combine(defaultRumEventAttributes, rawRumEvent, {
         mdtags: buildTags(configuration).join(','),
       }) as AssembledRumEvent
+
+      // Add relative time and navigationStart to all events
+      const navigationStart = clocksOrigin().timeStamp
+      serverRumEvent.context = {
+        ...serverRumEvent.context,
+        _timing: {
+          relativeTime: serverRumEvent.date - navigationStart,
+          navigationStart: navigationStart,
+        },
+      }
 
       if (shouldSend(serverRumEvent, configuration.beforeSend, domainContext, eventRateLimiters)) {
         if (isEmptyObject(serverRumEvent.context!)) {
