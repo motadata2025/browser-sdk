@@ -1036,7 +1036,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@motadata365/browser-core@npm:6.21.10, @motadata365/browser-core@workspace:*, @motadata365/browser-core@workspace:packages/core":
+"@motadata365/browser-core@npm:6.21.13, @motadata365/browser-core@workspace:*, @motadata365/browser-core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@motadata365/browser-core@workspace:packages/core"
   dependencies:
@@ -1049,11 +1049,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@motadata365/browser-flagging@workspace:packages/flagging"
   dependencies:
-    "@motadata365/browser-core": "npm:6.21.10"
+    "@motadata365/browser-core": "npm:6.21.13"
     npm-run-all: "npm:4.1.5"
     webpack: "npm:5.101.3"
   peerDependencies:
-    "@motadata365/browser-rum": 6.21.10
+    "@motadata365/browser-rum": 6.21.13
   peerDependenciesMeta:
     "@motadata365/browser-rum":
       optional: true
@@ -1064,20 +1064,20 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@motadata365/browser-logs@workspace:packages/logs"
   dependencies:
-    "@motadata365/browser-core": "npm:6.21.10"
+    "@motadata365/browser-core": "npm:6.21.13"
   peerDependencies:
-    "@motadata365/browser-rum": 6.21.10
+    "@motadata365/browser-rum": 6.21.13
   peerDependenciesMeta:
     "@motadata365/browser-rum":
       optional: true
   languageName: unknown
   linkType: soft
 
-"@motadata365/browser-rum-core@npm:6.21.10, @motadata365/browser-rum-core@workspace:packages/rum-core":
+"@motadata365/browser-rum-core@npm:6.21.13, @motadata365/browser-rum-core@workspace:packages/rum-core":
   version: 0.0.0-use.local
   resolution: "@motadata365/browser-rum-core@workspace:packages/rum-core"
   dependencies:
-    "@motadata365/browser-core": "npm:6.21.10"
+    "@motadata365/browser-core": "npm:6.21.13"
     ajv: "npm:8.17.1"
   languageName: unknown
   linkType: soft
@@ -1086,8 +1086,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@motadata365/browser-rum-react@workspace:packages/rum-react"
   dependencies:
-    "@motadata365/browser-core": "npm:6.21.10"
-    "@motadata365/browser-rum-core": "npm:6.21.10"
+    "@motadata365/browser-core": "npm:6.21.13"
+    "@motadata365/browser-rum-core": "npm:6.21.13"
     "@types/react": "npm:19.1.15"
     "@types/react-dom": "npm:19.1.9"
     react: "npm:19.1.1"
@@ -1117,10 +1117,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@motadata365/browser-rum-slim@workspace:packages/rum-slim"
   dependencies:
-    "@motadata365/browser-core": "npm:6.21.10"
-    "@motadata365/browser-rum-core": "npm:6.21.10"
+    "@motadata365/browser-core": "npm:6.21.13"
+    "@motadata365/browser-rum-core": "npm:6.21.13"
   peerDependencies:
-    "@motadata365/browser-logs": 6.21.10
+    "@motadata365/browser-logs": 6.21.13
   peerDependenciesMeta:
     "@motadata365/browser-logs":
       optional: true
@@ -1131,12 +1131,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@motadata365/browser-rum@workspace:packages/rum"
   dependencies:
-    "@motadata365/browser-core": "npm:6.21.10"
-    "@motadata365/browser-rum-core": "npm:6.21.10"
+    "@motadata365/browser-core": "npm:6.21.13"
+    "@motadata365/browser-rum-core": "npm:6.21.13"
     "@types/pako": "npm:2.0.4"
     pako: "npm:2.1.0"
   peerDependencies:
-    "@motadata365/browser-logs": 6.21.10
+    "@motadata365/browser-logs": 6.21.13
   peerDependenciesMeta:
     "@motadata365/browser-logs":
       optional: true
@@ -1179,7 +1179,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@motadata365/browser-worker@workspace:packages/worker"
   dependencies:
-    "@motadata365/browser-core": "npm:6.21.10"
+    "@motadata365/browser-core": "npm:6.21.13"
     webpack: "npm:5.101.3"
   languageName: unknown
   linkType: soft
