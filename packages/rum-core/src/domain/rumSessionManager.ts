@@ -31,6 +31,7 @@ export interface RumSession {
   id: string
   sessionReplay: SessionReplayState
   anonymousId?: string
+  created?: string
 }
 
 export const enum RumTrackingType {
@@ -88,6 +89,7 @@ export function startRumSessionManager(
               ? SessionReplayState.FORCED
               : SessionReplayState.OFF,
         anonymousId: session.anonymousId,
+        created: session.created,
       }
     },
     expire: sessionManager.expire,
@@ -103,6 +105,7 @@ export function startRumSessionManagerStub(): RumSessionManager {
   const session: RumSession = {
     id: '00000000-aaaa-0000-aaaa-000000000000',
     sessionReplay: bridgeSupports(BridgeCapability.RECORDS) ? SessionReplayState.SAMPLED : SessionReplayState.OFF,
+    created: String(Date.now()),
   }
   return {
     findTrackedSession: () => session,

@@ -39,6 +39,7 @@ export function startSessionContext(
         has_replay: hasReplay,
         sampled_for_replay: sampledForReplay,
         is_active: isActive,
+        created: session.created ? Number(session.created) : undefined,
       },
     }
   })

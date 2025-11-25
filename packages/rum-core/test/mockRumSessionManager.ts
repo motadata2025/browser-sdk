@@ -38,6 +38,7 @@ export function createRumSessionManagerMock(): RumSessionManagerMock {
               ? SessionReplayState.FORCED
               : SessionReplayState.OFF,
         anonymousId: 'device-123',
+        created: String(Date.now()),
       }
     },
     expire() {
