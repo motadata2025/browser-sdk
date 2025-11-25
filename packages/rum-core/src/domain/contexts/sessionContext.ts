@@ -18,6 +18,11 @@ export function startSessionContext(
   // Track which sessions have had their created timestamp set
   const sessionsWithCreatedTimestamp = new Set<string>()
 
+  // Clear the set when session expires to prevent memory leaks and allow new sessions
+  lifeCycle.subscribe(LifeCycleEventType.SESSION_EXPIRED, () => {
+    sessionsWithCreatedTimestamp.clear()
+  })
+
   // Subscribe to RAW_RUM_EVENT_COLLECTED to set session.created from the first event
   lifeCycle.subscribe(LifeCycleEventType.RAW_RUM_EVENT_COLLECTED, ({ rawRumEvent, startTime }) => {
     const session = sessionManager.findTrackedSession(startTime)
