@@ -25,6 +25,7 @@ export interface RumSessionManager {
   expire: () => void
   expireObservable: Observable<void>
   setForcedReplay: () => void
+  updateSessionState: (state: Partial<{ created: string }>) => void
 }
 
 export interface RumSession {
@@ -95,6 +96,7 @@ export function startRumSessionManager(
     expire: sessionManager.expire,
     expireObservable: sessionManager.expireObservable,
     setForcedReplay: () => sessionManager.updateSessionState({ forcedReplay: '1' }),
+    updateSessionState: sessionManager.updateSessionState,
   }
 }
 
@@ -112,6 +114,7 @@ export function startRumSessionManagerStub(): RumSessionManager {
     expire: noop,
     expireObservable: new Observable(),
     setForcedReplay: noop,
+    updateSessionState: noop,
   }
 }
 

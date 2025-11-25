@@ -7,11 +7,13 @@ import type { DefaultRumEventAttributes, DefaultTelemetryEventAttributes, Hooks 
 import { createHooks } from '../hooks'
 import { startSessionContext } from './sessionContext'
 import type { ViewHistory } from './viewHistory'
+import { LifeCycle } from '../lifeCycle'
 
 describe('session context', () => {
   let hooks: Hooks
   let viewHistory: ViewHistory
   let sessionManager: RumSessionManagerMock
+  let lifeCycle: LifeCycle
   const fakeView = {
     id: '1',
     startClocks: clocksNow(),
@@ -29,6 +31,7 @@ describe('session context', () => {
   beforeEach(() => {
     viewHistory = { findView: () => undefined } as ViewHistory
     hooks = createHooks()
+    lifeCycle = new LifeCycle()
     sessionManager = createRumSessionManagerMock()
     sessionManager.setId('123')
     const recorderApi = noopRecorderApi
@@ -37,7 +40,7 @@ describe('session context', () => {
     getReplayStatsSpy = spyOn(recorderApi, 'getReplayStats')
     findViewSpy = spyOn(viewHistory, 'findView').and.returnValue(fakeView)
 
-    startSessionContext(hooks, sessionManager, recorderApi, viewHistory)
+    startSessionContext(hooks, sessionManager, recorderApi, viewHistory, lifeCycle)
   })
 
   it('should set id and type', () => {

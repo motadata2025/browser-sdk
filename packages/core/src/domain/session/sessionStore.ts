@@ -192,7 +192,7 @@ export function startSessionStore<TrackingType extends string>(
     delete sessionState.isExpired
     if (trackingType !== SESSION_NOT_TRACKED && !sessionState.id) {
       sessionState.id = generateUUID()
-      sessionState.created = String(dateNow())
+      // Don't set created here - it will be set by the first event timestamp
     }
   }
 
