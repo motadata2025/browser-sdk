@@ -1,6 +1,6 @@
 {
   "name": "@motadata365/browser-core",
-  "version": "6.21.13",
+  "version": "6.21.15",
   "license": "Apache-2.0",
   "main": "cjs/index.js",
   "module": "esm/index.js",
