@@ -15,22 +15,26 @@ export function startSessionContext(
   viewHistory: ViewHistory,
   lifeCycle: LifeCycle
 ) {
-  // Track which sessions have had their created timestamp set
-  const sessionsWithCreatedTimestamp = new Set<string>()
+  // Track the created timestamp for each session
+  const sessionCreatedTimestamps = new Map<string, number>()
 
-  // Clear the set when session expires to prevent memory leaks and allow new sessions
+  // Clear the map when session expires to prevent memory leaks
   lifeCycle.subscribe(LifeCycleEventType.SESSION_EXPIRED, () => {
-    sessionsWithCreatedTimestamp.clear()
+    sessionCreatedTimestamps.clear()
   })
 
-  // Subscribe to RAW_RUM_EVENT_COLLECTED to set session.created from the first event
+  // Subscribe to RAW_RUM_EVENT_COLLECTED to capture and persist the first event's timestamp
+  // This runs BEFORE the assembly's Assemble hook is triggered
   lifeCycle.subscribe(LifeCycleEventType.RAW_RUM_EVENT_COLLECTED, ({ rawRumEvent, startTime }) => {
     const session = sessionManager.findTrackedSession(startTime)
 
-    if (session && session.id && !session.created && !sessionsWithCreatedTimestamp.has(session.id)) {
-      // Set the created timestamp to the event's date (first event timestamp)
-      sessionManager.updateSessionState({ created: String(rawRumEvent.date) })
-      sessionsWithCreatedTimestamp.add(session.id)
+    if (session && session.id && !sessionCreatedTimestamps.has(session.id)) {
+      // Store the first event's timestamp for this session
+      const eventDate = rawRumEvent.date
+      sessionCreatedTimestamps.set(session.id, eventDate)
+
+      // Persist it to the session state (async, but we don't wait for it)
+      sessionManager.updateSessionState({ created: String(eventDate) })
     }
   })
 
@@ -40,6 +44,18 @@ export function startSessionContext(
 
     if (!session || !view) {
       return DISCARDED
+    }
+
+    // Get the created timestamp: first check our in-memory map, then the session state
+    let createdTimestamp: number | undefined
+    if (session.id && sessionCreatedTimestamps.has(session.id)) {
+      createdTimestamp = sessionCreatedTimestamps.get(session.id)
+    } else if (session.created) {
+      createdTimestamp = Number(session.created)
+      // Cache it in our map for faster access
+      if (session.id) {
+        sessionCreatedTimestamps.set(session.id, createdTimestamp)
+      }
     }
 
     let hasReplay
@@ -52,9 +68,6 @@ export function startSessionContext(
     } else {
       hasReplay = recorderApi.isRecording() ? true : undefined
     }
-
-    // Get the created timestamp
-    const createdTimestamp = session.created ? Number(session.created) : undefined
 
     return {
       type: eventType,
