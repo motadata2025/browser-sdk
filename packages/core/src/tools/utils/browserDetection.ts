@@ -65,7 +65,7 @@ function parseClientHints(browserWindow: Window = window): string {
 
     if (uaData && Array.isArray(uaData.brands)) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return
-      const brands = uaData.brands.map(b => b.brand.toLowerCase())
+      const brands = uaData.brands.map((b: { brand: string }) => b.brand.toLowerCase())
 
       // Brave check: Brave hides itself, detect by missing Google Chrome
       // eslint-disable-next-line @typescript-eslint/no-unsafe-call
