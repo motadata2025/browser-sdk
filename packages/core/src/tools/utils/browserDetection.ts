@@ -59,44 +59,45 @@ export function detectDetailedBrowserName(browserWindow: Window = window): strin
   return parseUserAgent(browserWindow)
 }
 
-function parseClientHints(browserWindow: Window = window): string | null {
+function parseClientHints(browserWindow: Window = window): string {
   try {
-    const userAgentData = (browserWindow.navigator as any).userAgentData
-    if (userAgentData && userAgentData.brands) {
-      const brands = userAgentData.brands as Array<{ brand: string; version: string }>
+    const uaData = (browserWindow.navigator as any).userAgentData
 
-      // Check for Brave first - should be categorized as "other"
-      const braveBrand = brands.find((brand) => brand.brand === 'Brave')
-      if (braveBrand) {
+    if (uaData && Array.isArray(uaData.brands)) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return
+      const brands = uaData.brands.map(b => b.brand.toLowerCase())
+
+      // Brave check: Brave hides itself, detect by missing Google Chrome
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+      const isBrave = !brands.includes('google chrome') && brands.includes('chromium')
+      if (isBrave) {
         return 'other'
       }
 
-      // Check for specific browsers in priority order
-      const edgeBrand = brands.find((brand) => brand.brand === 'Microsoft Edge')
-      if (edgeBrand) {
-        return 'Edge'
-      }
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+      if (brands.includes('microsoft edge')) {return 'Edge'}
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+      if (brands.includes('opera') || brands.includes('opr')) {return 'Opera'}
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+      if (brands.includes('google chrome') || brands.includes('chrome')) {return 'Chrome'}
 
-      const operaBrand = brands.find((brand) => brand.brand === 'Opera')
-      if (operaBrand) {
-        return 'Opera'
-      }
-
-      const chromeBrand = brands.find((brand) => brand.brand === 'Google Chrome')
-      if (chromeBrand) {
-        return 'Chrome'
-      }
-
-      // Other Chromium-based browsers should be categorized as "other"
-      const chromiumBrand = brands.find((brand) => brand.brand === 'Chromium')
-      if (chromiumBrand) {
-        return 'other'
-      }
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+      if (brands.includes('chromium')) {return 'other'}
     }
-  } catch (error) {
-    // Silently fail if Client Hints are not available
+  } catch (_) { /* empty */ }
+
+  // fallback to userAgent
+  const ua = browserWindow.navigator.userAgent
+
+  if (/edg/i.test(ua)) {
+    return 'Edge';
   }
-  return null
+  if (/opr|opera/i.test(ua)) {return 'Opera'}
+  if (/chrome/i.test(ua)) {return 'Chrome'}
+  if (/safari/i.test(ua)) {return 'Safari'}
+  if (/firefox/i.test(ua)) {return 'Firefox'}
+
+  return 'other'
 }
 
 function parseUserAgent(browserWindow: Window = window): string {
