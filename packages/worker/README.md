@@ -1,3 +1,3 @@
 # `worker`
 
-Datadog browser web Worker.
+Motadata browser web Worker.

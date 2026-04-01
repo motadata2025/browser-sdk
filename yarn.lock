@@ -1036,12 +1036,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@motadata365/browser-core@npm:6.21.13, @motadata365/browser-core@workspace:*, @motadata365/browser-core@workspace:packages/core":
+"@motadata365/browser-core@npm:6.21.20, @motadata365/browser-core@workspace:*, @motadata365/browser-core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@motadata365/browser-core@workspace:packages/core"
   dependencies:
     "@types/pako": "npm:2.0.4"
     pako: "npm:2.1.0"
+    ua-parser-js: "npm:2.0.8"
   languageName: unknown
   linkType: soft
 
@@ -1049,11 +1050,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@motadata365/browser-flagging@workspace:packages/flagging"
   dependencies:
-    "@motadata365/browser-core": "npm:6.21.13"
+    "@motadata365/browser-core": "npm:6.21.20"
     npm-run-all: "npm:4.1.5"
     webpack: "npm:5.101.3"
   peerDependencies:
-    "@motadata365/browser-rum": 6.21.13
+    "@motadata365/browser-rum": 6.21.20
   peerDependenciesMeta:
     "@motadata365/browser-rum":
       optional: true
@@ -1064,20 +1065,20 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@motadata365/browser-logs@workspace:packages/logs"
   dependencies:
-    "@motadata365/browser-core": "npm:6.21.13"
+    "@motadata365/browser-core": "npm:6.21.20"
   peerDependencies:
-    "@motadata365/browser-rum": 6.21.13
+    "@motadata365/browser-rum": 6.21.20
   peerDependenciesMeta:
     "@motadata365/browser-rum":
       optional: true
   languageName: unknown
   linkType: soft
 
-"@motadata365/browser-rum-core@npm:6.21.13, @motadata365/browser-rum-core@workspace:packages/rum-core":
+"@motadata365/browser-rum-core@npm:6.21.20, @motadata365/browser-rum-core@workspace:packages/rum-core":
   version: 0.0.0-use.local
   resolution: "@motadata365/browser-rum-core@workspace:packages/rum-core"
   dependencies:
-    "@motadata365/browser-core": "npm:6.21.13"
+    "@motadata365/browser-core": "npm:6.21.20"
     ajv: "npm:8.17.1"
   languageName: unknown
   linkType: soft
@@ -1086,8 +1087,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@motadata365/browser-rum-react@workspace:packages/rum-react"
   dependencies:
-    "@motadata365/browser-core": "npm:6.21.13"
-    "@motadata365/browser-rum-core": "npm:6.21.13"
+    "@motadata365/browser-core": "npm:6.21.20"
+    "@motadata365/browser-rum-core": "npm:6.21.20"
     "@types/react": "npm:19.1.15"
     "@types/react-dom": "npm:19.1.9"
     react: "npm:19.1.1"
@@ -1117,10 +1118,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@motadata365/browser-rum-slim@workspace:packages/rum-slim"
   dependencies:
-    "@motadata365/browser-core": "npm:6.21.13"
-    "@motadata365/browser-rum-core": "npm:6.21.13"
+    "@motadata365/browser-core": "npm:6.21.20"
+    "@motadata365/browser-rum-core": "npm:6.21.20"
   peerDependencies:
-    "@motadata365/browser-logs": 6.21.13
+    "@motadata365/browser-logs": 6.21.20
   peerDependenciesMeta:
     "@motadata365/browser-logs":
       optional: true
@@ -1131,12 +1132,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@motadata365/browser-rum@workspace:packages/rum"
   dependencies:
-    "@motadata365/browser-core": "npm:6.21.13"
-    "@motadata365/browser-rum-core": "npm:6.21.13"
+    "@motadata365/browser-core": "npm:6.21.20"
+    "@motadata365/browser-rum-core": "npm:6.21.20"
     "@types/pako": "npm:2.0.4"
     pako: "npm:2.1.0"
   peerDependencies:
-    "@motadata365/browser-logs": 6.21.13
+    "@motadata365/browser-logs": 6.21.20
   peerDependenciesMeta:
     "@motadata365/browser-logs":
       optional: true
@@ -1179,7 +1180,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@motadata365/browser-worker@workspace:packages/worker"
   dependencies:
-    "@motadata365/browser-core": "npm:6.21.13"
+    "@motadata365/browser-core": "npm:6.21.20"
     webpack: "npm:5.101.3"
   languageName: unknown
   linkType: soft
@@ -5101,6 +5102,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"detect-europe-js@npm:^0.1.2":
+  version: 0.1.2
+  resolution: "detect-europe-js@npm:0.1.2"
+  checksum: 10c0/46fccf2a9ddeec8ecb7a369be1452f84856cbd0ccdeb3c47e41fe6c9d69f63d6bd75f91b5aa1ae310e56d8fbcbff0e802b1504cdcc3a92f3327c94408e6d07a2
+  languageName: node
+  linkType: hard
+
 "detect-indent@npm:^5.0.0":
   version: 5.0.0
   resolution: "detect-indent@npm:5.0.0"
@@ -7887,6 +7895,13 @@ __metadata:
   dependencies:
     protocols: "npm:^2.0.1"
   checksum: 10c0/021a7355cb032625d58db3cc8266ad9aa698cbabf460b71376a0307405577fd7d3aa0826c0bf1951d7809f134c0ee80403306f6d7633db94a5a3600a0106b398
+  languageName: node
+  linkType: hard
+
+"is-standalone-pwa@npm:^0.1.1":
+  version: 0.1.1
+  resolution: "is-standalone-pwa@npm:0.1.1"
+  checksum: 10c0/af1a11edef4a8f00c24014576285070fb73eebb3583cae790c0a825e338e19f05048a26e5fd5ef10f6056032d6a4520054ff824532c15df784933c0fcc5e13fd
   languageName: node
   linkType: hard
 
@@ -13178,6 +13193,26 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 10c0/ad09fdf7a756814dce65bc60c1657b40d44451346858eea230e10f2e95a289d9183b6e32e5c11e95acc0ccc214b4f36289dcad4bf1886b0adb84d711d336a430
+  languageName: node
+  linkType: hard
+
+"ua-is-frozen@npm:^0.1.2":
+  version: 0.1.2
+  resolution: "ua-is-frozen@npm:0.1.2"
+  checksum: 10c0/fb41929bd4924c9676391e6d7197d30580749a96697a83c8b6e77fb137e3ff8492dcd1e6f871f6a9517848651a93af37bfefb25385f16d90e19678ade22d30b7
+  languageName: node
+  linkType: hard
+
+"ua-parser-js@npm:2.0.8":
+  version: 2.0.8
+  resolution: "ua-parser-js@npm:2.0.8"
+  dependencies:
+    detect-europe-js: "npm:^0.1.2"
+    is-standalone-pwa: "npm:^0.1.1"
+    ua-is-frozen: "npm:^0.1.2"
+  bin:
+    ua-parser-js: script/cli.js
+  checksum: 10c0/8f19abe945043c60e49be261c307e5ed657f4d32aca4d705fc51f933d427fcefa07d7641d484c8ed4238d6738f7322af43a2b26183761569ac6c8fb5ffc27cca
   languageName: node
   linkType: hard
 

@@ -19,7 +19,7 @@ motadataLogs.init({
 })
 ```
 
-After the Datadog browser logs SDK is initialized, send custom log entries directly to Datadog:
+After the Motadata browser logs SDK is initialized, send custom log entries directly to Datadog:
 
 ```javascript
 import { motadataLogs } from '@motadata365/browser-logs'
