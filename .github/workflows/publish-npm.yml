@@ -135,28 +135,24 @@ jobs:
           [ $FAILED -eq 0 ] && echo "All build artifacts verified." || exit 1
 
       - name: Configure npm authentication
-        run: yarn config set npmAuthToken "${{ secrets.NPM_TOKEN }}"
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
 
       - name: Pack only (dry run)
         if: ${{ inputs.dry_run == true }}
         run: |
-          yarn workspaces foreach \
-            --all \
-            --topological \
-            --exclude browser-sdk \
-            -- npm pack
+          for pkg in packages/core packages/rum-core packages/logs packages/worker packages/rum packages/rum-slim packages/rum-react packages/flagging; do
+            echo "=== packing $pkg ==="
+            (cd "$pkg" && npm pack)
+          done
           echo "Dry run complete — tarballs produced, nothing published."
 
       - name: Publish packages to npm
         if: ${{ inputs.dry_run != true }}
         run: |
-          yarn workspaces foreach \
-            --all \
-            --topological \
-            --exclude browser-sdk \
-            -- npm publish --access public
-        env:
-          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          for pkg in packages/core packages/rum-core packages/logs packages/worker packages/rum packages/rum-slim packages/rum-react packages/flagging; do
+            echo "=== publishing $pkg ==="
+            (cd "$pkg" && npm publish --access public)
+          done
 
       - name: Job summary
         if: always()
