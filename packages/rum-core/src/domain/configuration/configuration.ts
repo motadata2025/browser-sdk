@@ -167,7 +167,7 @@ export interface RumInitConfiguration extends InitConfiguration {
    *
    * @category Session Replay
    */
-  sessionReplaySampleRate?: 0 // | undefined
+  sessionReplaySampleRate?: number | undefined
 
   /**
    * If the session is sampled for Session Replay, only start the recording when `startSessionReplayRecording()` is called, instead of at the beginning of the session. Default: if startSessionReplayRecording is 0, true; otherwise, false.
@@ -353,7 +353,7 @@ export function validateAndBuildRumConfiguration(
     return
   }
 
-  const sessionReplaySampleRate = 0 // initConfiguration.sessionReplaySampleRate ?? 0
+  const sessionReplaySampleRate = initConfiguration.sessionReplaySampleRate ?? 0
   setCurrentSite(initConfiguration.site)
   return {
     applicationId: initConfiguration.applicationId,

@@ -1,0 +1,173 @@
+name: Publish to npm
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_bump:
+        description: 'Version bump type'
+        type: choice
+        required: true
+        options:
+          - patch
+          - minor
+          - major
+      custom_version:
+        description: 'Exact version to set (e.g. 6.22.0). Overrides version_bump if provided.'
+        type: string
+        required: false
+      dry_run:
+        description: 'Dry run — build and pack without publishing or committing'
+        type: boolean
+        default: false
+
+concurrency:
+  group: npm-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Bump version, build & publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    permissions:
+      contents: write  # needed to push the version-bump commit + tag
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Enable Corepack and activate Yarn
+        run: corepack enable && corepack prepare yarn@4.10.3 --activate
+
+      - name: Restore Yarn cache
+        uses: actions/cache@v4
+        with:
+          path: .yarn/cache
+          key: yarn-cache-${{ hashFiles('yarn.lock') }}
+          restore-keys: yarn-cache-
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Resolve new version
+        id: version
+        run: |
+          CURRENT=$(node -p "require('./lerna.json').version")
+          echo "Current version: $CURRENT"
+
+          if [ -n "${{ inputs.custom_version }}" ]; then
+            NEW_VERSION="${{ inputs.custom_version }}"
+          else
+            NEW_VERSION=$(npx semver "$CURRENT" -i "${{ inputs.version_bump }}")
+          fi
+
+          echo "New version: $NEW_VERSION"
+          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Bump version across all packages
+        run: |
+          NEW_VERSION="${{ steps.version.outputs.new_version }}"
+
+          # Update lerna.json
+          node -e "
+            const fs = require('fs');
+            const lerna = JSON.parse(fs.readFileSync('lerna.json'));
+            lerna.version = '$NEW_VERSION';
+            fs.writeFileSync('lerna.json', JSON.stringify(lerna, null, 2) + '\n');
+          "
+
+          # Update every package.json under packages/
+          for pkg in packages/*/package.json; do
+            node -e "
+              const fs = require('fs');
+              const p = JSON.parse(fs.readFileSync('$pkg'));
+              p.version = '$NEW_VERSION';
+
+              // Update cross-package @motadata365/* dependency versions
+              for (const section of ['dependencies','devDependencies','peerDependencies']) {
+                if (!p[section]) continue;
+                for (const [dep, ver] of Object.entries(p[section])) {
+                  if (dep.startsWith('@motadata365/browser-')) {
+                    p[section][dep] = '$NEW_VERSION';
+                  }
+                }
+              }
+              fs.writeFileSync('$pkg', JSON.stringify(p, null, 2) + '\n');
+            "
+          done
+
+          echo "All packages bumped to $NEW_VERSION"
+
+      - name: Commit and tag version bump
+        if: ${{ inputs.dry_run != true }}
+        run: |
+          NEW_VERSION="${{ steps.version.outputs.new_version }}"
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add lerna.json packages/*/package.json
+          git commit -m "chore: release v$NEW_VERSION"
+          git tag "v$NEW_VERSION"
+          git push origin HEAD:${{ github.ref_name }} --follow-tags
+
+      - name: Build all packages
+        run: yarn build
+
+      - name: Verify build artifacts
+        run: |
+          FAILED=0
+          for pkg in core rum rum-core rum-slim logs worker flagging; do
+            dir="packages/$pkg"
+            if [ ! -d "$dir/cjs" ] && [ ! -d "$dir/bundle" ]; then
+              echo "ERROR: Build output missing for $dir"
+              FAILED=1
+            fi
+          done
+          [ $FAILED -eq 0 ] && echo "All build artifacts verified." || exit 1
+
+      - name: Configure npm authentication
+        run: yarn config set npmAuthToken "${{ secrets.NPM_TOKEN }}"
+
+      - name: Pack only (dry run)
+        if: ${{ inputs.dry_run == true }}
+        run: |
+          yarn workspaces foreach \
+            --all \
+            --topological \
+            --exclude browser-sdk \
+            npm pack
+          echo "Dry run complete — tarballs produced, nothing published."
+
+      - name: Publish packages to npm
+        if: ${{ inputs.dry_run != true }}
+        run: |
+          yarn workspaces foreach \
+            --all \
+            --topological \
+            --exclude browser-sdk \
+            npm publish --access public
+        env:
+          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Job summary
+        if: always()
+        run: |
+          NEW_VERSION="${{ steps.version.outputs.new_version }}"
+          DRY="${{ inputs.dry_run }}"
+          echo "### npm Publish — v$NEW_VERSION $([ "$DRY" = "true" ] && echo '(dry run)' || echo '')" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Package | Version |" >> $GITHUB_STEP_SUMMARY
+          echo "| --- | --- |" >> $GITHUB_STEP_SUMMARY
+          for pkg in packages/*/package.json; do
+            name=$(node -p "require('./$pkg').name")
+            echo "| \`$name\` | \`$NEW_VERSION\` |" >> $GITHUB_STEP_SUMMARY
+          done

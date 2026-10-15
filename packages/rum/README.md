@@ -19,6 +19,7 @@ motadataRum.init({
   //  env: 'production',
   //  version: '1.0.0',
   sessionSampleRate: 100,
+  sessionReplaySampleRate: 100,
   trackResources: true,
   trackLongTasks: true,
   trackUserInteractions: true,
