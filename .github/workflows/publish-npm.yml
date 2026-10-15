@@ -144,7 +144,7 @@ jobs:
             --all \
             --topological \
             --exclude browser-sdk \
-            npm pack
+            -- npm pack
           echo "Dry run complete — tarballs produced, nothing published."
 
       - name: Publish packages to npm
@@ -154,7 +154,7 @@ jobs:
             --all \
             --topological \
             --exclude browser-sdk \
-            npm publish --access public
+            -- npm publish --access public
         env:
           YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
