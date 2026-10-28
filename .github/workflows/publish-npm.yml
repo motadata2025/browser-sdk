@@ -152,6 +152,12 @@ jobs:
       - name: Configure npm authentication
         run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
 
+      - name: Verify npm authentication
+        run: |
+          echo "Checking npm identity..."
+          npm whoami
+          echo "npm version: $(npm --version)"
+
       - name: Pack only (dry run)
         if: ${{ inputs.dry_run == true }}
         run: |
