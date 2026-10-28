@@ -57,7 +57,7 @@ jobs:
           restore-keys: yarn-cache-
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: yarn install --no-immutable
 
       - name: Resolve new version
 
