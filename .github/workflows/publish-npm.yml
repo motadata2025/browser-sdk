@@ -119,8 +119,19 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add lerna.json packages/*/package.json yarn.lock
-          git commit -m "chore: release v$NEW_VERSION"
-          git tag "v$NEW_VERSION"
+
+          if git diff --cached --quiet; then
+            echo "No version changes to commit — version $NEW_VERSION already in repo."
+          else
+            git commit -m "chore: release v$NEW_VERSION"
+          fi
+
+          if git rev-parse "v$NEW_VERSION" >/dev/null 2>&1; then
+            echo "Tag v$NEW_VERSION already exists, skipping."
+          else
+            git tag "v$NEW_VERSION"
+          fi
+
           git push origin HEAD:${{ github.ref_name }} --follow-tags
 
       - name: Build all packages
