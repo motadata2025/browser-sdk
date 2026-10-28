@@ -60,6 +60,7 @@ jobs:
         run: yarn install --immutable
 
       - name: Resolve new version
+
         id: version
         run: |
           CURRENT=$(node -p "require('./lerna.json').version")
@@ -108,13 +109,16 @@ jobs:
 
           echo "All packages bumped to $NEW_VERSION"
 
+      - name: Update lockfile after version bump
+        run: yarn install --no-immutable
+
       - name: Commit and tag version bump
         if: ${{ inputs.dry_run != true }}
         run: |
           NEW_VERSION="${{ steps.version.outputs.new_version }}"
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add lerna.json packages/*/package.json
+          git add lerna.json packages/*/package.json yarn.lock
           git commit -m "chore: release v$NEW_VERSION"
           git tag "v$NEW_VERSION"
           git push origin HEAD:${{ github.ref_name }} --follow-tags
